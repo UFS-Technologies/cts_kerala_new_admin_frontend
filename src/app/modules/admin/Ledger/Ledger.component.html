@@ -1,0 +1,318 @@
+<div *ngIf="issLoading" class="overlay">
+        <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+        </mat-progress-spinner>
+        </div>
+        
+<div  id='Topdiv'></div>
+<div class="main-content">
+<div class="container-fluid">
+        <div class="row" *ngIf="Entry_View">
+        <div class="col-md-12">
+        <div class="card">
+ 
+        <div class="card-body">
+       
+        <div class="row">
+        
+        <div class="col-md-6">
+        </div>
+        </div>
+        <div class="clearfix"></div>
+
+        </div>
+        </div>
+        </div>
+        
+        
+        </div>
+        <div class="row" *ngIf="!Entry_View">
+
+                     <!-- <div class="col-md-2">
+                        <label class="col-md-3 margin-crect-dte-account-group-diary label-down-alighn-supler-prhse-mstr-down">From</label>
+                        <mat-form-field class="mat-field-date-box-section">
+                                <input matInput [matDatepicker]="dp" placeholder="" [(ngModel)]="Search_FromDate">
+                                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                                <mat-datepicker #dp></mat-datepicker>
+                        </mat-form-field>
+                        </div>
+                        
+                        <div class="col-md-2">
+                                <label class="col-md-2 margin-crect-dte-account-group-diary label-down-alighn-supler-prhse-mstr-down">To</label>
+                                <mat-form-field class="mat-field-date-box-section">
+                                        <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="Search_ToDate">
+                                        <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                                        <mat-datepicker #dp1></mat-datepicker>
+                                </mat-form-field>
+                                </div>
+
+                        <div class="col-md-4 div-crct-alghn-dwn-ldgr-acunt">
+                        <label class="col-md-2 label-down-alighn-adrs-tre-prhse-mstr-down">Account</label>
+                        <input type="text" [matAutocomplete]="auto2" [(ngModel)]="From_Party_Search" (click)="Get_Client_Accounts_Typeahead($event)" (keyup)="Get_Client_Accounts_Typeahead($event)" class="col-md-9 input-dropdown-item-group-diary" />
+                        <mat-autocomplete #auto2="matAutocomplete" [displayWith]="display_FromAccount">
+                        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+                        <ng-container *ngIf="!issLoading">
+                        <mat-option *ngFor="let Client_Accounts_M of Client_Accounts_Data" [value]="Client_Accounts_M">
+                        <span>{{Client_Accounts_M.Client_Accounts_Name}}</span>
+                        </mat-option>
+                        </ng-container>
+                        </mat-autocomplete>
+                        </div>
+
+                        <div class="col-md-3 div-crct-alghn-dwn-ldgr-vuchr-tpe">
+                                <label class="col-md-4 label-down-alighn-stk-ad-mstr-brcde">Voucher</label>
+                                <select [(ngModel)]="Voucher_Type_Search" name="Voucher_Type_Search"  required class="col-md-8 select-box-style-diary">
+                                <option *ngFor="let Voucher_Type_M of Voucher_Type_Data"[ngValue]="Voucher_Type_M">{{Voucher_Type_M.Voucher_Type_Name}}</option>
+                                </select>
+                                </div>
+                                        
+    <div class="col-md-1">         
+                <button mat-raised-button type="submit" (click)="Print_Click()" class="btn btn-danger pull-right change-colour-button button-to-crect-margin"><i class="fa fa-print" aria-hidden="true"></i></button>              
+ <button mat-raised-button type="submit" (click)="Search_Ledger()" class="btn btn-danger pull-right change-colour-button button-to-crect-margin"><i class="fa fa-search" aria-hidden="true"></i></button> -->
+
+
+ <div class="col-md-12">
+        <div class="dt-card mb-2 mt-2 pb-1" style="">         
+            <div class="dt-card__body mt-1 mb-0 pb-0  ">
+                <form class="mb-0"> 
+                  <div class="form-row" style="padding-left: 10px;">
+                    <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Date</label>
+      <div _ngcontent-xmy-c9="" class="col-md-0">
+        <div _ngcontent-xmy-c9="" class="form-check top-to-crect-checkboxes-recipt-voucher">
+          <label _ngcontent-xmy-c9="" class="form-check-label">
+            <input type='checkbox' class="form-check-input" placeholder='Search...' [(ngModel)]="Look_In_Date" />
+            <span _ngcontent-xmy-c9="" class="form-check-sign"><span _ngcontent-xmy-c9="" class="check"></span>
+            </span></label></div>
+      
+      </div> -->
+
+      <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">From</label>
+      <div class="col-xl-1 col-lg-2 col-md-3 col-sm-2 mb-2 date_out_div">  
+       
+            <mat-form-field class="col-md-12 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+            style="height: 40px;padding-top: 7px!important;">
+                  <input matInput [matDatepicker]="dp1" placeholder="" [(ngModel)]="Search_FromDate">
+                  <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                  <mat-datepicker #dp1></mat-datepicker>
+                </mat-form-field>
+          </div>
+        
+
+          <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">TO</label>
+          <div class="col-xl-1 col-lg-2 col-md-3 col-sm-2 mb-2 date_out_div">  
+        
+            <mat-form-field class="col-md-12 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" 
+            style="height: 40px;padding-top: 7px!important;">
+                  <input matInput [matDatepicker]="dp2" placeholder="" [(ngModel)]="Search_ToDate">
+                  <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                  <mat-datepicker #dp2></mat-datepicker>
+                </mat-form-field>
+          </div>
+
+          <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Account</label>
+          <div class="col-lg-2 col-md-5 col-sm-3 mb-2">  
+          <input type="text" [matAutocomplete]="auto2" [(ngModel)]="From_Party_Search"
+           (click)="Get_Client_Accounts_Typeahead($event)" (keyup)="Get_Client_Accounts_Typeahead($event)" 
+           class="form-control"/>
+          <mat-autocomplete #auto2="matAutocomplete" [displayWith]="display_FromAccount">
+          <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+          <ng-container *ngIf="!issLoading">
+          <mat-option *ngFor="let Client_Accounts_M of Client_Accounts_Data" [value]="Client_Accounts_M">
+          <span>{{Client_Accounts_M.Client_Accounts_Name}}</span>
+          </mat-option>
+          </ng-container>
+          </mat-autocomplete>
+          </div>
+
+
+
+          <label class="col-md-0 col-sm-0 col-form-label ledger_voucher_label  text-sm-right mr-0 ">Voucher</label>
+              <div class="col-md-2 col-sm-2 mb-2 "> 
+               <select [(ngModel)]="Voucher_Type_Search" name="Voucher_Type_Search"  required class="form-control pl-1 p-0">
+                <option *ngFor="let Voucher_Type_M of Voucher_Type_Data"[ngValue]="Voucher_Type_M">{{Voucher_Type_M.Voucher_Type_Name}}</option>
+                </select>
+                </div>
+
+          <button  (click)="Search_Ledger()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 "style="height: 38px!important;">Search</button>
+
+          <button (click)="Print_Click()"  mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 " style="height: 38px!important;"><i class="fa fa-print" aria-hidden="true"></i></button>   
+
+            </div>
+          
+             
+                  <!-- <button  (click)="Search_Account_Voucher()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 "style="height: 38px!important;">Search</button>
+
+                  <button (click)="Create_New()" mat-raised-button type="submit"  class="save-button-style pull-right mr-1 " style="height: 38px!important;">Create New</button>   
+       -->
+                <!-- </div> -->
+                </form>
+                </div>
+                </div>
+                </div>
+
+
+
+
+</div>  
+
+
+
+
+
+        <!-- <div class="col-md-12">
+        <div class="card card-plain">
+        <div class="card-body">
+       <div class="table-responsive" style="overflow:scroll;height: 350px;">
+
+        <table class="table table-hover"> -->
+                <div class="  mt-2" style="border: 1" >
+                 <div class="dt-card mb-0 pb-1" style="background-color: white;" >  
+                 <div class="card-body card-body-for-searchedit-lead-section">
+                 <div class="table-responsive">
+                <table class="table table-hover table-for-sale-search-section-diary">
+        <thead class="thead">
+        <th>Sl No</th>
+        <th>Date</th>
+        <th>Account</th> 
+        <th>Voucher No</th>
+        <th>Voucher</th>
+         <!-- <th>
+        Description
+        </th> -->
+        <th>Dr</th>
+        <th>Cr</th>
+        </thead>
+        <tr *ngFor="let Accounts1 of Accounts_Data; let i = index">
+                 <td style="padding-left:5px;">{{ i+1 }}</td>
+        <td>{{Accounts1["Date"]}}</td>
+        <td>{{Accounts1["Particular"]}}</td> 
+        <td>{{Accounts1["VoucherNo"]}}</td> 
+        <td>{{Accounts1["VoucherType"]}}</td> 
+        <td>{{Accounts1["Dr"]}}</td> 
+        <td>{{Accounts1["Cr"]}}</td> 
+</tr>
+</table>
+<!-- </cdk-virtual-scroll-viewport> -->
+        </div>
+        </div>
+        <label class="entry-num">Entries : {{Total_Entries}}</label>
+        </div>
+        </div>
+        </div>
+        </div>
+       
+
+<div id="Print_Div" style="display:none;">
+      <div class="printz">
+       <!-- <table>
+        <tr>
+            <td class="company-title-print-portion" name="company_Name"  style="width:93%;"><h1><b>{{Print_Company_.Company_Name}}</b></h1></td>
+           <td class="printLogo center-block">
+            <img style="width: 90px; Height:90px;" src='{{Image_Url}}'>
+            </td>
+        </tr>
+        <tr>
+             <td>  {{Print_Company_.Description1}} </td>
+            <td>  {{Print_Company_.Description2}} </td>
+        </tr>
+          <tr>
+            <td>   {{Print_Company_.Description3}}  </td>
+          </tr>
+      </table> -->
+          <hr>
+    
+     <table class="inBox" style="width: 100%;">
+         <tr>
+            <td></td>
+            <td></td>
+             <td>Customer:</td>
+             <td>{{From_Party_Search.Client_Accounts_Name}}</td>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td></td>
+          </tr>
+          <tr>
+                <td></td>
+                <td></td>
+                <td>Address:</td>
+                <td>{{Print_Client1_.Address1}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+        </tr>
+        <tr>
+                <td></td>
+                <td></td>
+                <td>{{Print_Client1_.Address2}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+      </tr>
+      <tr>
+                <td></td>
+                <td></td>
+                <td>{{Print_Client1_.Address3}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+    </tr>
+   
+        <tr>
+                <td></td>
+                <td>Mobile</td>
+                <td>{{Print_Client1_.Mobile}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+        </tr>
+              <tr>
+                  <!-- <td style="width: 50%;">{{Print_Company_.Address1}}</td> -->
+                  <td></td>
+                  <td></td>
+                  <td>Date   :</td>
+                  <td>{{Print_Date_}}</td>
+              </tr>
+            
+              <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Receipt No :</td>
+                        <!-- <td>{{VoucherNo}}</td> -->
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+              </tr>
+          </table>
+  
+          <table class="table table-hover">
+                        <thead class="">
+                                <th> Sl No</th>
+                                <th>Date</th>
+                                <th>Account</th> 
+                                <th>Voucher No</th>
+                                <th>Voucher</th>
+                                <th>Dr</th>
+                                <th>Cr</th> 
+                        </thead>
+                        <tbody *ngFor="let Accounts1 of Accounts_Data; let i = index">
+                         <td style="padding-left:5px;">{{ i+1 }}</td>
+                                <td>{{Accounts1["Date"]}}</td>
+                                <td>{{Accounts1["Particular"]}}</td> 
+                                <td>{{Accounts1["VoucherNo"]}}</td> 
+                                <td>{{Accounts1["VoucherType"]}}</td> 
+                                <td>{{Accounts1["Dr"]}}</td> 
+                                <td>{{Accounts1["Cr"]}}</td> 
+                       </tbody>
+         </table>
+
+          <br />
+          <br />
+    
+      </div>
+  </div>
+            

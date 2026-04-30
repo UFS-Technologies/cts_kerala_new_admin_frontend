@@ -1,0 +1,105 @@
+<div *ngIf="issLoading" class="overlay">
+<mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+</mat-progress-spinner>
+</div>
+<div class="main-content screenfixed">
+<div class="container-fluid">
+<div class="row" *ngIf="Entry_View">
+
+
+  
+ 
+    <div class="col-md-12 mt-2 pl-0">
+        <div class="dt-card mb-0 pb-1">         
+            <div class="dt-card__body mt-1 mb-0 pb-0">
+                <form class="mb-0">           
+                <div class="form-row" style="padding-left: 10px;">
+                    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Year/Semester<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                    <div class="col-md-3 col-sm-3 mb-2">
+                        <input type="text" class="form-control" [(ngModel)]="Part_.Part_Name" name="Part_.Part_Name"  placeholder="Year/Semester">
+                       
+                    </div>
+                    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Serial No<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                    <div class="col-md-3 col-sm-3 mb-2">
+                        <input type="number" class="form-control" [(ngModel)]="Part_.Serial_No" name="Part_.Serial_No"  placeholder="Serial No">
+                       
+                    </div>
+                    
+                    <div class="col-md-3 col-sm-2 mt-0"> 
+                        <button  (click)="Close_Click()" mat-raised-button type="submit" class="close-button-style pull-left mr-1 ">Close</button>                   
+                         <button (click)="Save_Part()" [hidden]="Part_Save==false"id="Save_Button" mat-raised-button type="submit" class="save-button-style pull-left mr-1">Save</button>                      
+                        </div>
+                </div>
+            </form>
+            </div>
+        </div>        
+      </div> 
+
+
+
+</div>
+
+<div class="row" *ngIf="!Entry_View">
+   
+   
+  
+     
+     <div class="col-md-12 pl-0  mt-2 mb-2">
+        <div class="dt-card mb-2 pb-1">         
+            <div class="dt-card__body mt-1 mb-0 pb-0">
+                <form class="mb-0">           
+                <div class="form-row" style="padding-left: 10px;">
+                    <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Year/Semester</label>
+                
+                    <div class="col-md-3 col-sm-3 mb-2">  
+                        <input type="text" class="form-control"  [(ngModel)]="Part_Name_Search" name="Part_Name_Search"  placeholder="">
+                      
+                    </div>
+                    
+                    <div class="col-md-4 col-sm-2 mt-0" >                    
+                         <button (click)="Search_Part()" mat-raised-button type="submit" class="other-button-style pull-left mr-1">Search</button>
+                         <button (click)="Create_New()" mat-raised-button type="submit"  class="save-button-style pull-left mr-1 ">Create New</button>
+    
+                        </div>
+                </div>
+            </form>
+            </div>
+        </div>        
+      </div> 
+
+
+ 
+    <div class="col-md-12 pl-0 mt-0" >
+        <div class="dt-module mb-0">            
+            <div class="dt-module__container">
+                <div class="dt-module__content ps-custom-scrollbar">
+                    <div class="card-body  "style="overflow-y: scroll;"[style.height.px]="myTotalHeight" >
+                    <div class="dt-module__content-inner pl-0 pr-0">   
+                        <div class="dt-module__list pl-0 pr-0" >
+                         
+                            <div class="dt-module__list-item pb-2 pt-2"  *ngFor="let Part1 of Part_Data; let i = index"> 
+                                <div class="dt-module__list-item-content">
+                                    <div class="user-detail">
+    
+                                        <span class="icon-background2 mr-1"  [hidden]="Part_Edit==false" (click)="Edit_Part(Part1,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+                                        <span class="icon-background3 mr-1" [hidden]="Part_Delete==false"  (click)="Delete_Part(Part1.Part_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span>
+                                        
+                                        <span class="user-name">{{Part1["Part_Name"]}}</span>
+                            
+                                    </div>
+                             
+                                </div>                                
+                            </div>
+                    
+                        </div>
+                    </div>
+                  
+                </div>
+             
+            </div>
+           
+          </div>
+      </div> 
+      <label class="entry-num">Entries : {{Total_Entries}}</label>
+</div>
+</div>

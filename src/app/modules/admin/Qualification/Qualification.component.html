@@ -1,0 +1,170 @@
+<div *ngIf="issLoading" class="overlay">
+<mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+</mat-progress-spinner>
+</div>
+<div class="main-content">
+<div class="container-fluid">
+<div class="row" *ngIf="Entry_View">
+
+    <!-- <div class="col-md-12">
+    <form>
+    <div class="row">
+        <div class="col-md-6">    
+            <label class="col-md-2">Qualification<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span> </label> 
+            <mat-form-field class="col-md-10 input-allighn-typer-head-all-divs-matinputs">
+            <input matInput type="text" [(ngModel)]="Qualification_.Qualification_Name" name="Qualification_.Qualification_Name" class="input-text-item-group-diary">
+            </mat-form-field> 
+        </div>
+        <div class="col-md-2 bottom">          
+            <button mat-raised-button type="submit" [hidden]="Qualification_Save==false"id="Save_Button"class="btn btn-danger pull-right"(click)="Save_Qualification()">Save</button>
+            <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="Close_Click()">Close</button>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    </form>
+    </div> -->
+    
+    
+    <div class="col-md-12 mt-2 pl-0">
+        <div class="dt-card mb-0 pb-1">         
+            <div class="dt-card__body mt-1 mb-0 pb-0">
+                <form class="mb-0">           
+                <div class="form-row " style="padding-left: 10px;">
+                    <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Qualification<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                    <div class="col-md-3 col-sm-3 mb-2">
+                        <input type="text" class="form-control" [(ngModel)]="Qualification_.Qualification_Name" name="Qualification_.Qualification_Name"  placeholder="">
+                       
+                    </div>
+                    
+                    <div class="col-md-3 col-sm-2 mt-0"> 
+                        <button (click)="Close_Click()" mat-raised-button type="submit" class="close-button-style pull-left mr-1 ">Close</button>                   
+                         <button (click)="Save_Qualification()"  [hidden]="Qualification_Save==false" id="Save_Button" mat-raised-button type="submit" class="save-button-style pull-left mr-1">Save</button>                      
+                        </div>
+                </div>
+            </form>
+            </div>
+        </div>        
+      </div> 
+
+
+</div>
+<div class="row" *ngIf="!Entry_View">
+
+
+    <!-- <div class="col-md-12">
+    <div class="card">
+    <form>
+    <div class="row">
+        <div class="col-md-6 alighyn-div-margin-search-item-group">    
+        <label class="col-md-3">Qualification</label> 
+        <mat-form-field class="col-md-9 input-allighn-typer-head-all-divs-matinputs">
+        <input matInput type="text"  [(ngModel)]="Qualification_Name_Search" name="Qualification_Name_Search" class="input-text-item-group-diary">
+        </mat-form-field> 
+        </div>
+        <div class="col-md-2 bottom">                           
+            <button mat-raised-button type="submit" (click)="Search_Qualification()" class="btn btn-danger button-to-crect-margin upper-to-button-all-pge-srch-new change-colour-button"><i class="fa fa-search" aria-hidden="true"></i></button>      
+            <button mat-raised-button type="submit" (click)="Create_New()" class="btn btn-danger button-to-crect-margin upper-to-button-all-pge-srch-new change-colour-button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>              
+    </div>
+    <div class="clearfix"></div>
+    </form>
+    </div>
+    </div> -->
+    
+    <div class="col-md-12 pl-0  mt-2 mb-2">
+        <div class="dt-card mb-2 pb-1">         
+            <div class="dt-card__body mt-1 mb-0 pb-0">
+                <form class="mb-0">           
+                <div class="form-row mb-2" style="padding-left: 10px;">
+                    <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Qualification</label>
+                
+                    <div class="col-md-3 col-sm-3 mb-2">  
+                        <input type="text" class="form-control" [(ngModel)]="Qualification_Name_Search" name="Qualification_Name_Search" placeholder="">
+                      
+                    </div>
+                    
+                    <div class="col-md-5 col-sm-2 mt-0" >                    
+                         <button (click)="Search_Qualification()" mat-raised-button type="submit" class="other-button-style pull-left mr-1">Search</button>
+                         <button (click)="Create_New()"  mat-raised-button type="submit"  class="save-button-style pull-left mr-1 ">Create New</button>
+    
+                        </div>
+                </div>
+            </form>
+            </div>
+        </div>        
+      </div> 
+
+
+    <!-- <div class="col-md-12">
+        <div class="card card-plain">
+        <div class="card-body">
+        <div class="table-responsive">
+        <table class="table table-hover">
+        <thead class="thead">
+        <th>Sl No</th>
+        <th>Qualification </th>
+        <th [hidden]="Qualification_Edit==false">View</th>
+        <th [hidden]="Qualification_Delete==false">Delete</th>
+        </thead>
+        <tr *ngFor="let Qualification1 of Qualification_Data; let i = index">
+        <td class="td-padding" style="padding-left:5px;">{{ i+1 }}</td>
+        <td class="td-padding">{{Qualification1["Qualification_Name"]}}</td>
+        <td class="td-padding">
+        <button _ngcontent-jry-c5="" _ngcontent-gxp-c5="" [hidden]="Qualification_Edit==false"aria-describedby="cdk-describedby-message-0" 
+        cdk-describedby-host="" class="aligyn-crect-deprtnment btn btn-primary btn-link btn-sm btn-just-icon mat-raised-button"
+         mat-raised-button="" mattooltip="Edit Task" ng-reflect-message="Edit Task" ng-reflect-position="above" type="button">
+         <span class="mat-button-wrapper"><span _ngcontent-jry-c5="" class="mat-button-wrapper">
+             <i _ngcontent-jry-c5="" _ngcontent-gxp-c5="" class="material-icons" (click)="Edit_Qualification(Qualification1,i)" >edit</i></span><div _ngcontent-jry-c5="" class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div><div _ngcontent-jry-c5="" class="mat-button-focus-overlay"></div></span><div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div><div class="mat-button-focus-overlay" ></div></button>
+        </td>
+        <td class="td-padding"> 
+        <button _ngcontent-gdi-c11="" [hidden]="Qualification_Delete==false"class="btn btn-danger btn-link btn-sm btn-just-icon mat-raised-button"
+         mat-raised-button="" mattooltip="Remove" type="button" aria-describedby="cdk-describedby-message-1" cdk-describedby-host="" 
+         ng-reflect-position="above" ng-reflect-message="Remove"><span class="mat-button-wrapper"><i _ngcontent-gdi-c11="" class="material-icons" 
+             (click)="Delete_Qualification(Qualification1.Qualification_Id,i)" >close</i></span><div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div><div class="mat-button-focus-overlay"  ></div></button>
+        </td> 
+        </tr>
+        </table>
+        </div>  
+        </div>      
+    </div>
+    <label class="entry-num">Entries : {{Total_Entries}}</label>
+    </div> -->
+
+
+    <div class="col-md-12 pl-0 mt-0" >
+        <div class="dt-module ">            
+            <div class="dt-module__container">
+                <div class="dt-module__content ps-custom-scrollbar">
+                    <div class="card-body   "style="overflow-y: scroll;"[style.height.px]="myTotalHeight"  >
+                    <div class="dt-module__content-inner pl-0 pr-0">   
+                        <div class="dt-module__list pl-0 pr-0" >
+                            
+                         
+                            <div class="dt-module__list-item pb-2 pt-2"  *ngFor="let Qualification1 of Qualification_Data; let i = index"> 
+                                <div class="dt-module__list-item-content">
+                                    <div class="user-detail">
+    
+                                        <span class="icon-background2 mr-1"  [hidden]="Qualification_Edit==false" (click)="Edit_Qualification(Qualification1,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+                                        <span class="icon-background3 mr-1"  [hidden]="Qualification_Delete==false"      (click)="Delete_Qualification(Qualification1.Qualification_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span>
+                                        
+                                        <span class="user-name">{{Qualification1["Qualification_Name"]}}</span>
+                            
+                                    </div>
+                             
+                                </div>                                
+                            </div>
+                    
+                        </div>
+                    </div>
+                  
+                </div>
+             
+            </div>
+           
+          </div>
+      </div> 
+
+      <label class="entry-num">Entries : {{Total_Entries}}</label>
+
+</div>
+</div>

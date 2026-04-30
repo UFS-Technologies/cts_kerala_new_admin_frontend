@@ -1,0 +1,650 @@
+<div *ngIf="issLoading" class="overlay">
+  <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+  </mat-progress-spinner>
+  </div>
+  
+  <div  id='Topdiv'></div>
+  <div  id='Bottomdiv'></div>
+  <div class="main-content"  >
+  <div class="container-fluid">
+  <div class="row" *ngIf="Entry_View" style="overflow: scroll;" [style.height.px]="myInnerHeight">
+  <div class="col-xl-12 pl-0 mt-1" >
+  
+  <div class="profilecard mb-2">
+  <div class="card-header card-nav border-bottom-0 mb-0 pt-3 pb-0"     *ngIf="tab_view">
+      <ul class="card-header-tabs nav " role="tablist">
+      <div class="col-md-11 col-sm-11">  
+          <li class="nav-item"   (click)="Tab_Click(1)">
+          <div *ngIf="profile_View" ></div>
+          <a class="nav-link active " data-toggle="tab" role="tab" aria-controls="profile" aria-selected="true">Profile </a>
+          <div  *ngIf="profile_View" style="height: 2px; background-color: #512DA8;"></div>
+          </li>
+     
+  
+          <li class="nav-item" *ngIf="Agent_Id_Edit>0 && Registration==true" [hidden]="Fees_Tab_View==false"
+               (click)="Tab_Click(2)">
+          <a class="nav-link " data-toggle="tab" role="tab"aria-controls="Receipt"aria-selected="true">Agent Receipt </a>
+          <div *ngIf="AgentReceipt_View" style="height: 2px; background-color: #512DA8;"></div>
+          </li>
+  
+      </div>
+  
+      <div class="col-md-1 col-sm-1">        
+        <!-- <button class="icon-closebackground btnflot-l mr-0" type="submit" (click)="Close_Click()"><i class="fa fa-close" style="font-size:20px;color:white" aria-hidden="true"></i></button> -->
+        <span class=" mr-1" (click)="Close_Click()" > <mat-icon  style="font-size: 32px;cursor: pointer;" class="text-red small" >close</mat-icon></span>
+  
+       </div>
+  
+  
+  
+      </ul>  
+  </div>
+  
+  <div class="dt-card__body mt-3 "  id="profile"  *ngIf="profile_View"  >
+  <form class="mb-0">
+  <div class="container-fluidprofile">
+      <div class="dt-card mt-2">
+      <div class="dt-card__body mt-3 ml-3"  >
+  
+      <div class="form-row  mb-2  ">
+      <label class="col-md-2 col-sm-2 col-form-label text-sm-right"><u>OWNER DETAILS</u></label>                          
+      <div class="col-md-4 col-sm-4 mb-1">
+      </div> 
+  
+      <div class="col-md-0 col-sm-0" style="margin-right: -1%;"></div>    
+      <label class="col-md-2 col-sm-2 col-form-label text-sm-right text-dark"><b><u>SKP ADDRESS</u></b></label><hr>                        
+      <div class="col-md-4 col-sm-4 mb-1">
+      </div> 
+      </div>
+      
+    <div class="form-row  mb-2  ">
+      <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Owner Name<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+      <div class="col-md-4 col-sm-4 mb-1">
+      <input type="text" name="Agent_.Agent_Name" [(ngModel)]="Agent_.Agent_Name" class="form-control" placeholder="">
+      </div> 
+      <div class="col-md-1 col-sm-1"></div> 
+      <label class="col-md-1 col-sm-1 col-form-label text-sm-right">House/Flat No/</label>                          
+      <div class="col-md-4 col-sm-4 mb-1">
+      <input type="text" name="Comm_Address1" [(ngModel)]="Agent_.Comm_Address1" class="form-control" placeholder="">
+      </div> 
+    </div>
+  
+      <div class="form-row  mb-2  ">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Mobile<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" name="Agent_.Mobile" [(ngModel)]="Agent_.Mobile" class="form-control" placeholder="">
+        </div>     
+        <div class="col-md-1 col-sm-1"></div> 
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Location</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" name="Agent_.Comm_Address2" [(ngModel)]="Agent_.Comm_Address2" class="form-control" placeholder="">
+        </div>   
+    </div>
+        <div class="form-row  mb-2  ">
+          <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Category<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+          <div class="col-md-4 col-sm-4 mb-1">
+          <select (change)="Category_Click()" class="form-control p-0 pl-1" [(ngModel)]="Category_Type_"  name="Category_Type_" required  id="Category_Type_" >
+          <!-- (click)="Search_Category_Commision($event)" (keyup)="Search_Category_Commision($event)" 
+          (ngModelChange)="Category_Change()" -->
+          <option *ngFor="let Category_T of Category_Data" [ngValue]="Category_T" >{{Category_T.Category_Name}}
+          </option>
+          </select>       
+          </div>
+          <div class="col-md-1 col-sm-1"></div>   
+          <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Post Office</label>                          
+          <div class="col-md-4 col-sm-4 mb-1">
+          <input type="text" name="Agent_.Comm_Address3" [(ngModel)]="Agent_.Comm_Address3" class="form-control" placeholder="">
+          </div>  
+
+        </div>
+
+
+       
+
+  
+      <div class="form-row  mb-2  ">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">District</label>
+        <div class="col-md-4 col-sm-3 mb-1">
+        <select class="form-control p-0 pl-1" [(ngModel)]="District_"  name="District_" required id="District_" >
+        <option *ngFor="let District_ of District_Data" [ngValue]="District_" >{{District_.District_Name}}
+        </option>
+        </select>       
+        <div class="col-md-8 mt-2" style="float: right;margin-right: -20%;" >                    
+        <button (click)="Click_Agent_District()"  mat-raised-button type="submit" class="other-button-style pull-left mr-1">Generate Center Code</button>
+        </div>
+        </div>  
+        <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">District</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <select class="form-control p-0 pl-1" [(ngModel)]="District_"  name="District_" required id="District_" >
+          <option *ngFor="let District_ of District_Data" [ngValue]="District_" >{{District_.District_Name}} </option>
+        </select> 
+        </div>
+        <button (click)="Click_Agent_District()" mat-raised-button type="submit" class="choose-button-style btnflot pull-right mt-0">
+        Code</button> -->
+        <div class="col-md-1 col-sm-1"></div>    
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">State</label>
+         <div class="col-md-4 col-sm-4 mb-1">
+         <input type="text"  name="Agent_.Comm_Address4" [(ngModel)]="Agent_.Comm_Address4" class="form-control" placeholder="">
+         </div>  
+      </div>
+  
+      <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Center Code</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" name="Agent_.Center_Code" [(ngModel)]="Agent_.Center_Code" class="form-control" placeholder="">
+        </div>                
+        <div class="col-md-1 col-sm-1"></div> 
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Pincode</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  name="Agent_.Comm_Pincode" [(ngModel)]="Agent_.Comm_Pincode" class="form-control" placeholder="">
+        </div>            
+      </div>
+  
+      <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Center Name</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" name="Agent_.Center_Name" [(ngModel)]="Agent_.Center_Name" class="form-control" placeholder="">
+        </div>  
+        <div class="col-md-1 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Email</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  name="Agent_.Email" [(ngModel)]="Agent_.Email" class="form-control" placeholder="">
+        </div>   
+      </div>
+
+      <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Address</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+          <input type="text" name="Agent_.Address1" [(ngModel)]="Agent_.Address1"   class="form-control" placeholder="">  </div>  
+        <div class="col-md-1 col-sm-1"></div>    
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Password</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" name="Agent_.Password" [(ngModel)]="Agent_.Password"  class="form-control"
+        placeholder="">
+        </div> 
+    </div>
+
+      <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right"></label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" name="Address3" [(ngModel)]="Agent_.Address3" class="form-control" placeholder="">
+        </div>                
+        <div class="col-md-1 col-sm-1"></div>     
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Photo</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  name="Agent_.Photo "   [(ngModel)]="Agent_.Photo" class="form-control" placeholder="">
+        </div>
+        <button class="choose-button-style btnflot pull-right mt-0"  type="button" style="background-color: #0db195;"  (click)="fileInput4.click()"><span>Upload</span>
+        <input #fileInput4 type="file"   id="btnUpload"  value="Upload" name="Photo"  [(ngModel)]="file" (change)="File_Change($event)" style="display:none;"  class="upload"  /> 
+        </button>
+        <div class="col-md-11">                                           
+        <div class="square" style="float: right;">
+        <img id="output" width="200" src={{ImageFile_Photo_view}} />
+        </div>                                    
+        </div>
+      </div>
+  
+      
+
+
+
+
+  
+  
+      <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right"></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+          <input type="text" name="Address4" [(ngModel)]="Agent_.Address4"   class="form-control" placeholder="">  </div>  
+          <div class="col-md-1 col-sm-1"></div>    
+          <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Commission</label>
+          <div class="col-md-4 col-sm-4 mb-1">
+          <input type="text"  name="Commission" [(ngModel)]="Agent_.Commission"  class="form-control"
+          placeholder="">
+          </div>         
+      </div>
+  
+      <div class="form-row  mb-2">  
+         <label class="col-md-1 col-sm-1 col-form-label text-sm-right"></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+          <!-- <input type="text"   class="form-control" placeholder="">   -->
+        </div>  
+        <div class="col-md-1 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">SKP Fees</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" name="Agent_.Agent_Fees" [(ngModel)]="Agent_.Agent_Fees" class="form-control" placeholder="">
+        </div>   
+      </div> 
+
+      <div class="form-row  mb-2  ">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Subscription<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <select  class="form-control p-0 pl-1" [(ngModel)]="Subscription_"   (ngModelChange)="Subscription_Change()"   name="Subscription_"  required  id="Subscription_" >
+        <option *ngFor="let Subscription_T of Subscription_Data" [ngValue]="Subscription_T" >{{Subscription_T.Subscription_Name}}
+        </option>
+        </select>       
+        </div>
+
+        <div class="col-md-1 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Subscription Amount</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input disabled type="number" name="Agent_.Subscription_Amount" [(ngModel)]="Agent_.Subscription_Amount" class="form-control" placeholder="">
+        </div>
+      
+      </div>
+
+
+
+      <div class="form-row  mb-2  ">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Subscription Duration</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+          <input disabled type="number" name="Agent_.Duration" [(ngModel)]="Agent_.Duration"   class="form-control" placeholder="">        
+        </div>
+
+        <div class="col-md-1 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Payment Reference No<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" name="Agent_.Subscription_Payment_Id" [(ngModel)]="Agent_.Subscription_Payment_Id" class="form-control" placeholder="">
+        </div>
+      
+      </div>
+      <div class="form-row  mb-2  ">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Subscription Start Date<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        
+          <mat-form-field class="form-control stud_dob">
+          <input matInput [matDatepicker]="dpdate" placeholder="" [(ngModel)]="Agent_.Subscription_Start_Date"  (ngModelChange)="Subscription_Start_Date_Change()" name="Agent_.Subscription_Start_Date">
+          <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+          <mat-datepicker #dpdate></mat-datepicker>
+          </mat-form-field>
+        
+        </div>
+
+        <div class="col-md-1 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Subscription End Date</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+       
+        <mat-form-field  class="form-control stud_dob">
+        <input disabled matInput [matDatepicker]="dpdate1" placeholder="" [(ngModel)]="Agent_.Subscription_End_Date" name="Agent_.Subscription_End_Date">
+        <mat-datepicker-toggle matSuffix [for]="dpdate1"></mat-datepicker-toggle>
+        <mat-datepicker #dpdate1></mat-datepicker>
+        </mat-form-field>
+      
+      
+      </div>
+
+      
+      </div>
+
+      <div class="form-row  mb-2  ">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Payment Status<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+          <select  class="form-control p-0 pl-1" [(ngModel)]="Subscription_Payment_Status_"  name="Subscription_Payment_Status_" required  id="Subscription_Payment_Status_" >
+            <option *ngFor="let Subscription_Payment_Status_T of Subscription_Payment_Status_Data" [ngValue]="Subscription_Payment_Status_T" >{{Subscription_Payment_Status_T.Subscription_Payment_Status_Name}}
+            </option>
+            </select>  </div>
+
+        <div class="col-md-1 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Normal Status<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+          <select  class="form-control p-0 pl-1" [(ngModel)]="Subscription_Status_"  name="Subscription_Status_" required  id="Subscription_Status_" >
+            <option *ngFor="let Subscription_Status_T of Subscription_Status_Data" [ngValue]="Subscription_Status_T" >{{Subscription_Status_T.Subscription_Status_Name}}
+            </option>
+            </select>  </div>
+      
+      </div>
+
+
+       <div class="row">
+      <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Course Type</label>
+     <div class="col-lg-4 col-md-10" style="border: 1">
+     <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;">    
+     <div class=" card-body-for-searchedit-lead-section ">
+     <!-- <div class="table-responsive" [style.height.px]="myInnerHeight"  > -->
+     
+       <div class="table">
+      <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format " >
+        <thead>
+        <tr _ngcontent-xmy-c9="" class="th-botm-bordr">
+            <th class="col-md-1">Sl.No</th>
+          <th  class="col-md-1">Select</th> 
+          <th  class="col-md-1">Status</th> 
+          <th class="">SKP Percentage</th> 
+        </tr>
+      </thead>
+        <tbody _ngcontent-xmy-c9="" *ngFor="let Course_Type1 of Course_Type_Data; let i = index">
+        <tr _ngcontent-xmy-c9="">
+          <td class="crect-align-tblelst-srlno-branch">{{ i+1 }}</td>
+          <td _ngcontent-xmy-c9="" class="crect-align-tblelst-status-branch"><div _ngcontent-xmy-c9="" class="form-check mar-crect-for-check-bx-depart"><label _ngcontent-xmy-c9="" class="form-check-label">
+          <input type="checkbox" name={{Course_Type1.Course_Type_Id}} class="form-check-input"  [(ngModel)]="Course_Type1.Check_Box" [checked]="Course_Type1.Check_Box"> <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-left: 24px; margin-top: 13px;"><span _ngcontent-xmy-c9="" class="check"></span></span></label></div>
+          </td>
+          <td class="crect-align-tblelst-select-branch">{{Course_Type1["Course_Type_Name"]}}</td>
+          <td class="" style="width: 65px;">
+            <input  type="number" name={{Course_Type1.Course_Type_Id}}b{{Course_Type1.Course_Type_Id}} [(ngModel)]="Course_Type1.Agent_Amount" class="form-control">
+          </td>
+        </tr>
+        </tbody>
+        </table>
+                                    
+        </div>
+        </div>
+        </div>
+        
+        </div>
+        </div> 
+       
+   
+      </div>
+      <div class="form-row  mb-2 mt-3">
+      <div class="col-md-11"> 
+      <button (click)="Close_Click()" mat-raised-button type="submit" class="close-button-style pull-right  ml-4 ">Close</button>
+      
+      <button (click)="Activate_Subscription ()" [hidden]="Agent_Save==false"id="Save_Button" mat-raised-button type="submit" class="save-button-style pull-right mr-1 ml-1" style="margin-right: 8px !important;">Activate Subscription </button> 
+
+      <button (click)="Save_Agent()" [hidden]="Agent_Save==false"id="Save_Button" mat-raised-button type="submit" class="save-button-style pull-right mr-1 ml-1" style="margin-right: 4hpx !important;">Save</button> 
+      <!-- <button (click)="Delete_Agent(Agent_.Agent_Id)"[hidden]="Agent_Delete==false" *ngIf="Agent_Id_Edit>0"  mat-raised-button type="submit" class="delete-button-style pull-right  ml-1 ">Delete</button>                                         -->
+      <button (click)="Save_Agent_Registration()"  *ngIf="Registration_Visiblility"  mat-raised-button type="submit" class="close-button-style pull-right  ml-1 ">Register</button>                   
+      <!-- <button class="other-button-style btnflot" *ngIf="Registration_Visiblility" *ngIf="Remove_Registration_Visibility"(click)="Remove_Registration()" mat-raised-button type="submit">Remove Registration</button> -->
+      <button (click)="Remove_Registration()" *ngIf="Remove_Registration_Visibility"  mat-raised-button type="submit" class="close-button-style pull-right  ml-4 ">Remove Registration</button>                   
+      <button (click)="print_Certificate()" *ngIf="Print_view"  mat-raised-button type="submit" class="close-button-style pull-right  ml-4 ">Print </button>                   
+
+      </div>
+      </div>
+      </div>
+  </div>
+  </form>
+  </div>
+  <div class="dt-card__body mt-3 pl-4"  id="profile"  *ngIf="AgentReceipt_View"  >
+  <form class="mb-0">
+  <div class="container-fluidprofile">
+  <div class="dt-card mt-2">
+  <div class="dt-card__body mt-3" style="margin-left: 2%;" >
+      <div class="form-row  mb-2  ">
+          <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Date</label>                          
+          <div class="col-md-4 col-sm-4 mb-1">
+          <input type="date" class="form-control" placeholder="" name="Receipt_Voucher_.Date" [(ngModel)]="Receipt_Voucher_.Date" >
+          </div> 
+          <div class="col-md-1 col-sm-1"></div>   
+          <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Amount</label>                          
+          <div class="col-md-4 col-sm-4 mb-1">
+          <input type="number" name="Receipt_Voucher_.Amount" [(ngModel)]="Receipt_Voucher_.Amount" class="form-control" placeholder="">
+          </div> 
+      </div>
+  
+      <div class="form-row  mb-2  ">
+      <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Receipt No</label>                          
+      <div class="col-md-4 col-sm-4 mb-1">
+      <input type="number" name="Receipt_Voucher_.Voucher_No" [(ngModel)]="Receipt_Voucher_.Voucher_No" class="form-control" placeholder="">
+      </div>  
+  
+      <div class="col-md-1 col-sm-1"></div>    
+      <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Mode</label>                          
+      <div class="col-md-4 col-sm-4 mb-1">
+      <select [(ngModel)]="Mode" name="Fees_.Fees_Id" required class="form-control p-0 pl-1">
+      <option *ngFor="let Mode1 of Mode_Data" [ngValue]="Mode1">{{Mode1.Mode_Name}}</option>
+      </select>
+      </div> 
+      </div>
+  
+      <div class="form-row  mb-2">
+     <label class="col-md-1 col-sm-1 col-form-label text-sm-right">To Account<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+      <div class="col-md-4 col-sm-4 mb-1">
+      <input type="text"  class="form-control"  [matAutocomplete]="auto_Client" id="Client_Accounts_" name="Client_Accounts_" 
+      [(ngModel)]="Client_Accounts_" (click)="Accounts_Typeahead($event)" /></div>  
+      <mat-autocomplete #auto_Client="matAutocomplete" [displayWith]="display_Accounts">
+          <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+          <ng-container *ngIf="!issLoading">
+          <mat-option *ngFor="let Client_Accounts_ of Client_Accounts_Data" [value]="Client_Accounts_">
+          <span>{{Client_Accounts_.Client_Accounts_Name}}</span>
+          </mat-option>
+          </ng-container>
+      </mat-autocomplete>  
+      <div class="col-md-1 col-sm-1"></div>      
+      <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Description</label>                
+      <div class="col-md-4 col-sm-4">
+      <textarea Input rows="5" cols="40"  class="form-control " [(ngModel)]="Receipt_Voucher_.Description" place-holder="" name="Receipt_Voucher_.description"></textarea>
+      </div>
+      </div>
+      <div class="form-row  mb-2">
+      <div class="col-md-11"> 
+      <button (click)="Save_Receipt_Voucher()" id="Save_Button" mat-raised-button type="submit" class="save-button-style pull-right mr-0 ml-1" >Save</button>                      
+      <button (click)="Followup_History()"  mat-raised-button type="submit" class="save-button-style pull-right mr-0 ml-1" >History</button>                      
+      </div>
+      </div>
+  
+  <div class="col-md-12 pl-3 pr-8 mt-8" style="border: 1" *ngIf="Receipt_History_View">
+      <div class="container-import" style="    margin-left: -3% !important;"> 
+      <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;    margin-right: 2%;" >  
+      <div class="table-responsive">
+      <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+      <thead>
+      <th>Date</th>   
+      <th>Amount</th>   
+      <th>Receipt NO</th>
+      <th>Mode</th>
+    
+      <th>To Account</th>
+      <th>Description</th>
+      <th [hidden]="Agent_Edit==false">Edit</th>
+      <th [hidden]="Agent_Delete==false">Delete</th>
+      <th></th>
+      </thead>
+      <tbody  *ngFor="let Receipt_Voucher_ of Receipt_Voucher_Data; let i = index">          
+      <tr>
+      <td >{{Receipt_Voucher_["Date"]}}</td>
+      <td >{{Receipt_Voucher_["Amount"]}}</td>
+      <td >{{Receipt_Voucher_["Voucher_No"]}}</td>    
+      <td >{{Receipt_Voucher_["Mode_Name"]}}</td>       
+     
+      <td>{{Receipt_Voucher_["ToAccount_Name"]}}</td>  
+      <td>{{Receipt_Voucher_["Description"]}}</td>            
+      <td >
+      <span class="icon-background2 mr-1"   (click)="Edit_Receipt_Voucher(Receipt_Voucher_,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+      </td>
+      <td class=""> 
+      <span class="icon-background3 mr-1"  (click)="Delete_Receipt_Voucher(Receipt_Voucher_,i)" > <mat-icon class="text-red small" >close</mat-icon></span>
+      </td>
+      </tr>
+      </tbody>
+  
+      </table>
+  
+      </div>
+      </div>
+          <!-- <div class="col-md-12">
+               <button mat-raised-button type="submit" style="float: right;" class="other-button-style pull-right mt-3 mr-1" (click)="Close_Click()">Close</button>
+          </div> -->
+      </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </form>
+  </div>
+  </div>
+  </div>    
+  </div>
+ 
+  <div class="row" *ngIf="!Entry_View">
+  <div class="col-md-12 pl-0  mt-2 mb-2">
+  <div class="dt-card mb-2 pb-1">         
+  <div class="dt-card__body mt-1 mb-0 pb-0">
+  <form class="mb-0">     
+  <!-- <div class="container-fluidprofile"> -->
+  <div class="form-row  mb-2">
+  <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Search SKP</label>                          
+  <div class="col-md-4 col-sm-4 mb-1">
+  <input type="text" name="Agent_Name_Search" [(ngModel)]="Agent_Name_Search" class="form-control" placeholder="">
+  </div>                
+  
+  <div class="col-md-4 col-sm-2 mt-0" >                    
+  <button (click)="Search_Agent()"  mat-raised-button type="submit" class="other-button-style pull-left mr-1">Search</button>
+  <button (click)="Create_New()"   mat-raised-button type="submit"  class="save-button-style pull-left mr-1 ">Create New</button>
+  
+  </div>
+  
+  </div>
+  </form>
+  </div>
+  </div>        
+  </div> 
+  
+  
+  <!-- <div class="col-md-12  mt-2" style="border: 1;padding-left: 2px;">
+  <div class="dt-card mb-0 pb-1" style="background-color: white;" >  
+  
+  <div class="card-body card-body-for-searchedit-lead-section">
+  <div class="table-responsive">
+  <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" style="width: 130% !important;">
+  <thead>
+  <th style="width: 120px !important;">Name</th>    
+  <th style="width: 120px !important;">Date</th>           
+  <th style="width: 120px !important;" >Address1</th>
+  <th style="width: 120px !important;">Address2</th>
+  <th style="width: 120px !important;">Address3</th>
+  <th style="width: 120px !important;">Address4</th>
+  <th style="width: 120px !important;">Mobile</th>
+  <th style="width: 120px !important;" >Category</th>
+  <th style="width: 120px !important;" >Commision</th>
+  
+  </thead>
+  <tbody  *ngFor="let Agent_Data_d of Agent_Data; let i = index" >
+  <tr>
+  <td
+  class=" col-md-1" 
+  (click)="Edit_Agent(Agent_Data_d,i)" class="Agentbutton">{{Agent_Data_d["Agent_Name"]}}</td>
+  <td class="col-md-2">{{Agent_Data_d["Entry_Date"]}}</td>
+  <td class="col-md-2">{{Agent_Data_d["Address1"]}}</td>
+  <td  class="col-md-1">{{Agent_Data_d["Address2"]}}</td>
+  <td  class="col-md-1">{{Agent_Data_d["Address3"]}}</td>
+  <td  class="col-md-1">{{Agent_Data_d["Address4"]}}</td>
+  <td  class="col-md-1">{{Agent_Data_d["Mobile"]}}</td>
+  <td  class="col-md-1">{{Agent_Data_d["Category_Name"]}}</td>
+  <td  class="col-md-1">{{Agent_Data_d["Commission"]}}</td>
+  
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  <div class="row"  style="text-align: center;">
+  <div class="col-md-12 buttons-next-previous">
+  <button mat-raised-button type="submit" (click)="previous_Click()"  class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-2" style="background: none;"><i class="fa fa-chevron-left" aria-hidden="true" style="color:#5f6368;"></i></button>
+  <button mat-raised-button type="submit"  (click)="Next_Click()" class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-2" style="background: none;"><i class="fa fa-chevron-right" aria-hidden="true" style="color: #5f6368;"></i></button>
+  </div>
+  </div>
+  </div>
+  </div> -->
+  
+
+  
+<div class="col-md-12  mt-2" style="border: 1;margin-left: -10px !important;">
+  <div class="dt-card mb-0 pb-1" style="background-color: white;" >  
+    <div class="dt-module__content ps-custom-scrollbar">
+  <div class="card-body card-body-for-searchedit-lead-section " style="overflow-y: scroll;"[style.height.px]="myInnerHeight">
+  <!-- <div class="table-responsive">
+      <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format"  style="width: 130% !important;"> 
+      <thead> -->
+
+      <div class="table-responsive" >
+          <table class="table table-hover table-for-sale-search-section-diary">
+          <thead class="thead">
+          <th [hidden]="University_Edit==false" >Edit</th>
+          <th [hidden]="University_Dlete==false" >Delete</th>
+          <th >Owner Name</th>        
+          <th >Mobile</th>
+          <th >Address</th>
+          <th>Subscription</th>
+          <th >Category</th>
+          <th >Commision</th>
+      </thead>
+      <tbody  *ngFor="let Agent_Data_d of Agent_Data; let i = index" >
+      <tr>
+          <td  class="" > <span class="icon-background2 mr-1" [hidden]="Agent_Edit==false"   (click)="Edit_Agent(Agent_Data_d,i)" > <mat-icon class="text-green small" >edit</mat-icon></span></td>
+           <td class=""> <span class="icon-background3 mr-1" [hidden]="Agent_Dlete==false"  (click)="Delete_Agent(Agent_Data_d.Agent_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span> </td>     
+          <td class="" >{{Agent_Data_d["Agent_Name"]}}</td>
+          <td  class="">{{Agent_Data_d["Mobile"]}}</td>       
+           <td class="">{{Agent_Data_d["Address1"]}}</td>
+           <td class="">{{Agent_Data_d["Subscription_Name"]}}</td> 
+           <td  class="">{{Agent_Data_d["Category_Name"]}}</td>          
+             <td class="">{{Agent_Data_d["Commission"]}}</td>
+      </tr>
+      </tbody>
+      </table>
+  </div>
+  <!-- </div> -->
+  <div class="row"  style="text-align: center;">
+      <div class="col-md-12 buttons-next-previous">
+      <button mat-raised-button type="submit" (click)="previous_Click()"  class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-2" style="background: none;"><i class="fa fa-chevron-left" aria-hidden="true" style="color:#5f6368;"></i></button>
+      <button mat-raised-button type="submit"  (click)="Next_Click()" class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-2" style="background: none;"><i class="fa fa-chevron-right" aria-hidden="true" style="color: #5f6368;"></i></button>
+      </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>   
+  </div>
+  
+  </div>
+
+
+  <div id="Certificate_Div" style="display:none;">
+    <div>
+
+    </div>
+    <div style="margin-top: 90px!important;">
+    <h4 style="margin:0px;text-align:left;margin-top:-5px;font-family: 'Arial Narrow', Arial, sans-serif;font-size:14px;font-weight: bold;">
+        <a style="margin-left: 125px;letter-spacing: 1px;"></a></h4>
+</div>
+    <body>
+        <div class="col-md-12" style="height: 10%;">   
+    </div>
+        <table style="margin-top:150px!important;">
+            <tr>
+                <!-- <td>23456</td> -->
+                <td style="padding-left:10px">  
+                <label style="font-family: 'Libre Barcode 39', cursive;font-size: 40px; margin-top: 310px; padding-left: 50px;"></label>                    
+                  </td>
+                  <!-- style="text-align: left;padding-left:-10px;" margin-left: 387%;margin-top: -90px!important;-->         
+                  <td  style="padding-left:400px;width:70px; height:80px; object-position:0px !important;margin-bottom: 50%;">
+                    <!-- margin-top: -121px!important; -->
+                </td>
+            </tr>  
+        </table>
+        <div style="margin-top: 35px!important;" >
+        <!-- <h1  style="text-align: center;margin-top:-9%;text-decoration: overline">margin-left:-10px;"CERTIFICATE</h1><br><br> -->
+         <p style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 13px;letter-spacing: 1.5px;font-weight: bold;padding-bottom:10px;">
+          This Certifies that</p>   
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 13px;letter-spacing: 1.5px;font-weight: bold;padding-bottom:10px;" >
+          Institution Name : {{ Center_Name_print }} </p> 
+         <!-- <h3 style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 14px;font-weight: bold;padding-bottom:10px;">
+          {{Student_.Student_Name}}</h3> -->
+         <p style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 13px;letter-spacing: 1.5px;font-weight: bold;padding-bottom:10px;">
+          Has been admitted as an Institutional Member of the </p>        
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 13px;letter-spacing: 1.5px;font-weight: bold;padding-bottom:10px;">
+          Council for Technology & science Kerala (C- TECH)</p>   
+        <!-- <p style="text-align: center">  He/She is place in with</p><h3 style="text-align: center" >A+</h3> -->
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 13px;letter-spacing: 1.5px;font-weight: bold;padding-bottom:10px;">
+          a Skill Development Organisation Formed Under Kairali Seva Smaj Thiruvananthapuram</p>
+         <!-- <h3>{{Student_Course_.Certificate_Grade}}</h3> -->
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 13px;letter-spacing: 1.5px;font-weight: bold;padding-bottom:10px;">
+          and is entitled to all benefits and privileges pertaining thereto</p>
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 13px;letter-spacing: 1.5px;font-weight: bold;padding-bottom:10px;">
+          Membership Number :{{ Center_Code_print }}</p>
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 14px;letter-spacing: 1.5px;font-weight: bold;padding-bottom:10px;">
+          Has been granted this {{startDay}} th day of {{startMonth}} {{startYear}}</p>
+          <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 14px;letter-spacing: 1.5px;font-weight: bold;padding-bottom:10px;">
+            and next renewal is doe on {{endDay}} st {{endMonth}} {{endYear}}</p>
+
+<!-- 
+            <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 14px;letter-spacing: 1.5px;font-weight: bold;padding-bottom:10px;">
+             Subscription Start Date :{{Subscription_Start_Date}}</p>
+
+              <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 14px;letter-spacing: 1.5px;font-weight: bold;padding-bottom:10px;">
+                Subscription End Date : {{Subscription_End_Date}}</p> -->
+
+
+        </div>    
+    </body>
+</div>
+   
+  </div>

@@ -1,0 +1,204 @@
+/*my-app .main-panel .main-content .card{
+    animation-duration: 750ms;
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-fill-mode: forwards;
+}*/
+
+.tim-typo{
+  padding-left: 25%;
+  margin-bottom: 40px;
+  position: relative;
+  width: 100%;
+}
+.tim-typo .tim-note{
+  bottom: 5px;
+  color: #c0c1c2;
+  display: block;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  left: 0;
+  margin-left: 20px;
+  position: absolute;
+  width: 260px;
+}
+.card-header{margin-left: 0px; margin-right: 0px; margin-top: 0px;}
+.overlay {
+  position:fixed;
+  display:block;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  background-color:rgba(255,255,255,.5);
+  z-index:99999;
+}
+.spinner {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-75%,-75%);  
+}
+.overflow-scroll{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.row-height{
+  height: 45px;
+}
+.td-padding{
+  padding: 20px 0px 0px 7px!important;
+}
+.bottom{
+  bottom: 0.5rem;
+}
+
+.bottom-light {
+  bottom: 0.3rem;
+}
+
+.font-weight{
+  font-weight: 600 !important;
+}
+.padding-5{
+  padding: 5px;
+}
+
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 0px !important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-ripple{
+  height: 0px !important;
+}
+
+
+.inline-menu, .inline-menu li{
+  display: inline-block;
+  margin-bottom: 0px;
+  padding-left: 0px;
+}
+.inline-menu li .nav-link{
+  color:#545a6d !important;  
+}
+.inline-menu li a i{
+  font-style: normal;
+  font-size: 15px
+}
+.navbar-nav, .navbar-nav li{
+  display: inline-block;
+}
+.nav-link .material-icons{
+  color: #fff;
+}
+.navbar .navbar-nav .nav-item .nav-link {
+  padding: 0.8375rem;
+}
+.nav-link {  
+  padding: 0.8rem 1rem;
+}
+
+.login-user{ 
+  display: flex;  
+  color: #17c240;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.8525rem;  
+  margin: 0 0.3125rem;  
+  padding: 0.625rem 1.45rem;
+  overflow: hidden;
+  line-height: 1.42857143;
+  text-overflow: ellipsis;
+  }
+
+
+
+  /*---payment-voucher--*/
+  
+  .date_out_div
+  {
+    max-width: 135px;
+  }
+/*---student--*/
+.stud_dob 
+{
+  padding: 8px 5px 0px 7px;
+}
+
+.follow_date
+{
+  padding: 0px 8px 0px 10px;
+}
+
+.voucher_input_div
+{
+  max-width: 30.333%;
+}
+
+
+
+  @media (min-width: 320px) and (max-width:568px)
+  {
+.create_new_btn,.search_btn
+{
+margin-top: 10px!important;
+}
+
+  }
+
+
+  @media (min-width: 760px) and (max-width:768px)
+  {
+    .voucher_div
+    {
+      max-width: 20%;
+    }
+  }
+  @media (min-width: 769px) and (max-width:990px)
+  {
+    .voucher_div
+    {
+      max-width: 25%;
+    }
+    .from_label
+    {
+      width: 45px;
+    }
+.account_from_label
+{
+  width: 60px;
+}
+.ledger_voucher_label  
+{
+  width: 62px;
+}
+.stud_label
+{
+  padding: 0px 0px 0px 15px;
+}
+.quest_year_input
+{
+  max-width: 24%;
+}
+  }
+  @media (min-width: 991px) and (max-width:1023px)
+  {
+
+  }
+  @media (min-width: 1024px) and (max-width:1200px)
+  {
+.account_from_input
+{
+  max-width: 19%;
+}
+
+  }
+  @media (min-width: 1201px) and (max-width:1400px)
+  {
+    .voucher_div
+{
+  max-width: 15.667%;
+}
+  }

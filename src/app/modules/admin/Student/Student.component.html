@@ -1,0 +1,2210 @@
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<!-- *ngIf= "isMobileMenu()" -->
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content screenfixed">
+<div class="container-fluid">
+    <div class="row" *ngIf="Entry_View" style="overflow: scroll;" [style.height.px]="myTotalHeight">
+    <div class="col-xl-12 pl-0 mt-1" >
+        <div class="profilecard mb-2">
+        <div class="card-header card-nav border-bottom-0 mb-0 pt-3 pb-0 pl-0"  style="padding-right: 0px;"   *ngIf="tab_view">
+        <ul class="card-header-tabs nav "role="tablist">
+        <div class="col-md-11 col-sm-11">  
+        <li class="nav-item"  *ngIf="Course_Tab==false"   (click)="Tab_Click(1)">
+        <div *ngIf="profile_View" ></div>
+        <a class="nav-link active " data-toggle="tab" role="tab" aria-controls="profile"aria-selected="true">Profile </a>
+        <div  *ngIf="profile_View" style="height: 2px; background-color: #512DA8;margin-left: 9px;"></div>
+        </li>
+
+        <li class="nav-item" *ngIf="Student_Id_Edit>0 && Registration==true && Course_Tab==true"  (click)="Tab_Click(2)">
+        <!-- <div  [hidden]="Course_Tab_View==false" ></div> -->
+        <a class="nav-link " data-toggle="tab" role="tab" aria-controls="Fees"aria-selected="true">Course </a>
+        <div *ngIf="Course_View" style="height: 2px; background-color: #512DA8;margin-left: 9px;"></div>
+        </li>
+        <li class="nav-item" *ngIf="Student_Id_Edit>0 && Registration==true && Fees_Master_Id>0 && Course_Tab==true" (click)="Tab_Click(3)">
+        <!-- <div [hidden]="Fees_tab_View==false" ></div> -->
+        <a class="nav-link " data-toggle="tab" role="tab" aria-controls="application" aria-selected="true">Fees Receipt</a>
+        <div *ngIf="Fees_View" style="height: 2px; background-color: #512DA8;margin-left: 9px;"></div>
+        </li>
+        <!-- <a href="#" data-toggle="modal" data-target="#student-login"  (click)="Tab_click(3)"
+        class="btn half-button btn-outline-white btn-lg pl-3 pr-3 mr-3 font-weight-bold mb-3">Create Account</a> -->
+        <li class="nav-item"  *ngIf="Student_Id_Edit>0 && Course_Id_Edit>0 && Registration==true " [hidden]="Mark_tab_View==false" (click)="Tab_Click(4)">
+        <!-- <div [hidden]="Mark_tab_View==false"></div> -->
+        <a class="nav-link " data-toggle="tab"role="tab"aria-controls="Course"aria-selected="true">Mark list </a>
+        <div *ngIf="Mark_View" style="height: 2px; background-color: #512DA8;margin-left: 9px;"></div>
+        </li>
+        <!-- <li class="nav-item"  *ngIf="Student_Id_Edit>0 && Registration==true " [hidden]="Activity_Tab_View==false" (click)="Tab_Click(5)">
+        <a class="nav-link " data-toggle="tab"role="tab"aria-controls="Course"aria-selected="true">Activity Details </a>
+        <div *ngIf="Activity_View" style="height: 2px; background-color: #512DA8;"></div>
+        </li> -->
+        <li class="nav-item"  *ngIf="Student_Id_Edit>0 && Course_Id_Edit>0 && Registration==true && Course_Tab==true " (click)="Tab_Click(6)">
+            <a class="nav-link " data-toggle="tab"role="tab"aria-controls="Course"aria-selected="true">Certificate </a>
+            <div *ngIf="Certificate_View" style="height: 2px; background-color: #512DA8;margin-left: 9px;"></div>
+            </li> 
+
+
+            <li class="nav-item" *ngIf="Student_Id_Edit>0 && Registration==true && Fees_Master_Id>0 && Course_Tab==true" (click)="Tab_Click(7)">
+                <!-- <div [hidden]="Fees_tab_View==false" ></div> -->
+                <a class="nav-link " data-toggle="tab" role="tab" aria-controls="application" aria-selected="true">Activity History</a>
+                <div *ngIf="Activity_Details_View" style="height: 2px; background-color: #512DA8;margin-left: 9px;"></div>
+                </li>
+
+
+
+
+        </div>
+        <div class="col-md-1 col-sm-1">        
+        <span class=" mr-1" (click)="Close_Click()" ><mat-icon  style="font-size: 32px;cursor: pointer;" class="text-red small" >close</mat-icon></span>
+        </div>
+        </ul>  
+        </div>
+
+        <div class="dt-card__body mt-2 " id="profile"  *ngIf="profile_View" >
+        <form class="mb-0">
+        <div class="container-fluidprofile">
+        <div class="dt-card mt-2">
+        <div class="dt-card__body mt-3 ml-3"  >
+        
+         <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Student<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+     <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Student_.Student_Name" name="Student_.Student_Name" class="form-control" placeholder="Student Name">
+      </div> 
+        <div class="col-md-1 col-sm-1"></div>    
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Date of Birth</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <!-- <input type="date" class="form-control" placeholder=""  [(ngModel)]="Student_.DOB" name="Student_.DOB"> -->
+        <mat-form-field class="form-control stud_dob"
+        >
+        <input matInput [matDatepicker]="dpdate" placeholder="" [(ngModel)]="Student_.DOB" name="Student_.DOB">
+        <mat-datepicker-toggle matSuffix [for]="dpdate"></mat-datepicker-toggle>
+        <mat-datepicker #dpdate></mat-datepicker>
+        </mat-form-field>
+        </div>
+        </div> 
+
+        <div class="form-row  mb-2">   
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Mobile<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Student_.Mobile"  name="Student_.Mobile" class="form-control" placeholder="" maxlength="10">
+        </div>         
+        <div class="col-md-1 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Gender<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <select [(ngModel)]="Gender_" name="Student_.Gender" required class="form-control p-0 pl-1">
+        <option *ngFor="let Gender_ of Gender_Data" [ngValue]="Gender_">{{Gender_.Gender_Name}}</option>
+        </select>
+        </div>                        
+        </div>
+
+        <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">House/Flat No</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Student_.Address1" name="Student_.Address1" class="form-control" placeholder="">
+        </div>      
+        <div class="col-md-1 col-sm-1"></div>    
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">E-mail<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Student_.Email" name="Student_.Email" class="form-control" placeholder="">
+        </div>                        
+        </div>
+
+        <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Street</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  [(ngModel)]="Student_.Address2" name="Student_.Address2" class="form-control" placeholder="" >
+        </div>
+        <div class="col-md-1 col-sm-1"></div>
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Alternative Email</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Student_.Alternative_Email" name="Student_.Alternative_Email" class="form-control" placeholder="">
+        </div>                      
+        </div>
+
+        <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">City</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  [(ngModel)]="Student_.Address3" name="Student_.Address3"class="form-control" placeholder=" " >
+        </div>    
+        <div class="col-md-1 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Passport No</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  [(ngModel)]="Student_.Passport_No" name="Student_.Passport_No" class="form-control" placeholder="">
+        </div>
+        </div>
+
+        <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">State</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Student_.Address4"  name="Student_.Address4" class="form-control" placeholder="" >
+        </div>  
+        <div class="col-md-1 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Passport Expiry</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  [(ngModel)]="Student_.Passport_Expiry" name="Student_.Passport_Expiry" class="form-control" placeholder="">
+        </div>
+        </div>
+
+        <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Pincode</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Student_.Pincode"  name="Student_.Pincode" class="form-control" placeholder="" maxlength="10">
+        </div>  
+        <div class="col-md-1 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Password</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  [(ngModel)]="Student_.Password" name="Student_.Password" class="form-control" placeholder="">
+        </div>
+        </div>
+
+        <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Phone</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Student_.Phone"  name="Student_.Phone" class="form-control" placeholder="" maxlength="10">
+        </div>  
+        <div class="col-md-1 col-sm-1"></div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Registration No</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" disabled [(ngModel)]="Student_.Registration_No"  name="Student_.Registration_No" class="form-control" placeholder="" maxlength="10">
+        </div>  
+        </div>
+        <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Whatsapp</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Student_.Whatsapp"  name="Student_.Whatsapp" class="form-control" placeholder="" maxlength="10">
+        </div>  
+        <!-- <div class="col-md-1 col-sm-1"></div> 
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Role No</label>   
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input  type="text" [(ngModel)]="Student_.Role_No"  name="Student_.Role_No" class="form-control" placeholder="">   
+        </div>  -->
+       
+        </div>
+        <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">SKP</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <!-- <input type="text" disabled = "true"   placeholder=""   name="SKP_Name"  class="form-control" [(ngModel)]="SKP_Name"/> -->
+
+        <select [(ngModel)]="SKP_" name="Student_.SKP" required class="form-control p-0 pl-1">
+            <option *ngFor="let SKP_ of SKP_Data" [ngValue]="SKP_">{{SKP_.Agent_Name}}</option>
+            </select>
+
+        </div>      
+        </div>  
+
+        <div class="form-row  mb-2">
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Status </label>
+            <div class="col-md-4 col-sm-4 mb-1">
+           <select [(ngModel)]="SKP_Status_" name="SKP_Status_" required class="form-control p-0 pl-1">
+                <option *ngFor="let SKP_Status_ of SKP_Status_Data" [ngValue]="SKP_Status_">{{SKP_Status_.Status_Name}}</option>
+                </select>
+    
+            </div>      
+            </div>  
+
+
+        <div class="form-row  mb-2">
+           <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Photo</label>
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text"   placeholder="Photo"   name="Student_.Photo"  class="form-control" [(ngModel)]="Student_.Photo"/>
+            </div>
+            <button  class="choose-button-style"   type="button" (click)="fileInput1.click()"><span>Upload</span>
+            <input #fileInput1 type="file" name="Photo"  [(ngModel)]="Photo" (change)="File_Change_Photo($event)" style="display:none;" /> </button> -->
+           
+            <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right" style="margin-left: 12%;font-weight: 700!important;">SKP&nbsp;:{{SKP_Name}}</label> -->
+            <div class="col-md-11">                                           
+                <div class="square" style="float: right;margin-top: -4%;">
+                <img id="output" style=" width:150px; height:200px; object-position:0px 50px;" src={{ImageFile_Photo_view}} />
+                </div>            
+            </div>
+         </div>       
+        </div>
+        </div>
+        </div>
+
+        
+
+
+
+        </form>
+        </div> 
+
+
+        <div class="col-md-12 pl-3 mt-0 mb-2" *ngIf="Document_View_Option">
+            <div class="dt-card mt-2">
+                <div class="dt-card__body">
+            
+                <div class="dt-card__header">
+                    <div class="dt-card__heading">
+                        <!-- <h3 class="dt-card__title min-w-150 border-bottom" style="margin-bottom:20px;"></h3> -->
+                        
+                            <!-- <h3><i class="icon icon-users icon-fw icon-lg"></i><b style="margin-bottom:20px;">List of Documents</b></h3>
+                            <div classs="mb-2"></div> -->
+                            <h3><i class="icon icon-users icon-fw icon-lg"></i><b style="margin-bottom:20px;">List of Documents</b></h3>
+                        <div classs="mb-2"></div>
+                        <hr class="lineheader">
+                            <div class="col-md-12 info-message mt-0 mb-3">Note: Please Upload Max 5MB Size For Each Document.</div>
+        
+                    </div>
+                </div>
+       
+        
+                <div class="card horizontal mb-1" >          
+                    <div class="card-stacked" >
+                        <div class="card-body pb-0 pt-1"  >
+                
+                                    <div class="form-row">
+                                    <div class="col-md-6">
+                <label class="col-xl-2 col-md-3 col-sm-2 col-form-label text-sm-right stud_label">Photo</label>
+                <button class="btn btn-danger mb-2  pl-2 pr-2"  type="button" style="background-color: #5d6071;" (click)="fileInput3.click()"><span>Choose File</span>
+                <input #fileInput3 type="file" name="Photo"  [(ngModel)]="Photo" (change)="File_Change_Photo($event)" style="display:none;" /> </button>
+                <input type="text"  name="Display_Photo_" [(ngModel)]="Display_Photo_" style="border: none;" readonly   class="col-md-6"/>
+        
+            <span class="col-md-1 col-sm-1 icon-background2 mr-1"  *ngIf="Student_.Photo!=''" (click)="Download_Student_File('Photo')" type="button" aria-describedby="cdk-describedby-message-1"  >
+            <mat-icon class="text-green small" >get_app</mat-icon></span>
+        <span class="col-md-1 col-sm-1 icon-background3 mr-1"  *ngIf="Display_Photo_!=''" (click)="Delete_Student_File('Photo')" type="button" aria-describedby="cdk-describedby-message-1">
+            <mat-icon class="text-red small" >close</mat-icon></span>
+        <!-- </div> -->
+            </div>
+            <!-- <label class="col-md-4 col-sm-4 col-form-label text-sm-right" style="padding-left: 287px;"> Resume</label> -->
+            <div class="col-md-6">    
+            <label class="col-xl-2 col-md-3   col-sm-2   col-form-label text-sm-right stud_label"  >Aadhaar Front</label>
+            
+            <button class="btn btn-danger mb-2  pl-2 pr-2" style="background-color: #5d6071;" type="button" (click)="fileInput6.click()"><span>Choose File</span>
+            <input #fileInput6 type="file" name="Aadhaar_"  [(ngModel)]="Aadhaar_" (change)="File_Change_Aadhaar($event)" style="display:none;" /> </button>
+            <input type="text"  name="Display_Aadhaar_" [(ngModel)]="Display_Aadhaar_" style="border: none;"  readonly  class="col-md-6"/>
+        
+            <span class=" col-md-1 col-sm-1 icon-background2 mr-1" *ngIf="Student_.Aadhaar!=''" (click)="Download_Student_File('Aadhaar_')" type="button" aria-describedby="cdk-describedby-message-1"  >
+            <mat-icon class="text-green small" >get_app</mat-icon></span>
+                <span class="col-md-1 col-sm-1 icon-background3 mr-1"   *ngIf="Display_Aadhaar_!=''" (click)="Delete_Student_File('Aadhaar_')" type="button" aria-describedby="cdk-describedby-message-1">
+                <mat-icon class="text-red small" >close</mat-icon></span>
+        </div>
+
+
+        <div class="col-md-6">    
+            <label class="col-xl-2 col-md-3   col-sm-2   col-form-label text-sm-right stud_label"  >Aadhaar Back</label>
+            
+            <button class="btn btn-danger mb-2  pl-2 pr-2" style="background-color: #5d6071;" type="button" (click)="fileInput7.click()"><span>Choose File</span>
+            <input #fileInput7 type="file" name="Aadhaar_Back_"  [(ngModel)]="Aadhaar_Back_" (change)="File_Change_Aadhaar_Back($event)" style="display:none;" /> </button>
+            <input type="text"  name="Display_Aadhaar_Back_" [(ngModel)]="Display_Aadhaar_Back_" style="border: none;"  readonly  class="col-md-6"/>
+        
+            <span class=" col-md-1 col-sm-1 icon-background2 mr-1" *ngIf="Student_.Aadhaar_Back!=''" (click)="Download_Student_File('Aadhaar_Back_')" type="button" aria-describedby="cdk-describedby-message-1"  >
+            <mat-icon class="text-green small" >get_app</mat-icon></span>
+                <span class="col-md-1 col-sm-1 icon-background3 mr-1"   *ngIf="Display_Aadhaar_Back_!=''" (click)="Delete_Student_File('Aadhaar_Back_')" type="button" aria-describedby="cdk-describedby-message-1">
+                <mat-icon class="text-red small" >close</mat-icon></span>
+        </div>
+
+        <div class="col-md-6">    
+            <label class="col-xl-2 col-md-3   col-sm-2   col-form-label text-sm-right stud_label"  >SSLC</label>
+            
+            <button class="btn btn-danger mb-2  pl-2 pr-2" style="background-color: #5d6071;" type="button" (click)="fileInput8.click()"><span>Choose File</span>
+            <input #fileInput8 type="file" name="SSLC_Certificate_"  [(ngModel)]="SSLC_Certificate_" (change)="File_Change_SSLC_Certificate($event)" style="display:none;" /> </button>
+            <input type="text"  name="Display_SSLC_Certificate_" [(ngModel)]="Display_SSLC_Certificate_" style="border: none;"  readonly  class="col-md-6"/>
+        
+            <span class=" col-md-1 col-sm-1 icon-background2 mr-1" *ngIf="Student_.SSLC_Certificate!=''" (click)="Download_Student_File('SSLC_Certificate_')" type="button" aria-describedby="cdk-describedby-message-1"  >
+            <mat-icon class="text-green small" >get_app</mat-icon></span>
+                <span class="col-md-1 col-sm-1 icon-background3 mr-1"   *ngIf="Display_SSLC_Certificate_!=''" (click)="Delete_Student_File('SSLC_Certificate_')" type="button" aria-describedby="cdk-describedby-message-1">
+                <mat-icon class="text-red small" >close</mat-icon></span>
+        </div>
+
+
+        <div class="col-md-6">    
+            <label class="col-xl-2 col-md-3   col-sm-2   col-form-label text-sm-right stud_label"  > Plus Two</label>
+            
+            <button class="btn btn-danger mb-2  pl-2 pr-2" style="background-color: #5d6071;" type="button" (click)="fileInput9.click()"><span>Choose File</span>
+            <input #fileInput9 type="file" name="Plustwo_Certificate_"  [(ngModel)]="Plustwo_Certificate_" (change)="File_Change_Plustwo_Certificate($event)" style="display:none;" /> </button>
+            <input type="text"  name="Display_Plustwo_Certificate_" [(ngModel)]="Display_Plustwo_Certificate_" style="border: none;"  readonly  class="col-md-6"/>
+        
+            <span class=" col-md-1 col-sm-1 icon-background2 mr-1" *ngIf="Student_.Plustwo_Certificate!=''" (click)="Download_Student_File('Plustwo_Certificate_')" type="button" aria-describedby="cdk-describedby-message-1"  >
+            <mat-icon class="text-green small" >get_app</mat-icon></span>
+                <span class="col-md-1 col-sm-1 icon-background3 mr-1"   *ngIf="Display_Plustwo_Certificate_!=''" (click)="Delete_Student_File('Plustwo_Certificate_')" type="button" aria-describedby="cdk-describedby-message-1">
+                <mat-icon class="text-red small" >close</mat-icon></span>
+        </div>
+
+
+
+
+
+
+        <!-- </div> -->
+        </div>
+        </div>
+        </div>
+        </div>
+        
+        
+        
+        
+        <!-- <div class="card horizontal mb-1" >          
+            <div class="card-stacked" >
+            <div class="card-body pb-0 pt-1"  >
+            
+            <div class="form-row">
+            <div class="col-md-6">
+            <label class="col-xl-2  col-md-3 col-sm-2 col-form-label text-sm-right stud_label">Document</label>
+            <button class="btn btn-danger mb-2 pl-2 pr-2 ml-0" style="background-color: #5d6071;" type="button"  (click)="fileInput.click()"><span>Choose File</span>
+            <input #fileInput type="file" name="File"  [(ngModel)]="File" (change)="File_Change($event)" style="display:none;" /> </button>
+            <input type="text"  name="Display_File_Name_" [(ngModel)]="Display_File_Name_" value="Display_File_Name_" readonly style="border: none;"    class="col-md-6"/>
+            </div>
+            <div class="col-md-6">
+            <input type="text"  name ="Document_Description" [(ngModel)]="Document_Description" class="col-md-7 doc-class mr-10 mb-2 mt-0"
+            placeholder="Document">
+            
+            <button class=" col-lg-3 col-md-6 col-sm-3 btn btn-danger mb-2 pl-2 pr-2" (click)="Add_Document()" style="background-color: #0db195;">Add Other Documents</button>
+             </div>
+            
+            </div>
+            </div>
+            </div>
+            </div> -->
+        
+        
+        
+        
+        
+                <!-- <div class="dt-card__body">
+                    <div class="mb-0">
+        
+                <div class="col-md-12 pl-0 mt-2">
+                        <div class="dt-module__container">
+                            <div class="dt-module__content ps-custom-scrollbar" >
+                                <div class="dt-module__content-inner pl-0 pr-0">  
+                                    <div class="dt-module__list pl-0 pr-0">
+                                        <div class="card-body" >
+                                            <div class="dt-module__list-item pb-2" *ngFor="let Items_ of Document_Array; let i = index">
+                                            <div class="dt-module__list-item-content">
+                                                <div class="user-detail">
+                                            
+        
+                                                    <span class="icon-background2 mr-1" *ngIf="Items_.New_Entry==0" (click)="Download_Photo(Items_.File_Name)" >
+                                                            <mat-icon class="text-green small" >file_download</mat-icon></span>
+                                                
+                        
+                                                    <span class="icon-background3 mr-1" [hidden]="File_Delete==false" (click)="Delete_Student_Document(i,Items_.Student_Document_Id)" >
+                                                        <mat-icon class="text-red small" >close</mat-icon></span>
+        
+                                                    <span class="user-name mr-2">{{Items_["Document_Name"]}}</span>
+                                                
+                                                    <span class="user-name mr-2">File:{{Items_["Document_File_Name"]}}</span>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                            </div>                                
+                                        </div>
+                                        
+                                
+                </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-12" style="text-align: right;">
+                            <button class="btn btn-danger mb-2 pl-2 pr-2" (click)="downloadZip()" style="background-color: #0ab33c;">Download All Files</button>
+                            </div>
+                    </div>
+        
+        
+        
+        
+        
+                            
+                    </div>
+                </div> -->
+        
+            </div>
+        </div>
+        </div>
+
+        <div class="container-fluidprofile mt-2"  *ngIf="Course_View">
+        <div class="dt-card "  id="course">
+        <div class="dt-card__body mt-2" style="margin-left: 8% !important">
+        <form class="mb-0">
+
+        <div class="form-row">   
+        <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">University<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <select [(ngModel)]="University_" name="University_" (ngModelChange)="University_Change()" required class="form-control p-0 pl-1">
+        <option *ngFor="let University_ of University_Data" [ngValue]="University_">{{University_.University_Name}}</option>
+        </select>        
+        </div>     -->
+        
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">University<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  class="form-control"  id="University_" name="University_"  [matAutocomplete]="auto_Course1"
+        [(ngModel)]="University_" (ngModelChange)="University_Change()" /></div>  
+        <mat-autocomplete #auto_Course1="matAutocomplete" [displayWith]="display_University">
+        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+        <ng-container *ngIf="!issLoading">
+        <mat-option  (click)="Get_University_Changes(University_.University_Id)" *ngFor="let University_ of University_Data" [value]="University_">
+        <span><div>{{University_.University_Name}}</div></span>
+        </mat-option>
+        </ng-container>
+        </mat-autocomplete>  
+        <div class="col-md-1 col-sm-1"></div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course Details</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  [(ngModel)]="Student_Course_.Course_Name_Details"  name="Course_Name_Details" class="form-control" placeholder="">
+        </div>                    
+        </div>
+
+        <div class="form-row">
+         
+        <!-- <div class="col-md-1 col-sm-1"></div> -->
+        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Fees Type</label>
+        <div class="col-md-4 col-sm-4 mb-1 ml-2">
+        <input type="text" [(ngModel)]="Student_Course_.Course_Type_Name" name="Course_Type_Name" class="form-control" placeholder="">
+        </div> -->
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right" >Duration<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>          
+        <div class="col-md-4 col-sm-4 mb-1 ">
+            <!-- <label class="form-control border-0 " style="background-color: #fbfaff;"> {{Student_Course_.Duration}} {{Student_Course_.Duration_Type_Name}}</label>-->
+            <select name="Course_Duration_"   [(ngModel)]="Course_Duration_"  required class="form-control p-0 pl-1" (ngModelChange)="Course_Duration_Change()" >
+                <option *ngFor="let Course_Duration_T of Course_Duration_Data" [ngValue]="Course_Duration_T">{{Course_Duration_T.Course_Duration_Name}}</option>
+             </select>
+            <!-- <input type="text" readonly [(ngModel)]="Course_DurationView" name="Course_DurationView" class="form-control border-0" style="background-color: #fbfaff;" placeholder="">    -->
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Course Name<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text"  class="form-control"  id="Course_" name="Course_"  [matAutocomplete]="auto_Course" 
+            [(ngModel)]="Course_" (click)="Search_Course_Typeahead($event)" (ngModelChange)="Course_Change()" /></div>  
+            <mat-autocomplete #auto_Course="matAutocomplete" [displayWith]="display_Course">
+            <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option (click)="Get_Course_Student(Course.Course_Id)" *ngFor="let Course of Course_Data" [value]="Course">
+            <span><div>{{Course.Course_Name}}</div></span>
+            </mat-option>
+            </ng-container>
+            </mat-autocomplete>
+            <div class="col-md-1 col-sm-1"></div>
+
+            <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Start Date</label>                          
+        <div class="col-md-4 col-sm-4 mb-1 ml-5">
+        <input type="date" class="form-control" placeholder="" name="Student_Course_.Start_Date" [(ngModel)]="Student_Course_.Start_Date" 
+        (ngModelChange)="Start_Date_Change_html()">
+        </div> 
+            
+        </div>
+        <!-- <div class="form-row" >
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Duration </label>
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text"  [(ngModel)]="Student_Course_.Duration"  name="Duration" class="form-control" placeholder="">
+            </div>
+        <div class="col-md-1 col-sm-1"></div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Duration Type</label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text" [(ngModel)]="Student_Course_.Duration_Type_Name" name="Duration_Type_Name" class="form-control" placeholder="">
+        </div>
+        </div> -->
+        <!-- <div class="form-row" >
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Duration Type</label>
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text" [(ngModel)]="Student_Course_.Duration_Type_Name" name="Duration_Type_Name" class="form-control" placeholder="">
+            </div>
+            <div class="col-md-1 col-sm-1"></div>
+            </div> -->
+        <div class="form-row" >
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Fees Type<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+            <div class="col-md-4 col-sm-4 mb-1 ">
+            <!-- <input type="text" [(ngModel)]="Student_Course_.Course_Type_Name" name="Course_Type_Name" class="form-control" placeholder=""> -->
+            <select name="Fees_Type_Search_"   [(ngModel)]="Fees_Type_Search_"  required class="form-control p-0 pl-1" (ngModelChange)="Fees_Type_Change()" >
+                <option *ngFor="let Fees_Type_ of Student_Fees_Type_Data" [ngValue]="Fees_Type_">{{Fees_Type_.Fees_Type_Name}}</option>
+             </select>
+             
+            </div> 
+        <div class="col-md-1 col-sm-1"></div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">End Date</label>
+        <div class="col-md-4 col-sm-4 mb-1  ml-5">
+        <input type="Date" [(ngModel)]="Student_Course_.End_Date" name="End_Date"(ngModelChange)="Fill_Years()" class="form-control" placeholder="">
+        </div>
+        </div>
+
+        <!-- <div class="form-row" >
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Course Period:</label>
+        </div>
+        <div class="form-row" >
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Starting:</label>
+        </div> -->
+        <div class="form-row">   
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Starting Year<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+            <div class="col-md-1 col-sm-1 mb-1">
+                <select name='Start_Year_'   [(ngModel)]="Starting_Year_"  required class="form-control p-0 pl-1" (ngModelChange)="Get_Year_Changes()">
+                    <option *ngFor="let Start_Year_ of Start_Year_Data" [ngValue]="Start_Year_">{{Start_Year_.Year_Name}}</option>
+                    </select>
+            </div>         
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Starting Month<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+            <div class="col-md-2 col-sm-2 mb-1">
+                <select name='Starting_Month_'  [(ngModel)]="Starting_Month_"  required class="form-control p-0 pl-1">
+                    <option *ngFor="let Starting_Month_ of Starting_Month_Data" [ngValue]="Starting_Month_">{{Starting_Month_.Month_Status_Name}}</option>
+                    </select>
+            </div>
+              
+            <div class="col-md-1 col-sm-1"></div>
+
+           
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right" >Ending Year<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+            <div class="col-md-1 col-sm-1 mb-1">
+                <input type="text" readonly style="background-color: #ffff;"  name="Student_Course_.Ending_Year" [(ngModel)]="Student_Course_.Ending_Year" class="form-control" placeholder="" >
+            </div> 
+            <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Ending Month<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+            <div class="col-md-2 col-sm-2 mb-1">
+                <select name='Ending_Month_'   [(ngModel)]="Ending_Month_"  required class="form-control p-0 pl-1">
+                    <option *ngFor="let Ending_Month_ of Month_Status_Data" [ngValue]="Ending_Month_">{{Ending_Month_.Month_Status_Name}}</option>
+                    </select> 
+            </div>
+             
+        </div>
+        <!-- <div class="dt-card__heading">
+            <h4><b style="color: #3f6ad8;">Certificate</b></h4>
+            </div>
+        <div class="form-row" >
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Certificate Date</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="date" class="form-control" placeholder="" name="Student_Course_.Certificate_Date" [(ngModel)]="Student_Course_.Certificate_Date" >
+        </div> 
+        <div class="col-md-1 col-sm-1"></div>
+        <label class="col-md-1 col-sm-0 col-form-label text-sm-right">Certificate Grade</label>
+        <div class="col-md-4 col-sm-4 ml-4 mb-1">
+        <input type="text" [(ngModel)]="Student_Course_.Certificate_Grade" name="Certificate_Grade" class="form-control" placeholder="">
+        </div>
+        </div> -->
+        <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1">
+            <div class="container-import" style="    margin-left: -3% !important;"> 
+            <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;" >  
+            <div class="dt-card__heading mb-2 " style="">
+            <h3><b style="color: #3f6ad8;">Year/Semester of Exam</b></h3>
+            </div>
+            <div class="table-responsive">
+            <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+            <tbody >          
+            <tr>
+            <table class="table table-hover table-for-sale-search-section-diary">
+            <thead class="thead"> 
+            <th>Month/Year </th>   
+            <th class="col-md-2">Month</th>   
+            <th class="col-md-2">Year</th>   
+            <th></th>
+            </thead>
+            <tbody   *ngFor="let Student_Course_Part_ of Student_Course_Part_Data; let i = index">          
+            <td class="col-md-2">{{Student_Course_Part_["Part_Name"]}}</td>
+            <td class="col-md-5">  
+                <select name='qqq{{i}}'id='qqq{{i}}'   [(ngModel)]="Student_Course_Part_.Month_Status"  required class="form-control p-0 pl-1" >
+                <option *ngFor="let Exam_Month_ of Exam_Month_Data" [ngValue]="Exam_Month_">{{Exam_Month_.Month_Status_Name}}</option>
+                </select>
+            </td>
+                <td class="col-md-5"> 
+                     <select name='sss{{i}}'id='sss{{i}}'   [(ngModel)]="Student_Course_Part_.Year"  required class="form-control p-0 pl-1" on>
+                    <option *ngFor="let Years_ of Years_Data" [ngValue]="Years_">{{Years_.Year_Name}}</option>
+                    </select>
+                </td>
+            </tbody>
+            </table>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+            </div>
+            </div>
+            </div>
+        <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1">
+        <div class="container-import" style="    margin-left: -3% !important;"> 
+        <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;" >  
+        <div class="dt-card__heading mb-2"  style="">
+        <h3><b style="color: #3f6ad8;">Syllabus</b></h3>
+        </div>
+        <div class="table-responsive" [style.height.px]="myInnerHeight" style="overflow-y: scroll;height:200px;">
+        <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+        <tbody >          
+        <tr>
+        <table class="table table-hover table-for-sale-search-section-diary">
+        <thead class="thead"> 
+        <th>Year/Semester</th>   
+        <th class="col-md-2">Subject</th>   
+        <th  class="col-md-2">Minimum Mark</th>
+        <th  class="col-md-2">Maximum Mark</th>
+        <!-- <th  class="col-md-3">No Of Question</th> -->
+        <th  class="col-md-3">Exam Status</th>
+        <th></th>
+        </thead>
+        <tbody   *ngFor="let Student_Course_Subject_ of Student_Course_Subject_Data; let i = index">          
+        <td class="col-md-2">{{Student_Course_Subject_["Part_Name"]}}</td>
+        <td class="col-md-2">{{Student_Course_Subject_["Subject_Name"]}}</td>
+        <td class="col-md-2">{{Student_Course_Subject_["Minimum_Mark"]}}</td>    
+        <td class="col-md-2">{{Student_Course_Subject_["Maximum_Mark"]}}</td>    
+        <!-- <td class="col-md-2">{{Student_Course_Subject_["No_of_Question"]}}</td>         -->
+        <td class="col-md-2">{{Student_Course_Subject_["Online_Exam_Status_Name"]}}</td>   
+        </tbody>
+        </table>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1">
+        <div class="container-import" style=" margin-left: -3% !important;"> 
+        <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;" >  
+        <div class="dt-card__heading mb-2" style="">
+        <h3><b style="color: #3f6ad8;">Fees Installment</b></h3>
+        </div>
+        <div class="table-responsive">
+        <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+        <tbody *ngFor="let  Student_Fees_Installment_ of Student_Fees_Installment_Master_Data; let i = index">          
+        <tr>
+        <table >
+        <thead class="thead"> 
+        <th>Fees : {{Student_Fees_Installment_.Fees_Type_Name}}</th>   
+        <th class="col-md-4">Amount : {{Student_Fees_Installment_.Amount}}</th>
+        <th class="col-md-4">No Of Installment : {{Student_Fees_Installment_.No_Of_Instalment}}</th>
+        <th class="col-md-4">Installment Period : {{Student_Fees_Installment_.Instalment_Period}} {{Student_Fees_Installment_.Instalment_Type_Name}}</th>
+        <!-- <th class="col-md-4">Instalment Type : {{Student_Fees_Installment_.Instalment_Type_Name}}</th> -->
+        <th class="col-md-4"></th>
+        </thead>
+        <tbody class="bk_tb_bg" *ngFor="let Student_Fees_Installment_1 of Student_Fees_Installment_.Student_Fees_Installment_Details; let j = index trackBy: trackByShipment_Details">
+        <td class="col-md-5">
+        <input matInput [matDatepicker]="dpdate3" placeholder="" name='oooo{{i}}{{j}}'id='oooo{{i}}{{j}}'  
+        [(ngModel)]="Student_Fees_Installment_1.Instalment_Date" 
+        class="col-md-6 input-text-item-sales-section-group-diary border-colour-width-crect-input-boxes mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn">
+        <mat-datepicker-toggle matSuffix [for]="dpdate3"></mat-datepicker-toggle>
+        <mat-datepicker #dpdate3></mat-datepicker>
+        </td>      
+        <td><input matinput type="number" name='abcc{{i}}{{j}}'id='abcc{{i}}{{j}}'  [(ngModel)]="Student_Fees_Installment_1.Fees_Amount"  class="form-control"></td>  
+        <td><input readonly matinput type="number" name='abcc{{i}}{{j}}'id='abcc{{i}}{{j}}' 
+        [(ngModel)]="Student_Fees_Installment_1.Fees_Amount" class="form-control"></td>  
+         <td>{{Student_Fees_Installment_1.Balance_Amount}}</td>
+        <td><button   class="save-button-style btnflot" name='ppp{{i}}{{j}}'id='ppp{{i}}{{j}}'
+        *ngIf="Student_Fees_Installment_1.Status==0 "  (click)="Fees_Tab_Click(Student_Fees_Installment_.Fees_Type_Id,Student_Fees_Installment_1,i)" type="submit">Pay</button></td>  
+        </tbody>
+        </table>
+        </tr>
+        </tbody>         
+        </table>  
+
+        <div class="col-md-12 pl-0">
+        <div class="card-body">
+        <div class="table-responsive" >
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <button class="close-button-style btnflot mt-3 mr-1" type="submit" (click)="Close_Click()">Close</button>
+        <button class="save-button-style btnflot mt-3"  id="Save_Button" (click)="Save_Student_Course()" type="submit">Save</button>
+        <button class="close-button-style btnflot mt-3 mr-1" type="submit" (click)="View_Student_Click_()">View Profile</button>
+
+        </div>
+        </div>
+        </form>
+        </div>
+        </div>
+        </div>
+        <div class="container-fluidprofile mt-2" *ngIf="Mark_View">
+        <div class="dt-card "   id="marklist">
+        <div class="dt-card__body">
+            <!--  style="margin-left: 8% !important;" -->
+        <form class="mb-0">
+        <div class="table-responsive" [hidden]="Year_Hidden==true">
+            <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+                <thead>
+                    <th>
+                        <h4><b style="color: #3f6ad8;font-weight: 900;">Select Year/Semester</b></h4></th>
+                    <th></th>
+                </thead>
+                <tbody *ngFor="let Part_D of Student_Mark_Part_Data; let i = index">          
+                    <tr>
+                        <td ><b style="color: #4ec9ee;font-weight: 900;font-size: 15px;">{{Part_D["Part_Name"]}}</b>&nbsp;&nbsp;&nbsp;
+                            <b  style="color: #50c900;font-weight: 900;font-size: 15px;">{{Part_D["Month_Name"]}}</b>&nbsp;&nbsp;&nbsp;
+                               <b style="color: #50c900;font-weight: 900;font-size: 15px;">{{Part_D["Year_Name"]}}</b></td>
+                        <td ><button   class="save-button-style btnflot" (click)="Get_Student_Mark(Part_D,i)" type="submit">View Details</button></td>  
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <div [hidden]="Mark_Hidden==true">
+
+        <div class="form-row mt-2 mb-2">
+            
+            <div class="col-md-3 col-sm-3 mb-1">
+                
+                <th> <h4><b style="color: #3f6ad8;font-weight: 900;font-size: 17px;">Year/Semester :</b><b style="color: #0db195;font-weight: 900;font-size: 20px;"> {{Mark_List_.Part_Name}}</b></h4></th>
+            </div>
+            <div class="col-md-3 col-sm-3 mb-1">
+                <th> <h4><b style="color: #3f6ad8;font-weight: 900;font-size: 17px;">Month :</b><b style="color: #0db195;font-weight: 900;font-size: 20px;"> {{Mark_List_.Month_Name}}</b></h4> </th>
+            </div>
+            <div class="col-md-2 col-sm-2">
+                <th><h4><b style="color: #3f6ad8;font-weight: 900;font-size: 17px;">Year :</b><b style="color: #0db195;font-weight: 900;font-size: 20px;"> {{Mark_List_.Year_Name}}</b></h4> </th>
+            </div>
+            <hr class="lineheaderh">
+        </div>
+        <!-- <div class="form-row" >
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Month<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+          <div class="col-md-3 col-sm-3 mb-1">
+                <input  type="text"  readonly [(ngModel)]="Mark_List_.Month_Status_Name"  name="Month_Status_Name" class="form-control" placeholder="" (ngModelChange)="Calculate_Total_Mark()">
+                </div> 
+            <div class="col-md-2 col-sm-2"></div>   
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Year<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+            <div class="col-md-3 col-sm-3 mb-1">
+                <input  type="text"  readonly [(ngModel)]="Mark_List_.Month_Year"  name="Month_Year" class="form-control" placeholder="" (ngModelChange)="Calculate_Total_Mark()">
+                </div> 
+            </div> -->
+        <!-- <div class="form-row" >
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Subject<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input type="text"  class="form-control"  id="Subject_" name="Subject_"  [matAutocomplete]="auto_Subject"
+        [(ngModel)]="Subject_" (click)="Search_Part_Subject_Typeahead($event)" />
+        </div>  
+        <mat-autocomplete #auto_Subject="matAutocomplete" [displayWith]="display_Part_Subject">
+        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+        <ng-container *ngIf="!issLoading">
+        <mat-option (click)="Course_Subject_Click(Subject_T)" *ngFor="let Subject_T of Part_Subject_Data" [value]="Subject_T">
+        <span><div (click)="Course_Subject_Click(Subject_T)">{{Subject_T.Subject_Name}}</div></span>
+        </mat-option>
+        </ng-container>
+        </mat-autocomplete>
+        <div class="col-md-2 col-sm-2"></div>
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Internal Mark<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+            <div class="col-md-3 col-sm-3 mb-1">
+            <input  type="number"  [(ngModel)]="Mark_List_.Internal_Mark"  name="Internal_Mark" class="form-control" placeholder="" (ngModelChange)="Calculate_Total_Mark()">
+            </div>
+        </div>
+
+        <div class="form-row" >
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Technical Skill<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input  type="number"  [(ngModel)]="Mark_List_.Technical_Skill"  name="Technical_Skill" class="form-control" placeholder="" (ngModelChange)="Calculate_Total_Mark()">
+        </div> 
+        <div class="col-md-2 col-sm-2"></div>
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">External Mark<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input type="number" [(ngModel)]="Mark_List_.External_Mark" name="External_Mark" class="form-control" placeholder="" (ngModelChange)="Calculate_Total_Mark()" >
+        </div>
+        </div>
+
+        <div class="form-row" >
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Exam status<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-3 col-sm-3 mb-1">
+        <select [(ngModel)]="Exam_Status_" name="Exam_Status_" required class="form-control p-0 pl-1">
+        <option *ngFor="let Exam_Status_ of Exam_Status_Data" [ngValue]="Exam_Status_">{{Exam_Status_.Exam_Status_Name}}</option>
+        </select>
+        </div> 
+        <div class="col-md-2 col-sm-2"></div>
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Total Mark<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input  type="number"  readonly [(ngModel)]="Mark_List_.Mark_Obtained"  name="Mark_Obtained" class="form-control" placeholder="" (ngModelChange)="Calculate_Total_Mark()">
+        </div> 
+        </div>
+
+        <div class="form-row" >                           
+        <div class="col-md-3 col-sm-3 mb-1"></div>
+        <div class="col-md-2 col-sm-2"></div>
+        <button class="other-button-style btnflot pull-right" (click)="Save_Mark_List()" style="background-color: #0db195;margin-left: 33%;">Save Mark </button> 
+        </div>    -->
+        <div class="col-md-2 col-sm-2"></div>
+
+        <!-- <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1">
+        <div class="container-import" style="    margin-left: -3% !important;"> 
+        <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;" >  
+        <div class="table-responsive"> -->
+        <!-- <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format"> -->
+        <!-- <tbody *ngFor="let  part_temp1 of Part_Master_Data; let i = index">-->
+        <!-- <tr>
+        <table class="table table-hover table-for-sale-search-section-diary"> -->
+        <!-- <thead class="thead style" style="background-color: #fbfaff !important;"> 
+        <th><h4 style="font-weight: 900;margin-top: -18%;">           
+            <button   class="save-button-style btnflot" 
+            (click)="Get_Course_Part_Mark_Div(Mark_List_.Part_Id)"
+            type="submit">Add Subject</button>
+        </h4></th>   
+        <th class="col-md-4"></th> -->
+        <!-- <th class="col-md-4">Marklist Issue Date: 
+            <mat-form-field class="col-md-8 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px;padding-top: 7px!important;">
+                <input matInput [matDatepicker]="Ip" placeholder="" [(ngModel)]="Issue_Date_" name="Issue_Date_" > 
+                <mat-datepicker-toggle matSuffix [for]="Ip"></mat-datepicker-toggle>
+                <mat-datepicker #Ip></mat-datepicker>
+                </mat-form-field> -->
+            <!-- <input type="date" name ="Mark_List_.Issue_Date" [(ngModel)]="Mark_List_.Issue_Date" class="form-control" placeholder=""> -->
+        <!-- </th> -->
+        <!-- <th class="col-md-4"></th>
+        <th class="col-md-4"></th>
+        <th class="col-md-4"></th>
+        <th class="col-md-4"></th>
+        <th class="col-md-4"></th>
+        <th class="col-md-4"> -->
+        <!-- <button   class="save-button-style btnflot" 
+        (click)="print_MarkList(Mark_List_.Part_Name)"
+        type="submit">Print Mark List</button>
+        </th> -->
+        <!-- </thead> -->
+        <!-- </table>
+        </tr> -->
+        <!-- </table>  -->
+        <!-- </div>
+        </div>
+        </div>
+        </div> -->
+        
+        
+        <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1" [hidden]="Add_Mark==false">
+            <div class="container-import" style="    margin-left: -3% !important;"> 
+            <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;" > 
+                 <div  class="dt-card mb-0 pb-1 ">
+                     <label>Issue Date:</label>
+                     <mat-form-field class="col-md-3 form-control mrgn-crct-input-text-div-tre-prt-sles1 mrgn-crct-input-bx-sls-mstr-rspnsv-nw-sctn" style="height: 40px;padding-top: 7px!important;">
+                    <input matInput [matDatepicker]="Ip" placeholder="" [(ngModel)]="Student_Course_Part_.Mark_List_Issue_Date" name="Student_Course_Part_.Mark_List_Issue_Date" > 
+                    <mat-datepicker-toggle matSuffix [for]="Ip"></mat-datepicker-toggle>
+                    <mat-datepicker #Ip></mat-datepicker>
+                    </mat-form-field></div>
+
+
+
+                  
+
+
+            <div class="table-responsive">
+             
+            <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+            <tr>
+            <table class="table table-hover table-for-sale-search-section-diary">
+            <thead class="thead">                             
+            <th class="col-md-4">Subject Code</th>   
+            <th>Subject</th> 
+            <th class="col-md-4">Online Exam Mark</th>
+            <th class="col-md-4">Maximum Mark</th>
+            <th class="col-md-4">Minimum Mark</th>
+            <th class="col-md-4">Exam Status</th>
+            <th class="col-md-4">Internal Mark</th>
+            <th class="col-md-4">External Mark</th>
+            <th class="col-md-4">Technical Skill</th>
+            <th class="col-md-4">Total Mark</th>
+            </thead>
+            <tbody class="bk_tb_bg" *ngFor="let Mark_List_Details1 of Mark_List_Data; 
+            let j = index ">
+            <td class="col-md-2">{{Mark_List_Details1.Subject_Code}}</td> 
+            <td class="col-md-5">{{Mark_List_Details1.Subject_Name}}</td> 
+            <td>{{Mark_List_Details1.Online_Exam_Mark}}</td>                               
+            <td>{{Mark_List_Details1.Maximum_Mark}}</td>
+            <td>{{Mark_List_Details1.Minimum_Mark}}</td>     
+             <!-- <td>{{Mark_List_Details1.Internal_Mark}}</td>
+            <td>{{Mark_List_Details1.External_Mark}}</td>   -->
+            <td class="col-md-4">  
+                <select name='qqq{{j}}'id='qqq{{j}}'   [(ngModel)]="Mark_List_Data[j].Exam_Status_"  required class="form-control p-0 pl-1">
+                    <option *ngFor="let Exam_Status_ of Exam_Status_Data" [ngValue]="Exam_Status_">{{Exam_Status_.Exam_Status_Name}}</option>
+                </select>
+            </td>
+            <td> <input type="text" [(ngModel)]="Mark_List_Details1.Internal_Mark"   name={{Mark_List_Details1.Subject_Id}}b{{Mark_List_Details1.Subject_Id}}  
+                class="form-control" placeholder="" (ngModelChange)="Calculate_Total_Mark(j)" ></td> 
+            <td> <input type="text" [(ngModel)]="Mark_List_Details1.External_Mark"   name={{Mark_List_Details1.Subject_Id}}c{{Mark_List_Details1.Subject_Id}} 
+                class="form-control" placeholder="" (ngModelChange)="Calculate_Total_Mark(j)" ></td> 
+            <td> <input type="text" [(ngModel)]="Mark_List_Details1.Technical_Skill" 
+                name={{Mark_List_Details1.Subject_Id}}a{{Mark_List_Details1.Subject_Id}} 
+                class="form-control" placeholder="" (ngModelChange)="Calculate_Total_Mark(j)" ></td> 
+            <td> <input type="text" [(ngModel)]="Mark_List_Details1.Mark_Obtained" 
+                name='rrr{{j}}'id='rrr{{j}}' 
+                class="form-control" placeholder=""  ></td>    
+            <!-- <td>{{Mark_List_Details1.Mark_Obtained}}</td>   -->
+            </tbody>
+            </table>
+            </tr>
+            </table> 
+            </div>
+            <div class="form-row" >                           
+                <div class="col-md-3 col-sm-3 mb-1"></div>
+                <div class="col-md-2 col-sm-2"></div>
+                <div class="col-md-12 ">
+                    <button class="other-button-style btnflot pull-right" (click)="marklist_back()" style="background-color: #191a19;margin-left: 1%;">Back </button>
+                <button class="other-button-style btnflot pull-right" (click)="Save_Mark_List()" style="background-color: #0db195;margin-left: 1%;">Save Mark </button>
+                <button class="save-button-style btnflot"  (click)="Print_Mark_List()" style="background-color: #0db195;margin-left: 33%;" >Print Mark List</button> 
+                <!-- <button class="save-button-style btnflot" (click)="Get_Course_Part_Mark_Div(Mark_List_.Part_Id)" type="submit">Change</button> -->
+            </div>
+            </div>  
+            </div>
+            </div>
+            </div>
+
+    </div>
+        </form>
+        
+        </div>
+        </div>
+        </div>
+
+        <div class="container-fluidprofile mt-2" *ngIf="Certificate_View">
+            <div class="dt-card "   id="Certificate">
+            <div class="dt-card__body" style="margin-left: 8% !important;">
+            <form class="mb-0">
+                <div class="form-row mt-1" >
+                <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Issue Date</label>                          
+                <div class="col-md-3 col-sm-3 mb-1">
+                <input type="date" class="form-control" placeholder="" name="Student_Course_.Certificate_Date" [(ngModel)]="Student_Course_.Certificate_Date" >
+                </div> 
+                <div class="col-md-1 col-sm-1"></div>
+                <label class="col-md-2 col-sm-1 col-form-label text-sm-right" style="text-align: right;">Certificate Grade<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                <div class="col-md-3 col-sm-3 ml-4 mb-1">
+                <input type="text" [(ngModel)]="Student_Course_.Certificate_Grade" name="Certificate_Grade" class="form-control" placeholder="">
+                </div>
+              
+                <!-- <div class="form-row" > -->
+                    
+                    <div class="col-md-12" style="float: right;">
+                    
+                    <button   class="save-button-style btnflot"  (click)="print_Certificate()"  type="submit">Print Certificate</button>
+                    <!-- </div> -->
+                </div>
+            </div>
+            </form>
+            </div>
+            </div>
+            </div>
+
+        <!-- <div class="container-fluidprofile mt-2" *ngIf="Fees_View"> -->
+        <div class="container-fluidprofile mt-2" *ngIf="Fees_View" >
+        <div class="dt-card "   id="Fees">
+        <!-- <div class=" "   > -->
+        <div class="dt-card__body" style="margin-left: 8% !important;">
+        <form class="mb-0">
+
+        <!-- <div class="container-Profilefluid"> -->
+        <!-- <div class="dt-card mt-2" id="Fees"> -->
+        <div class="dt-card__body mt-3" style="margin-left: 2%;" >
+        <div *ngIf="Receipt_View">
+        <div class="form-row  mb-2  ">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Date</label>                          
+        <!-- <div class="col-md-4 col-sm-4 mb-1">
+        <input type="date" class="form-control" placeholder="" name="Receipt_Voucher_.Date" [(ngModel)]="Receipt_Voucher_.Date" >
+        </div>  -->
+        <div class="col-md-4 col-sm-4 mb-1">
+        <!-- <mat-form-field class="col-md-8 input-allighn-to-crect-wole-paddings alighn-date-search-section-new-tab-lead-per-details">
+        <input matInput [matDatepicker]="dpentryDate" placeholder="" name ="Receipt_Voucher_.Date" [(ngModel)]="Receipt_Voucher_.Date">
+        <mat-datepicker-toggle matSuffix [for]="dpentryDate"></mat-datepicker-toggle>
+        <mat-datepicker #dpentryDate></mat-datepicker>
+        </mat-form-field> -->
+        <input type="date" name ="Receipt_Voucher_.Date" [(ngModel)]="Receipt_Voucher_.Date" class="form-control" placeholder="">
+
+        </div>
+        <div class="col-md-1 col-sm-1"></div>   
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Amount</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="number" name="Receipt_Voucher_.Amount" [(ngModel)]="Receipt_Voucher_.Amount" class="form-control" placeholder="">
+        </div> 
+        </div>
+
+        <div class="form-row  mb-2  ">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Receipt No</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input readonly type="text" name="Receipt_Voucher_.Voucher_No" [(ngModel)]="Receipt_Voucher_.Voucher_No" class="form-control" placeholder="">
+        </div>  
+        <div class="col-md-1 col-sm-1"></div>     
+        <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Receipt No</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input readonly type="text" name="Receipt_Voucher_.Bill_No" [(ngModel)]="Receipt_Voucher_.Bill_No" class="form-control" placeholder="">
+        </div>  -->
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Mode<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <select [(ngModel)]="Mode" name="Fees_.Fees_Id" required class="form-control p-0 pl-1">
+        <option *ngFor="let Mode1 of Mode_Data" [ngValue]="Mode1">{{Mode1.Mode_Name}}</option>
+        </select>
+        </div>  
+        </div>
+
+        <!-- <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">To Account<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  class="form-control"  [matAutocomplete]="auto_Client" id="Client_Accounts_" name="Client_Accounts_" 
+        [(ngModel)]="Client_Accounts_" (click)="Accounts_Typeahead($event)" /></div>  
+        <mat-autocomplete #auto_Client="matAutocomplete" [displayWith]="display_Accounts">
+        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+        <ng-container *ngIf="!issLoading">
+        <mat-option *ngFor="let Client_Accounts_ of Client_Accounts_Data" [value]="Client_Accounts_">
+        <span>{{Client_Accounts_.Client_Accounts_Name}}</span>
+        </mat-option>
+        </ng-container>
+        </mat-autocomplete>  
+        <div class="col-md-1 col-sm-1"></div>   
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Mode</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <select [(ngModel)]="Mode" name="Fees_.Fees_Id" required class="form-control p-0 pl-1">
+        <option *ngFor="let Mode1 of Mode_Data" [ngValue]="Mode1">{{Mode1.Mode_Name}}</option>
+        </select>
+        </div>  
+        </div>   -->
+        <div class="form-row  mb-2">    
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Description</label>                
+        <div class="col-md-4 col-sm-4">
+        <textarea Input rows="5" cols="40"  class="form-control " [(ngModel)]="Receipt_Voucher_.Description" place-holder="" name="Receipt_Voucher_.description"></textarea>
+        </div>
+        </div>
+        <div class="form-row  mb-2">
+        <div class="col-md-11"> 
+        <button (click)="Save_Receipt_Voucher()" id="Save_Button" mat-raised-button type="submit" class="save-button-style pull-right mr-0 ml-1" >Save</button>                      
+        <!-- <button (click)="Get_Receipt_History()"  mat-raised-button type="submit" class="save-button-style pull-right mr-0" >History</button>                       -->
+        </div>
+        </div>
+        </div>
+
+        <div class="col-md-12 pl-3 pr-8 mt-8" style="border: 1" >
+        <div class="container-import" style="    margin-left: -3% !important;"> 
+        <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;    margin-right: 2%;" >  
+        <div class="table-responsive">
+        <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+        <thead>
+        <th>Date</th>   
+        <th>Amount</th>   
+        <th>Receipt No</th>
+        <th>Mode</th>
+        <th>Description</th>
+        <!-- <th [hidden]="Student_Edit==false">Edit</th> -->
+        <th [hidden]="Student_Delete==false">Delete</th>
+        <th></th>
+        </thead>
+        <tbody  *ngFor="let Receipt_Voucher_ of Receipt_Voucher_Data; let i = index">          
+        <tr>
+        <td >{{Receipt_Voucher_["Search_Date"]}}</td>
+        <td >{{Receipt_Voucher_["Amount"]}}</td>
+        <td >{{Receipt_Voucher_["Voucher_No"]}}</td> 
+        <td >{{Receipt_Voucher_["Mode_Name"]}}</td>   
+        <td>{{Receipt_Voucher_["Description"]}}</td>            
+        <!-- <td >
+        <span class="icon-background2 mr-1"   (click)="Edit_Receipt_Voucher(Receipt_Voucher_,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+        </td> -->
+        <td class=""> 
+        <span class="icon-background3 mr-1"  (click)="Delete_Receipt_Voucher(Receipt_Voucher_.Receipt_Voucher_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span>
+        </td>
+        </tr>
+        </tbody>
+
+        </table>
+
+        </div>
+        </div>
+        <!-- <div class="col-md-12">
+        <button mat-raised-button type="submit" style="float: right;" class="other-button-style pull-right mt-3 mr-1" (click)="Close_Click()">Close</button>
+        </div> -->
+        </div>
+        </div>
+        </div>
+        <!-- </div> -->
+        <!-- </div> -->
+
+        </form>
+
+        </div>
+        </div>
+        </div>
+        <div class="container-fluidprofile mt-2" *ngIf="Activity_Details_View" >
+            <div class="dt-card "   id="Fees">
+            <!-- <div class=" "   > -->
+            <div class="dt-card__body" style="margin-left: 8% !important;">
+            <form class="mb-0">
+    
+            <!-- <div class="container-Profilefluid"> -->
+            <!-- <div class="dt-card mt-2" id="Fees"> -->
+            <div class="dt-card__body mt-3" style="margin-left: 2%;" >
+            <div *ngIf="Receipt_View">
+            <div class="form-row  mb-2  ">
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Date</label>                          
+            <!-- <div class="col-md-4 col-sm-4 mb-1">
+            <input type="date" class="form-control" placeholder="" name="Receipt_Voucher_.Date" [(ngModel)]="Receipt_Voucher_.Date" >
+            </div>  -->
+            <div class="col-md-4 col-sm-4 mb-1">
+            <!-- <mat-form-field class="col-md-8 input-allighn-to-crect-wole-paddings alighn-date-search-section-new-tab-lead-per-details">
+            <input matInput [matDatepicker]="dpentryDate" placeholder="" name ="Receipt_Voucher_.Date" [(ngModel)]="Receipt_Voucher_.Date">
+            <mat-datepicker-toggle matSuffix [for]="dpentryDate"></mat-datepicker-toggle>
+            <mat-datepicker #dpentryDate></mat-datepicker>
+            </mat-form-field> -->
+            <input type="date" name ="Receipt_Voucher_.Date" [(ngModel)]="Receipt_Voucher_.Date" class="form-control" placeholder="">
+    
+            </div>
+            <div class="col-md-1 col-sm-1"></div>   
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Amount</label>                          
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="number" name="Receipt_Voucher_.Amount" [(ngModel)]="Receipt_Voucher_.Amount" class="form-control" placeholder="">
+            </div> 
+            </div>
+    
+            <div class="form-row  mb-2  ">
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Receipt No</label>                          
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input readonly type="text" name="Receipt_Voucher_.Voucher_No" [(ngModel)]="Receipt_Voucher_.Voucher_No" class="form-control" placeholder="">
+            </div>  
+            <div class="col-md-1 col-sm-1"></div>     
+            <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Receipt No</label>                          
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input readonly type="text" name="Receipt_Voucher_.Bill_No" [(ngModel)]="Receipt_Voucher_.Bill_No" class="form-control" placeholder="">
+            </div>  -->
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Mode</label>                          
+            <div class="col-md-4 col-sm-4 mb-1">
+            <select [(ngModel)]="Mode" name="Fees_.Fees_Id" required class="form-control p-0 pl-1">
+            <option *ngFor="let Mode1 of Mode_Data" [ngValue]="Mode1">{{Mode1.Mode_Name}}</option>
+            </select>
+            </div>  
+            </div>
+    
+            <!-- <div class="form-row  mb-2">
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">To Account<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+            <div class="col-md-4 col-sm-4 mb-1">
+            <input type="text"  class="form-control"  [matAutocomplete]="auto_Client" id="Client_Accounts_" name="Client_Accounts_" 
+            [(ngModel)]="Client_Accounts_" (click)="Accounts_Typeahead($event)" /></div>  
+            <mat-autocomplete #auto_Client="matAutocomplete" [displayWith]="display_Accounts">
+            <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option *ngFor="let Client_Accounts_ of Client_Accounts_Data" [value]="Client_Accounts_">
+            <span>{{Client_Accounts_.Client_Accounts_Name}}</span>
+            </mat-option>
+            </ng-container>
+            </mat-autocomplete>  
+            <div class="col-md-1 col-sm-1"></div>   
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Mode</label>                          
+            <div class="col-md-4 col-sm-4 mb-1">
+            <select [(ngModel)]="Mode" name="Fees_.Fees_Id" required class="form-control p-0 pl-1">
+            <option *ngFor="let Mode1 of Mode_Data" [ngValue]="Mode1">{{Mode1.Mode_Name}}</option>
+            </select>
+            </div>  
+            </div>   -->
+            <div class="form-row  mb-2">    
+            <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Description</label>                
+            <div class="col-md-4 col-sm-4">
+            <textarea Input rows="5" cols="40"  class="form-control " [(ngModel)]="Receipt_Voucher_.Description" place-holder="" name="Receipt_Voucher_.description"></textarea>
+            </div>
+            </div>
+            <div class="form-row  mb-2">
+            <div class="col-md-11"> 
+            <button (click)="Save_Receipt_Voucher()" id="Save_Button" mat-raised-button type="submit" class="save-button-style pull-right mr-0 ml-1" >Save</button>                      
+            <!-- <button (click)="Get_Receipt_History()"  mat-raised-button type="submit" class="save-button-style pull-right mr-0" >History</button>                       -->
+            </div>
+            </div>
+            </div>
+    
+            <div class="col-md-12 pl-3 pr-8 mt-8" style="border: 1" >
+            <div class="container-import" style="    margin-left: -3% !important;"> 
+            <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;    margin-right: 2%;" >  
+            <div class="table-responsive">
+            <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+            <thead>
+            <th>Activities</th>   
+            <th>Amount</th>   
+            <!-- <th>Receipt No</th> -->
+            <!-- <th>Mode</th> -->
+            <th>Description</th>
+            <!-- <th [hidden]="Student_Edit==false">Edit</th> -->
+            <!-- <th [hidden]="Student_Delete==false">Delete</th> -->
+            <th></th>
+            </thead>
+            <tbody  *ngFor="let ActivityDetails of ActivityDetails_Datas; let i = index">          
+            <tr>
+            <td >{{ActivityDetails["Activity_Name"]}}</td>
+            <td >{{ActivityDetails["Amount"]}}</td>
+            <!-- <td >{{Receipt_Voucher_["Voucher_No"]}}</td>  -->
+            <!-- <td >{{Receipt_Voucher_["Mode_Name"]}}</td>    -->
+            <td>{{ActivityDetails["Descripition"]}}</td>            
+            <!-- <td >
+            <span class="icon-background2 mr-1"   (click)="Edit_Receipt_Voucher(Receipt_Voucher_,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+            </td> -->
+            <td class=""> 
+            <!-- <span class="icon-background3 mr-1"  (click)="Delete_Receipt_Voucher(Receipt_Voucher_.Receipt_Voucher_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span> -->
+            </td>
+            </tr>
+            </tbody>
+    
+            </table>
+    
+            </div>
+            </div>
+            <!-- <div class="col-md-12">
+            <button mat-raised-button type="submit" style="float: right;" class="other-button-style pull-right mt-3 mr-1" (click)="Close_Click()">Close</button>
+            </div> -->
+            </div>
+            </div>
+            </div>
+            <!-- </div> -->
+            <!-- </div> -->
+    
+            </form>
+    
+            </div>
+            </div>
+            </div>
+        <div class="container-fluidprofile" *ngIf="Activity_View">
+        <!-- <div class="container-fluidprofile" > -->
+        <!-- <div class="dt-card "   id="Fees"> -->
+        <div class=" "   >
+        <div class="dt-card__body" style="margin-left: 8% !important;">
+        <form class="mb-0">
+
+        <div class="container-fluidprofile">
+        <div class="dt-card mt-2" id="Fees">
+        <div class="dt-card__body mt-3" style="margin-left: 2%;" >
+        <div *ngIf="Receipt_View">
+        <div class="form-row  mb-2  ">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Date</label>      
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="date" name ="Receipt_Voucher_.Date" [(ngModel)]="Receipt_Voucher_.Date" class="form-control" placeholder="">
+
+        </div>
+        <div class="col-md-1 col-sm-1"></div>   
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Amount</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="number" name="Receipt_Voucher_.Amount" [(ngModel)]="Receipt_Voucher_.Amount" class="form-control" placeholder="">
+        </div> 
+        </div>
+
+        <div class="form-row  mb-2  ">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Receipt No</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input readonly type="text" name="Receipt_Voucher_.Voucher_No" [(ngModel)]="Receipt_Voucher_.Voucher_No" class="form-control" placeholder="">
+        </div>  
+        <div class="col-md-1 col-sm-1"></div> 
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Mode</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <select [(ngModel)]="Mode" name="Fees_.Fees_Id" required class="form-control p-0 pl-1">
+        <option *ngFor="let Mode1 of Mode_Data" [ngValue]="Mode1">{{Mode1.Mode_Name}}</option>
+        </select>
+        </div>  
+        </div>
+
+        <!-- <div class="form-row  mb-2">
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">To Account<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-4 col-sm-4 mb-1">
+        <input type="text"  class="form-control"  [matAutocomplete]="auto_Client" id="Client_Accounts_" name="Client_Accounts_" 
+        [(ngModel)]="Client_Accounts_" (click)="Accounts_Typeahead($event)" /></div>  
+        <mat-autocomplete #auto_Client="matAutocomplete" [displayWith]="display_Accounts">
+        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+        <ng-container *ngIf="!issLoading">
+        <mat-option *ngFor="let Client_Accounts_ of Client_Accounts_Data" [value]="Client_Accounts_">
+        <span>{{Client_Accounts_.Client_Accounts_Name}}</span>
+        </mat-option>
+        </ng-container>
+        </mat-autocomplete>  
+        <div class="col-md-1 col-sm-1"></div>   
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Mode</label>                          
+        <div class="col-md-4 col-sm-4 mb-1">
+        <select [(ngModel)]="Mode" name="Fees_.Fees_Id" required class="form-control p-0 pl-1">
+        <option *ngFor="let Mode1 of Mode_Data" [ngValue]="Mode1">{{Mode1.Mode_Name}}</option>
+        </select>
+        </div>  
+        </div>   -->
+        <div class="form-row  mb-2">    
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Description</label>                
+        <div class="col-md-4 col-sm-4">
+        <textarea Input rows="5" cols="40"  class="form-control " [(ngModel)]="Receipt_Voucher_.Description" place-holder="" name="Receipt_Voucher_.description"></textarea>
+        </div>
+        </div>
+        <div class="form-row  mb-2">
+        <div class="col-md-11"> 
+        <button (click)="Save_Receipt_Voucher()" id="Save_Button" mat-raised-button type="submit" class="save-button-style pull-right mr-0 ml-1" >Save</button>                      
+        <button (click)="Get_Activities_Details_History()"  mat-raised-button type="submit" class="save-button-style pull-right mr-0" >History</button>                      
+        </div>
+        </div>
+        </div>
+
+        <div class="col-md-12 pl-3 pr-8 mt-8" style="border: 1" >
+        <div class="container-import" style="    margin-left: -3% !important;"> 
+        <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;    margin-right: 2%;" >  
+        <div class="table-responsive">
+        <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format">
+        <thead>
+        <th>Date</th>   
+        <th>Amount</th>   
+        <th>Receipt No</th>
+        <th>Mode</th>
+        <th>Description</th>
+        <!-- <th [hidden]="Student_Edit==false">Edit</th> -->
+        <th [hidden]="Student_Delete==false">Delete</th>
+        <th></th>
+        </thead>
+        <tbody  *ngFor="let Receipt_Voucher_ of Receipt_Voucher_Data; let i = index">          
+        <tr>
+        <td >{{Receipt_Voucher_["Date"]}}</td>
+        <td >{{Receipt_Voucher_["Amount"]}}</td>
+        <td >{{Receipt_Voucher_["Voucher_No"]}}</td> 
+        <td >{{Receipt_Voucher_["Mode_Name"]}}</td>   
+        <td>{{Receipt_Voucher_["Description"]}}</td>            
+        <!-- <td >
+        <span class="icon-background2 mr-1"   (click)="Edit_Receipt_Voucher(Receipt_Voucher_,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+        </td> -->
+        <td class=""> 
+        <span class="icon-background3 mr-1"  (click)="Delete_Receipt_Voucher(Receipt_Voucher_.Receipt_Voucher_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span>
+        </td>
+        </tr>
+        </tbody>
+
+        </table>
+
+        </div>
+        </div>
+        <!-- <div class="col-md-12">
+        <button mat-raised-button type="submit" style="float: right;" class="other-button-style pull-right mt-3 mr-1" (click)="Close_Click()">Close</button>
+        </div> -->
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        </form>
+
+        </div>
+        </div>
+        </div>
+
+        <div class="col-md-12 pl-0 pr-0 mt-0 mb-2" [hidden]="Show_FollowUp">
+        <div class="container-fluidprofile">
+        <div class="dt-card ">
+        <div class="dt-card__header">
+        <div class="dt-card__heading">
+        <h3><i class="icon icon-users icon-fw icon-lg"></i><b style="margin-bottom:20px;">Follow Up Details:{{Student_.Student_Name}}</b></h3>
+        <div classs="mb-2"></div>
+        <hr class="lineheader">
+        </div>
+        </div>
+        <div class="dt-card__body" style="margin-left: 9px;">
+        <div class="mb-0">
+        <!-- <div class="form-row">
+        <label class="col-md-2 col-sm-2 col-form-label text-sm-right">Branch<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input type="text" class="form-control" [matAutocomplete]="auto8" name="FollowUp_Branch_" [(ngModel)]="FollowUp_Branch_" (click)="Search_Branch_Typeahead($event)" (keyup)="Search_Branch_Typeahead($event)" (ngModelChange)="Branch_Change()" placeholder=" ">
+        </div>
+        <mat-autocomplete #auto8="matAutocomplete" [displayWith]="display_Branch">
+        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+        <ng-container *ngIf="!issLoading">                          
+        <mat-option *ngFor="let Branch1 of Followup_Branch_Data" [value]="Branch1">
+        <span>{{Branch1.Branch_Name}}</span></mat-option>
+        </ng-container>
+        </mat-autocomplete>  
+        <div class="col-md-1 col-sm-1"></div>                  
+        <label class="col-md-2 col-sm-2 col-form-label text-sm-right">Department<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input type="text" [matAutocomplete]="auto1"  class="form-control" name="FollowUp_Department_" [(ngModel)]="FollowUp_Department_" (click)="Search_Branch_Department_Typeahead($event)"   (ngModelChange)="Department_Change()"/>
+        </div>
+        <mat-autocomplete #auto1="matAutocomplete" [displayWith]="display_Department">
+        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+        <ng-container *ngIf="!issLoading">
+        <mat-option *ngFor="let Dept of Followup_Department_Data" [value]="Dept">
+        <span (click)="Focus_It($event)">{{Dept.Department_Name}}</span>
+        </mat-option>
+        </ng-container>
+        </mat-autocomplete>
+        </div> -->
+        <div class="form-row">
+        <label class="col-lg-1 col-sm-2 col-form-label text-sm-right">Status<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input type="text"  class="form-control"  id="Followup_Status" name="Followup_Status"  
+        [matAutocomplete]="auto_FollowUp_Status" [(ngModel)]="Followup_Status_" (click)="Search_Status_Typeahead($event)" />
+        </div>  
+        <mat-autocomplete #auto_FollowUp_Status="matAutocomplete" [displayWith]="display_Followup_Status">
+        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+        <ng-container *ngIf="!issLoading">
+        <mat-option (click)="Status_Change(Status)" *ngFor="let Status of Followup_Status_Data" [value]="Status">
+        <span><div (click)="Status_Change(Status)">{{Status.Status_Name}}</div></span>
+        </mat-option>
+        </ng-container>
+        </mat-autocomplete>  
+        <div class="col-md-1 col-sm-1"></div>
+        <label class="col-lg-1 col-sm-2 col-form-label text-sm-right">To staff<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-3 col-sm-3 mb-1">
+        <input type="text" class="form-control" [matAutocomplete]="auto_Followup_Users" name="Followup_Users_" [(ngModel)]="Followup_Users_" (click)="Search_User_Typeahead($event)"/>
+        </div>
+        <mat-autocomplete #auto_Followup_Users="matAutocomplete" [displayWith]="display_Followup_Users">
+        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+        <ng-container *ngIf="!issLoading">
+        <mat-option (click)="To_User_Change(Users)" *ngFor="let Users of Followup_Users_Data" [value]="Users">
+        <span><div (click)="To_User_Change(Users)">{{Users.Users_Name}}</div></span>
+        </mat-option>
+        </ng-container>
+        </mat-autocomplete>
+        </div>
+        <div class="form-row" [hidden]="Next_FollowUp_Date_Visible" >
+        <label class="col-lg-1 col-sm-2 col-form-label text-sm-right">Follow Up on</label>                          
+        <div class="col-md-3 col-sm-3 mb-1 ">
+        <input type="date" class="form-control follow_date" placeholder="Followup date" name="Student_Followup_.Next_FollowUp_Date" [(ngModel)]="Student_Followup_.Next_FollowUp_Date" >
+        </div>                
+        <!-- <div class="col-md-3 col-sm-3 mb-1">
+        <mat-form-field class="col-md-8 input-allighn-to-crect-wole-paddings alighn-date-search-section-new-tab-lead-per-details">
+        <input matInput [matDatepicker]="dpfollowDate" placeholder="" name ="Student_Followup_.Next_FollowUp_Date" [(ngModel)]="Student_Followup_.Next_FollowUp_Date">
+        <mat-datepicker-toggle matSuffix [for]="dpfollowDate"></mat-datepicker-toggle>
+        <mat-datepicker #dpfollowDate></mat-datepicker>
+        </mat-form-field>
+        </div> -->
+        </div>
+        <div class="form-row" >
+        <label class="col-lg-1 col-sm-2 col-form-label text-sm-right">Remark<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span> </label>                          
+        <div class="col-md-8 col-sm-9 mb-1">
+        <input type="text" class="form-control" placeholder="" name="Student_Followup_.Remark" [(ngModel)]="Student_Followup_.Remark" >
+
+        </div>                
+        </div>
+        <!-- <div class="form-row">
+        <label class="col-md-2 col-sm-2 col-form-label text-sm-right">Remark<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+        <div class="col-md-9 col-sm-10 mb-1">
+        <input type="text" [matAutocomplete]="autore" [(ngModel)]="Remarks_" name="Remarks_" maxlength="4000" (click)="Remarks_Typeahead($event)" (input)="Remarks_Typeahead($event)"  class="form-control"/>
+        </div>  
+        <mat-autocomplete #autore="matAutocomplete" [displayWith]="display_Remarks">
+        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+        <ng-container *ngIf="!issLoading">
+        <mat-option *ngFor="let Remarks_1  of Remarks_Data" [value]="Remarks_1">
+        <span>{{Remarks_1.Remarks_Name}}</span>
+        </mat-option>
+        </ng-container>
+        </mat-autocomplete>            
+        </div>                     -->
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+        </div>
+        <div class="col-md-12 pl-0" id='Historydiv'  [hidden]="Show_Followup_History" >
+            <div class="container-fluidprofile" >
+            <div class="dt-card mt-2">
+                <div class="dt-card__header">
+                <div class="dt-card__heading">
+                    <h3><i class="icon icon-users icon-fw icon-lg"></i><b style="margin-bottom:20px;">History</b></h3><div classs="mb-2"></div><hr class="lineheader">
+                </div>
+                </div>
+            <div class="dt-card__body">
+                <div class="mb-0">
+                <div class="dt-module__content ps-custom-scrollbar" >
+                <div class="card-body set-height-scroll-bar-wole-block" >
+                <div class="card-stacked mb-2 mt-2"  *ngFor="let History of Followp_History_Data; let i = index" style="background-color:#ffff;width: 125% !important;">
+                <div class="card-body pb-0 pt-1"  >
+                <div  class="d-flex flex-wrap mb-0" >
+                <div class="d-flex flex-wrap mb-1"  >
+            
+                <div class="pr-3"> <span> <mat-icon class="icon-backgroundfollowup mr-1 text-purple small" style="margin-top: -1px;" >date_range</mat-icon></span></div>
+                <!-- <div><span class=" text-dark  mr-2 " style="margin-left: -19px;" >{{History["Entry_Caption"]}}:</span></div> -->
+                <div class="pr-3" style=" width: 200px;margin-left: 18px;">Entered:<span class=" text-dark" >{{History["Entry_Date"]}}</span></div>
+                <div class="pr-3" style=" width: 200px;margin-left: 18px;">Status: <span class=" text-dark" >{{History["Status_Name"]}}</span></div>
+                <div class="pr-3" style=" width: 200px;margin-left: 18px;">On:<span   [hidden]="History.FollowUp==0" [ngStyle]="{'color':History.FollowUp_Difference > 0 ? 'red':' black' }">{{History["Next_FollowUp_Date"]}}</span></div>
+                <div class="pr-3" style=" width: 230px;margin-left: 18px;">Actual Follow Up Date:<span class=" text-dark" >{{History["Actual_FollowUp_Date"]}}</span></div>
+                <div class="pr-3" style="width: 250px;margin-left: 18px;">To:<span class=" text-dark" >{{History["To_User_Name"]}}</span></div>
+                <div class="pr-3" style=" width: 200px;margin-left: 18px;">By:<span class=" text-dark" >{{History["By_User_Name"]}}</span></div>
+                <div class="pr-3" style=" width: 600px;margin-left: 18px;">Remark:<span class=" text-dark" >{{History["Remark"]}}</span></div>
+                </div>    
+                <div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div></div></div>
+            </div>
+            </div>
+            </div>
+            </div>
+        <div class="col-md-12 pl-0 b-0 mt-0 mb-0 pb-0" *ngIf="button_view==true">
+        <div class="container-fluidbuttons mb-2">
+        <div class="dt-card b-1 mt-0 mb-0" >
+        <div class="dt-card__body mt-0 mb-0">
+        <div class="form-row mt-0 mb-0">
+        <div class="col-md-5 col-sm-5"></div>
+        <div class="col-md-7 col-sm-7"  >        
+        <button class="close-button-style btnflot mr-0" type="submit" (click)="Close_Click()">Close</button>
+        <button class="save-button-style btnflot"   [hidden]="Student_Save==false" id="Save_Button" (click)="Save_Student()" type="submit">Save</button>
+        <button class="delete-button-style btnflot" [hidden]="Student_Delete==false" *ngIf="Student_Id_Edit>0"   (click)="Delete_Student(Student_.Student_Id)" type="submit">Delete</button>
+        <button class="other-button-style btnflot"  [hidden]="View_Follow_" (click)="View_Follow_Click_()" type="submit">Follow Up</button>
+        <button class="other-button-style btnflot"  [hidden]="View_History_" id="Followup_History" (click)="Followup_History()" type="submit">History</button>
+        <button class="other-button-style btnflot"  [hidden]="View_Student_" (click)="View_Student_Click_()" type="submit">View Profile</button>
+        <button class="other-button-style btnflot"  *ngIf="Registration_Visiblility" (click)="Register_Student()" type="submit">Register Candidate</button>
+        <button class="other-button-style btnflot"  *ngIf="Remove_Registration_Visibility"(click)="Remove_Registration()" type="submit">Remove Registration</button>
+        <!-- <button class="other-button-style btnflot"  *ngIf="Student_Id_Edit>0 && Registration==true"  (click)="course_click()" type="submit">Course Details</button> -->
+        <button class="course-button-style btnflot"  *ngIf="Student_Id_Edit>0 && Remove_Registration_Visibility"  (click)="course_click()" type="submit">Course Details</button>
+
+        <!-- <button class="other-button-style btnflot"  [hidden]="View_Follow_" (click)="Send_Welcome_Mail()" type="submit">Send Welcome Mail</button> -->
+
+
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+
+
+
+
+        </div>
+    </div>    
+    </div>
+</div>
+
+<div class="row " *ngIf="!Entry_View">
+    <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1" *ngIf="isDesktopMenu()">
+        <div class="dt-card mb-0 pb-1 " >        
+        <div class="dt-card__body">
+        <div class="mb-0">          
+        <div class="form-row">
+            <label class="col-md-1 col-sm-0 col-form-label text-sm-right pt-1">Search</label>
+            <div class="col-md-3 col-sm-3 mb-1 ml-0">
+            <input type="text" [(ngModel)]="Search_Name" name="Search_Name" class="form-control" placeholder=" ">
+            </div>
+            <div class="col-md-0 col-sm-0">  
+            <button (click)="Create_New()" mat-raised-button type="submit"  class="save-button-style pull-right mr-1 ">Create New</button>
+            <button (click)="Search_More_Options()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 ">
+            <span  [hidden]='More_Search_Options'>Less Options</span>
+            <span  [hidden]='!More_Search_Options'>More Options</span>
+            </button>
+            <button (click)="Search_Lead_button()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 ">Search</button>
+            </div>
+        </div>
+        <div class="form-row"  [hidden]="More_Search_Options">        
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">To Staff</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <select class="form-control p-0 pl-1" [(ngModel)]="Users_Search"  id="User_" id="simple-select">
+        <option *ngFor="let User_T of Users_Data" [ngValue]="User_T">{{User_T.Users_Name}}
+        </option>
+        </select>
+        </div>
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Status</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <select [(ngModel)]="Search_Status" class="form-control p-0 pl-1" id="simple-select">
+        <option *ngFor="let Status_T of Status_Data" [ngValue]="Status_T" >{{Status_T.Status_Name}}
+        </option>
+        </select>
+        </div>
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Registered</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <select [(ngModel)]="Is_Registered" class="form-control p-0 pl-1" id="simple-select">
+        <option value="1" >All <i class="fa fa-caret-down" aria-hidden="true" ></i> </option>
+        <option value="2">Yes <i class="fa fa-caret-down" aria-hidden="true"></i> </option>
+        <option value="3">No <i class="fa fa-caret-down" aria-hidden="true"></i> </option>
+        </select>
+        </div>
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Follow Up</label>  
+        <div class="col-md-2 col-sm-2 mb-1">
+        <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+        <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+        <label _ngcontent-xmy-c9="" class="form-check-label">
+        <input type='checkbox' class="form-check-input" name="Date_checks" [(ngModel)]="Look_In_Date"   />
+        <span _ngcontent-xmy-c9="" class="form-check-sign" style=" margin-top: 2px;"><span _ngcontent-xmy-c9="" class="check">
+        </span>
+        </span>
+        </label>
+        </div>
+        </div>  
+        </div>     
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">From</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <input type="date" class="form-control p-0 pl-1" placeholder="From"[(ngModel)]="Search_FromDate" name="Search_FromDate" >
+        </div>  
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">To</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="Search_ToDate" name="Search_ToDate">
+        </div>
+        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">SKP</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <input type="text"  class="form-control"  id="Agent" name="Agent"  
+        [matAutocomplete]="auto_Agent" [(ngModel)]="Agent" (click)="Search_Agent_Typeahead($event)" />
+        </div>  
+        <mat-autocomplete #auto_Agent="matAutocomplete" [displayWith]="display_Agent">
+        <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+        <ng-container *ngIf="!issLoading">
+        <mat-option *ngFor="let Agent of Agent_Data" [value]="Agent">
+        <span>{{Agent.Agent_Name}}</span>
+        </mat-option>
+        </ng-container>
+        </mat-autocomplete>  
+        </div>
+        </div>
+        </div>
+        </div>        
+    </div>
+    <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1" *ngIf="isDesktopMenu()">
+        <div class="dt-card mb-0 pb-1" style="background-color: white;" >  
+        <div class="card-body card-body-for-searchedit-lead-section " >
+            <!-- set-height-scroll-bar-wole-block -->
+        <div class="table-responsive" [style.height.px]="myInnerHeight" style="overflow-y: scroll;height:400px;">
+        <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format"  style="width: 100% !important;">       
+        <thead>
+        <th class="srl-no-wdth-rdce-wle-pge">    Registered    </th>          
+        <th >Follow Up    </th>
+        <th style="width: 120px !important;">Follow Up On    </th>
+        <th class="col-md-2 pl-1 ml-0">Student    </th>
+        <th >Mobile</th>
+        <th class="col-md-2 pl-1 ml-0" >Assigned to    </th>
+        <th >    Status    </th>
+        <th class="col-md-2 pl-1 ml-0">    Remark    </th>
+        <th class="col-md-2 pl-1 ml-0">    SKP    </th>
+        </thead>
+        <tbody  *ngFor="let Student_Data_d of Student_Data; let i = index" >
+        <tr>
+        <td><span *ngIf="Student_Data_d.Registered==true" class="material-icons" style="color: #0db195;padding-left: 30px;">check</span></td>
+        <td><button style="border-width: 0ch;" name={{Student_Data_d.Student_Id}}{{Student_Data_d.Student_Name}} _ngcontent-gdi-c11="" class="btn btn-danger btn-link btn-sm btn-just-icon mat-raised-button" mat-raised-button="" mattooltip="Remove" type="button" aria-describedby="cdk-describedby-message-1" cdk-describedby-host="" ng-reflect-position="above" ng-reflect-message="Remove"><span class="mat-button-wrapper">
+        <i [ngClass]="{'Four' : Student_Data_d.tp === 1, 'three' : Student_Data_d.tp === 2 }"
+        class="fa fa-calendar-minus-o two" style = "font-weight: 800;font-size: 18px;" aria-hidden="true" (click)="New_Followup(Student_Data_d['Student_Id'],Student_Data_d['Student_Name'],i)" ></i></span><div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div>
+        <div class="mat-button-focus-overlay"  ></div></button></td>
+        <td class="col-md-1"><span [hidden]="Student_Data_d.FollowUp==0">{{Student_Data_d["Next_FollowUp_Date"]}}</span></td>
+        <td class=" col-md-1 icon-pointer" (click)="Edit_Student(Student_Data_d,i)" style="color: #357bfd; font-weight: 800;">{{Student_Data_d["Student_Name"]}}</td>
+        <td class="col-md-1">   {{Student_Data_d["Mobile"]}}</td>
+        <td  class="col-md-2">{{Student_Data_d["Users_Name"]}}</td>
+        <td  class="col-md-2">{{Student_Data_d["Status_Name"]}}</td>
+        <td  class="col-md-2">{{Student_Data_d["Remark"]}}</td>
+        <td  class="col-md-2">{{Student_Data_d["Agent_Name"]}}</td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        <div class="row"  style="text-align: center;">
+        <div class="col-md-12 buttons-next-previous">
+        <button mat-raised-button type="submit" (click)="previous_Click()"  class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-2" style="background: none;"><i class="fa fa-chevron-left" aria-hidden="true" style="color:#5f6368;"></i></button>
+        <button mat-raised-button type="submit"  (click)="Next_Click()" class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-2" style="background: none;"><i class="fa fa-chevron-right" aria-hidden="true" style="color: #5f6368;"></i></button>
+        </div>
+        </div>
+
+        </div>
+    </div>   
+<!-- </div> -->
+</div>
+<div id="Print_Div111" style="display:none;">
+    <body>   
+        <div class="col-md-12" style="height: 25%;">    
+        </div>
+            <table style="width: 100% !important;margin-left: 28px;">
+                <h3 style="margin:37px;text-align:center;margin-top: 10px!important; font-family: 'Arial Narrow', Arial, sans-serif; text-decoration: underline;font-size: 16px;
+                font-weight: 900;">STATEMENTS OF MARKS</h3>
+                <div style="text-align: right; margin-right: 20px!important;">                     
+                    </div>
+                <tr style="border:0!important">
+                <td style="width:121px;">
+                    <a style=" border:0!important;margin:0px;text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;">Candidate Name</a></td>
+                    <td style="width:60% !important;">                   
+                    <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">
+                        &nbsp; : &nbsp;{{Student_.Student_Name}} </a></td>
+                  <!--  <td style="font-family: 'Libre Barcode 39', cursive;font-size: 40px;">
+                         <label style="font-family: 'Libre Barcode 39', cursive;font-size: 40px;">* {{Student_.Registration_No}}*</label> 
+                    </td>	-->
+                    <td style="width:20% !important; border:0!important;position: fixed; margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+                        <a style="margin-left: 0px!important;">Registration No  &nbsp; : &nbsp;</a></td>
+                    <td style="width:19% !important; border:0!important; margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+                        <a style="margin-left: 45px; text-align: right; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">
+                           {{Student_.Registration_No}}</a></td>	   
+                    </tr>                               
+                <tr style="border:0!important">
+                    <td style="width:121px;border:0!important;margin:0px;text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;">
+                        <a >Programme</a></td>
+                        <td>                           
+                    <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">
+                        &nbsp; : &nbsp;{{Student_Course_.Course_Name}} </a></td>
+                        <td></td>
+                    <td></td>
+                    </tr>
+                <tr style="border:0!important">
+                    <td style="width:121px;border:0!important;margin:0px;text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;">
+                        <a >Training Centre</a></td>
+                        <td>                        
+                        <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">
+                            &nbsp; : &nbsp;{{CenterName}}&nbsp;&nbsp; {{DistrictName}}({{CenterCode}})</a></td>
+                </tr>	
+                    <tr style="border:0!important">
+                    <td style="width:121px;border:0!important;margin:0px;text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;">
+                        <a >Term</a> </td>
+                        <td>                      
+                        <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;text-transform: uppercase;">
+                            &nbsp; : &nbsp;{{monthstart_}}-{{strtYear_}} - {{endmonth_}}-{{Student_Course_.Ending_Year}}</a></td>
+                </tr>                             
+                    <tr style="border:0!important">
+                    <td style="width:121px;border:0!important;margin:0px;text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;">
+                        <a >Month & Year Of Exam</a></td>
+                        <td>                        
+                        <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;text-transform: uppercase;">
+                            &nbsp; : &nbsp;{{Mark_List_.Month_Name}} {{Mark_List_.Year_Name}}</a>
+                    </td>
+                </tr>
+            </table>             
+      <table style=" border:1px solid black; border-collapse: collapse; margin-top: 5px;width: 92%;margin-left: 32px; margin-bottom: 3px!important;">
+                  <tr>
+                    <th style="border:1px solid black; border-collapse: collapse;">
+                    <SPAN STYLE="writing-mode: vertical-lr; -ms-writing-mode: tb-rl;
+                                 transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;
+                                 margin-top: 43px!important; width:10px!important;font-size:12px;"> <a style="margin-top: 1px!important;">Subject Code</a></SPAN></th>
+                    <th  style="border:1px solid black;
+                    border-collapse: collapse;width: 74%;font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;font-size:12px;">Subject Name</th> 
+                    
+                    <th  style="border:1px solid black;
+                    border-collapse: collapse;"><SPAN STYLE="writing-mode: vertical-lr;
+                                     -ms-writing-mode: tb-rl;
+                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 26px!important;font-size:12px;">
+                                     <a style="margin-top: -73px!important;">Marks</a><br><a style="margin-top: -57px!important;">Maximum</a></SPAN></th>
+                     <th  style="border:1px solid black;
+                     border-collapse: collapse;"> 
+                       <SPAN STYLE="writing-mode: vertical-lr;
+                                     -ms-writing-mode: tb-rl;
+                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 34px!important;font-size:12px;">
+                                     <a style="margin-top: -33px!important;">Marks for Pass</a> <br>
+                                     <a style="margin-top: -35px!important;"> Minimum % of</a></SPAN></th>                                      
+                <th  style="border:1px solid black;
+                border-collapse: collapse;"><SPAN STYLE="writing-mode: vertical-lr;
+                                     -ms-writing-mode: tb-rl;
+                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 33px!important;font-size:12px;">
+                                     <a style="margin-top: -59px!important;">(Total 20)</a><br>
+                                    <a style="margin-top: -7px!important;">Internal Assessment</a></SPAN></th>
+                <th  style="border:1px solid black; border-collapse: collapse;">
+                    <SPAN STYLE="writing-mode: vertical-lr;
+                                     -ms-writing-mode: tb-rl;
+                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 33px!important;font-size:12px;">
+                                     <a style="margin-top: -59px!important;">(Total 40)</a><br>
+                                    <a style="margin-top: -7px!important;">External Assessment</a></SPAN></th>                 
+                 <th  style="border:1px solid black; border-collapse: collapse;">
+                <SPAN STYLE="writing-mode: vertical-lr;
+                                     -ms-writing-mode: tb-rl;
+                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 32px!important;font-size:12px;">
+                                     <a style="margin-top: -59px!important;">(Total 40)</a><br>
+                                    <a style="margin-top: -26px!important;">Skill Assessment</a></SPAN></th>
+                 <th  style="border:1px solid black;border-collapse: collapse;"><SPAN STYLE="writing-mode: vertical-lr;
+                                     -ms-writing-mode: tb-rl;width:25px;margin-right: 0px;
+                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;font-size:12px;">
+                                     <a style="margin-top: -61px!important;">Awarded</a><br>
+                                    <a style="margin-top: -49px!important;">Total Marks</a></SPAN></th>
+                 <th  style="width:250px !important;border:1px solid black;
+                 border-collapse: collapse;font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;font-size:12px;">
+                 <a>Result/</a><br><a>Class/</a><br><a>Remarks</a></th>                     
+                  </tr>
+                  <tr    *ngFor="let Mark_List_ of Mark_List_Print; let n =index" >                     
+                    <td style="border-right:1px solid black;padding: 2px 5px 2px 5px;font-family: 'Arial Narrow',Arial, sans-serif;font-size:12px;"  >{{Mark_List_.Subject_Code}}</td>
+                       <td style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" >{{Mark_List_.Subject_Name}}</td>
+                       <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">{{Mark_List_.Maximum_Mark}}</td>
+                       <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">{{Mark_List_.Minimum_Mark}}</td>
+                       <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">{{Mark_List_.Internal_Mark}}</td>
+                       <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" >{{Mark_List_.External_Mark}}</td>
+                       <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px;  text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" >{{Mark_List_.Technical_Skill}}</td>
+                       <td style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" >{{Mark_List_.Mark_Obtained}}</td> 
+                       <!-- {{Mark_List_.Exam_Status_Name}} -->
+                       <td style="border-right:1px solid black;padding: 2px 5px 2px 5px;   text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" ><a>{{Mark_List_.Exam_Status_Name}}</a></td> 
+                       <!-- <td style="border-right:1px solid black;padding:5px;" >{{Mark_List_.Issue_Date}}</td>  -->              
+                  </tr>
+                  <tr  *ngFor="let Mark_List_ of Mark_List_Print_Blank; let n =index" >
+                      <td style="height: 25px;border-right:1px solid black;padding:5px;"></td>
+                      <td style="border-right:1px solid black;padding:0px 0px 5px 5px;" ></td>
+                      <td  style="border-right:1px solid black;padding:0px 0px 5px 5px;"></td>
+                      <td  style="border-right:1px solid black;padding:0px 0px 5px 5px;"></td>
+                      <td  style="border-right:1px solid black;padding:0px 0px 5px 5px;"></td>
+                       <td  style="border-right:1px solid black;padding:0px 0px 5px 5px;" ></td>
+                        <td  style="border-right:1px solid black;padding:0px 0px 5px 5px;" ></td>
+                         <td style="border-right:1px solid black;padding:0px 0px 5px 5px;" ></td> 
+                         <td style="border-right:1px solid black;padding:0px 0px 5px 5px;" ></td> 
+                  </tr>       
+                 <tr>            
+                    <td colspan="2" style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">Grand Total & Grade</td>
+                       <td  style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Maximummarks_Print}}</td> 
+                     <td  style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Minimummarksforpass_print}}</td> 
+                          <td  style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Internalassessment_Total_Print}}</td> 
+                     <td  style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Externalassessment_Total_Print}}</td> 
+                          <td  style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Skillassessment_Total_Print}}</td> 
+                     <td  style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Totalmarks_Total_Print}}</td> 
+                        <td  style="border:1px solid black;
+                        border-collapse: collapse;font-weight:bold;padding:2px 0px 0px 2px;font-size:12px;"><a>{{Mark_List_.Grade}}</a></td> 
+                        <!-- {{Mark_List_.Grade}} -->
+                  </tr>
+                </table>
+                <a style=" margin-top: 8px;text-align: left;font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important; font-size:11px;   margin-left: 33px;">Grade System: 80% above : Grade A+, 60% above : Grade A, 50% above : Grade B, 40% above : Grade C</a><br>
+                <a style=" margin-top: 8px;text-align: left;font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important; font-size:11px;   margin-left: 33px;">   ln order to pass the exam, 40% marks are required separately in lnternal, External and Skill Assesrnents.</a><br>
+                <a style=" margin-top: 8px;text-align: left;font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important; font-size:11px;   margin-left: 33px;">   Abbreviations: PA= Passed, AB= Absent, FA= Failed, NR= Not Required</a>
+     <!-- <div class="col-md-12" style="height: 16%;">    
+    </div> -->
+    <table style="width: 81% !important;margin-top:265px!important;margin-left: 32px!important  ;">
+    <tr style="border:0!important">
+    <td style="border:0!important;width:60%;margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+        <a style="font-weight: bold;">{{Company_.companyname}}</a>
+     </td>
+       </tr>       
+    <tr style="border:0!important">
+      <td style="border:0!important;width:60%;margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+        <a style="font-weight: bold;">{{Company_.Address1}}</a>
+        </td>
+    </tr>
+    <tr style="border:0!important">
+        <td style="border:0!important;width:60%;margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+            <a style="font-weight: bold;">{{Company_.Address2}}</a>
+            </td> 
+    </tr>	
+      <!-- <tr style="border:0!important">
+        <td style="border:0!important;width:60%;margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+            <a>Email:&nbsp;{{Company_.Email}}</a> 
+            </td>
+    </tr> -->
+      <tr style="border:0!important">
+        <td style="border:0!important;width:60%;margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+            <a style="font-weight: bold;">Date &nbsp;&nbsp; : &nbsp; &nbsp;{{print_IssueDate}}</a> 
+        </td>
+        <td style="border:0!important;position: fixed;text-align: right; margin-left: 250px!important;margin:0px;font-size:12px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;">
+            <a style="font-weight: bold;">Evaluation Section</a></td>	  
+    </tr>
+      </table>  
+    </body>
+</div>
+
+<div id="Certificate_Div" style="display:none;">
+    <div>
+
+    </div>
+    <div style="margin-top: 90px!important;">
+    <h4 style="margin:0px;text-align:left;margin-top:-5px;font-family: 'Arial Narrow', Arial, sans-serif;font-size:14px;font-weight: bold;">
+        <a style="margin-left: 125px;letter-spacing: 1px;">{{Student_.Registration_No}}</a></h4>
+</div>
+    <body>
+        <div class="col-md-12" style="height: 10%;">   
+    </div>
+        <table style="margin-top:147px!important;">
+            <tr>
+                <!-- <td>23456</td> -->
+                <td style="padding-left:10px">  
+                <label style="font-family: 'Libre Barcode 39', cursive;font-size: 40px; margin-top: 310px; padding-left: 40px;">* {{Student_.Registration_No}}*</label>                    
+                  </td>
+                  <!-- style="text-align: left;padding-left:-10px;" margin-left: 387%;margin-top: -90px!important;-->         
+                  <td  style="padding-left:450px">
+                    <img id="output" style=" width:70px; height:80px; object-position:0px !important;margin-bottom: 50%;"   src={{ImageFile_Photo_view}} />
+                    <!-- margin-top: -121px!important; -->
+                </td>
+            </tr>  
+        </table>
+        <div style="margin-top: 30px!important;" >
+        <!-- <h1  style="text-align: center;margin-top:-9%;text-decoration: overline">margin-left:-10px;"CERTIFICATE</h1><br><br> -->
+         <p style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">This is to certify that the Evaluation Board of Council for Technology & Science Kerala,</p>   
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;" >on the recommendation of the Faculty and by the Virtue of the Authority vested in them have conferred on </p> 
+         <h3 style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;text-transform:uppercase;font-size: 14px;font-weight: bold;">{{Student_.Student_Name}}</h3>
+         <p style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">having sucessfully Completed the requirments during the period </p>
+         <h3 style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;text-transform:uppercase;font-size: 14px;font-weight: bold;"><a>{{cert_st_year}}</a>&nbsp;<a>{{ Student_Course_.Starting_Year}}</a> &nbsp;<a>TO </a>&nbsp;<a>{{cert_end_year}}</a>&nbsp;<a> {{Student_Course_.Ending_Year }}</a></h3> 
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">The final examination was held in <b style="text-transform:uppercase;  font-weight: bold;">  {{ Examinationheldon_Date | date :'MMMM y' }} </b>  and therefore Awarded</p> 
+         <!--<b>  {{ Examinationheld_Date }} </b> -->
+         <h3 style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;text-transform:uppercase;font-size: 14px;letter-spacing: 1px;font-weight: bold;">{{Student_Course_.Course_Name}}</h3>
+        <!-- <p style="text-align: center">  He/She is place in with</p><h3 style="text-align: center" >A+</h3> -->
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;"> He/She is place in with
+             <a style="text-transform:uppercase;font-size: 14px;">GRADE</a>&nbsp;
+             <b style="font-size:14px;font-weight: bold;text-transform:uppercase;">{{Student_Course_.Certificate_Grade}}</b></p>
+         <!-- <h3>{{Student_Course_.Certificate_Grade}}</h3> -->
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">with all Rights and Privileges there unto appertaining.</p>
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;"> This Certificate is Presented on the</p>
+         <h3 style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 14px;letter-spacing: 1px;font-weight: bold;"><a style="text-transform:uppercase;  font-weight: bold;">{{ Student_Course_.Certificate_Date_Search | date :'dd MMMM y ' }}</a></h3>
+        </div>
+        <!-- <div fxLayout="column">
+            <ngx-barcode *ngFor="let bcValue of Registrtion_No_Barcode" [bc-element-type]="elementType" [bc-value]="bcValue" [bc-format]="format" [bc-line-color]="lineColor"
+             [bc-width]="width" [bc-height]="height" [bc-display-value]="displayValue" [bc-font-options]="fontOptions" [bc-font]="font"
+             [bc-text-align]="textAlign" [bc-text-position]="textPosition" [bc-text-margin]="textMargin" [bc-font-size]="fontSize" [bc-background]="background"
+             [bc-margin]="margin" [bc-margin-top]="marginTop" [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight"></ngx-barcode>
+        </div> -->   
+    <!-- </div> -->      
+    </body>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="Print_Div" style="display:none;">
+    <body>   
+        <div class="col-md-12" style="height: 25%;">    
+        </div>
+            <table style="width: 100% !important;margin-left: 28px;">
+                <h3 style="margin:37px;text-align:center;margin-top: 10px!important; font-family: 'Arial Narrow', Arial, sans-serif; text-decoration: underline;font-size: 16px;
+                font-weight: 900;">STATEMENTS OF MARKS</h3>
+                <div style="text-align: right; margin-right: 20px!important;">                     
+                    </div>
+                <tr style="border:0!important">
+                <td style="width:121px;">
+                    <a style=" border:0!important;margin:0px;text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;">Candidate Name</a></td>
+                    <td style="width:60% !important;">                   
+                    <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">
+                        &nbsp; : &nbsp;{{Student_.Student_Name}} </a></td>
+                  <!--  <td style="font-family: 'Libre Barcode 39', cursive;font-size: 40px;">
+                         <label style="font-family: 'Libre Barcode 39', cursive;font-size: 40px;">* {{Student_.Registration_No}}*</label> 
+                    </td>   -->
+                    <td style="width:20% !important; border:0!important;position: fixed; margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+                        <a style="margin-left: 0px!important;">Registration No  &nbsp; : &nbsp;</a></td>
+                    <td style="width:19% !important; border:0!important; margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+                        <a style="margin-left: 45px; text-align: right; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">
+                           {{Student_.Registration_No}}</a></td>       
+                    </tr>                               
+                <tr style="border:0!important">
+                    <td style="width:121px;border:0!important;margin:0px;text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;">
+                        <a >Programme</a></td>
+                        <td colspan="3">                           
+                    <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">
+                        &nbsp; : &nbsp;{{Student_Course_.Course_Name}} </a></td>
+                        <!-- <td></td>
+                    <td></td> -->
+                    </tr>
+                <tr style="border:0!important">
+                    <td style="width:121px;border:0!important;margin:0px;text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;">
+                        <a >Training Centre</a></td>
+                        <td>                        
+                        <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">
+                            &nbsp; : &nbsp;{{CenterName}}&nbsp;&nbsp; {{DistrictName}}({{CenterCode}})</a></td>
+                </tr>   
+                    <tr style="border:0!important">
+                    <td style="width:121px;border:0!important;margin:0px;text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;">
+                        <a >Term</a> </td>
+                        <td>                      
+                        <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;text-transform: uppercase;">
+                            &nbsp; : &nbsp;{{monthstart_}}-{{strtYear_}} - {{endmonth_}}-{{Student_Course_.Ending_Year}}</a></td>
+                </tr>                             
+                    <tr style="border:0!important">
+                    <td style="width:121px;border:0!important;margin:0px;text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;">
+                        <a >Month & Year Of Exam</a></td>
+                        <td>                        
+                        <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;text-transform: uppercase;">
+                            &nbsp; : &nbsp;{{Mark_List_.Month_Name}} {{Mark_List_.Year_Name}}</a>
+                    </td>
+                </tr>
+            </table>             
+      <table style=" border:1px solid black; border-collapse: collapse; margin-top: 5px;width: 92%;margin-left: 32px; margin-bottom: 3px!important;">
+                  <tr>
+                    <th style="border:1px solid black; border-collapse: collapse;">
+                    <SPAN STYLE="writing-mode: vertical-lr; -ms-writing-mode: tb-rl;
+                                 transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;
+                                 margin-top: 43px!important; width:10px!important;font-size:12px;"> <a style="margin-top: 1px!important;">Subject Code</a></SPAN></th>
+                    <th  style="border:1px solid black;
+                    border-collapse: collapse;width: 74%;font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;font-size:12px;">Subject Name</th> 
+                    
+                    <th  style="border:1px solid black;
+                    border-collapse: collapse;"><SPAN STYLE="writing-mode: vertical-lr;
+                                     -ms-writing-mode: tb-rl;
+                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 26px!important;font-size:12px;">
+                                     <a style="margin-top: -73px!important;">Marks</a><br><a style="margin-top: -57px!important;">Maximum</a></SPAN></th>
+                     <th  style="border:1px solid black;
+                     border-collapse: collapse;"> 
+                       <SPAN STYLE="writing-mode: vertical-lr;
+                                     -ms-writing-mode: tb-rl;
+                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 34px!important;font-size:12px;">
+                                     <a style="margin-top: -33px!important;">Marks for Pass</a> <br>
+                                     <a style="margin-top: -35px!important;"> Minimum % of</a></SPAN></th>                                      
+                <th  style="border:1px solid black;
+                border-collapse: collapse;"><SPAN STYLE="writing-mode: vertical-lr;
+                                     -ms-writing-mode: tb-rl;
+                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 33px!important;font-size:12px;">
+                                     <a style="margin-top: -59px!important;">(Total 20)</a><br>
+                                    <a style="margin-top: -7px!important;">Internal Assessment</a></SPAN></th>
+                <th  style="border:1px solid black; border-collapse: collapse;">
+                    <SPAN STYLE="writing-mode: vertical-lr;
+                                     -ms-writing-mode: tb-rl;
+                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 33px!important;font-size:12px;">
+                                     <a style="margin-top: -59px!important;">(Total 40)</a><br>
+                                    <a style="margin-top: -7px!important;">External Assessment</a></SPAN></th>                 
+                 <th  style="border:1px solid black; border-collapse: collapse;">
+                <SPAN STYLE="writing-mode: vertical-lr;
+                                     -ms-writing-mode: tb-rl;
+                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 32px!important;font-size:12px;">
+                                     <a style="margin-top: -59px!important;">(Total 40)</a><br>
+                                    <a style="margin-top: -26px!important;">Skill Assessment</a></SPAN></th>
+                 <th  style="border:1px solid black;border-collapse: collapse;"><SPAN STYLE="writing-mode: vertical-lr;
+                                     -ms-writing-mode: tb-rl;width:25px;margin-right: 0px;
+                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;font-size:12px;">
+                                     <a style="margin-top: -61px!important;">Awarded</a><br>
+                                    <a style="margin-top: -49px!important;">Total Marks</a></SPAN></th>
+                 <th  style="width:250px !important;border:1px solid black;
+                 border-collapse: collapse;font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;font-size:12px;">
+                 <a>Result/</a><br><a>Class/</a><br><a>Remarks</a></th>                     
+                  </tr>
+                  <tr    *ngFor="let Mark_List_ of Mark_List_Print; let n =index" >                     
+                    <td style="border-right:1px solid black;padding: 2px 5px 2px 5px;font-family: 'Arial Narrow',Arial, sans-serif;font-size:12px;"  >{{Mark_List_.Subject_Code}}</td>
+                       <td style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" >{{Mark_List_.Subject_Name}}</td>
+                       <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">{{Mark_List_.Maximum_Mark}}</td>
+                       <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">{{Mark_List_.Minimum_Mark}}</td>
+                       <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">{{Mark_List_.Internal_Mark}}</td>
+                       <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" >{{Mark_List_.External_Mark}}</td>
+                       <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px;  text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" >{{Mark_List_.Technical_Skill}}</td>
+                       <td style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" >{{Mark_List_.Mark_Obtained}}</td> 
+                       <!-- {{Mark_List_.Exam_Status_Name}} -->
+                       <td style="border-right:1px solid black;padding: 2px 5px 2px 5px;   text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" ><a>{{Mark_List_.Exam_Status_Name}}</a></td> 
+                       <!-- <td style="border-right:1px solid black;padding:5px;" >{{Mark_List_.Issue_Date}}</td>  -->              
+                  </tr>
+                  <tr  *ngFor="let Mark_List_ of Mark_List_Print_Blank; let n =index" >
+                      <td style="height: 25px;border-right:1px solid black;padding:5px;"></td>
+                      <td style="border-right:1px solid black;padding:0px 0px 5px 5px;" ></td>
+                      <td  style="border-right:1px solid black;padding:0px 0px 5px 5px;"></td>
+                      <td  style="border-right:1px solid black;padding:0px 0px 5px 5px;"></td>
+                      <td  style="border-right:1px solid black;padding:0px 0px 5px 5px;"></td>
+                       <td  style="border-right:1px solid black;padding:0px 0px 5px 5px;" ></td>
+                        <td  style="border-right:1px solid black;padding:0px 0px 5px 5px;" ></td>
+                         <td style="border-right:1px solid black;padding:0px 0px 5px 5px;" ></td> 
+                         <td style="border-right:1px solid black;padding:0px 0px 5px 5px;" ></td> 
+                  </tr>       
+                 <tr>            
+                    <td colspan="2" style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">Grand Total & Grade</td>
+                       <td  style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Maximummarks_Print}}</td> 
+                     <td  style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Minimummarksforpass_print}}</td> 
+                          <td  style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Internalassessment_Total_Print}}</td> 
+                     <td  style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Externalassessment_Total_Print}}</td> 
+                          <td  style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Skillassessment_Total_Print}}</td> 
+                     <td  style="border:1px solid black;
+                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Totalmarks_Total_Print}}</td> 
+                        <td  style="border:1px solid black;
+                        border-collapse: collapse;font-weight:bold;padding:2px 0px 0px 2px;font-size:12px;"><a>{{Mark_List_.Grade}}</a></td> 
+                        <!-- {{Mark_List_.Grade}} -->
+                  </tr>
+                </table>
+                <a style=" margin-top: 8px;text-align: left;font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important; font-size:11px;   margin-left: 33px;">Grade System: 80% above : Grade A+, 60% above : Grade A, 50% above : Grade B, 40% above : Grade C</a><br>
+                <a style=" margin-top: 8px;text-align: left;font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important; font-size:11px;   margin-left: 33px;">   ln order to pass the exam, 40% marks are required separately in lnternal, External and Skill Assesrnents.</a><br>
+                <a style=" margin-top: 8px;text-align: left;font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important; font-size:11px;   margin-left: 33px;">   Abbreviations: PA= Passed, AB= Absent, FA= Failed, NR= Not Required</a>
+     <!-- <div class="col-md-12" style="height: 16%;">    
+    </div> -->
+    <table style="width: 81% !important;margin-top:265px!important;margin-left: 32px!important  ;">
+    <tr style="border:0!important">
+    <td style="border:0!important;width:60%;margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+        <a style="font-weight: bold;">{{Company_.companyname}}</a>
+     </td>
+       </tr>       
+    <tr style="border:0!important">
+      <td style="border:0!important;width:60%;margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+        <a style="font-weight: bold;">{{Company_.Address1}}</a>
+        </td>
+    </tr>
+    <tr style="border:0!important">
+        <td style="border:0!important;width:60%;margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+            <a style="font-weight: bold;">{{Company_.Address2}}</a>
+            </td> 
+    </tr>   
+      <!-- <tr style="border:0!important">
+        <td style="border:0!important;width:60%;margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+            <a>Email:&nbsp;{{Company_.Email}}</a> 
+            </td>
+    </tr> -->
+      <tr style="border:0!important">
+        <td style="border:0!important;width:60%;margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
+            <a style="font-weight: bold;">Date &nbsp;&nbsp; : &nbsp; &nbsp;{{print_IssueDate}}</a> 
+        </td>
+        <td style="border:0!important;position: fixed;text-align: right; margin-left: 250px!important;margin:0px;font-size:12px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;">
+            <a style="font-weight: bold;">Evaluation Section</a></td>     
+    </tr>
+      </table>  
+    </body>
+</div>
+
+<div id="Certificate_Div" style="display:none;">
+    <div>
+
+    </div>
+    <div style="margin-top: 90px!important;">
+    <h4 style="margin:0px;text-align:left;margin-top:-5px;font-family: 'Arial Narrow', Arial, sans-serif;font-size:14px;font-weight: bold;">
+        <a style="margin-left: 125px;letter-spacing: 1px;">{{Student_.Registration_No}}</a></h4>
+</div>
+    <body>
+        <div class="col-md-12" style="height: 10%;">   
+    </div>
+        <table style="margin-top:147px!important;">
+            <tr>
+                <!-- <td>23456</td> -->
+                <td style="padding-left:10px">  
+                <label style="font-family: 'Libre Barcode 39', cursive;font-size: 40px; margin-top: 310px; padding-left: 40px;">* {{Student_.Registration_No}}*</label>                    
+                  </td>
+                  <!-- style="text-align: left;padding-left:-10px;" margin-left: 387%;margin-top: -90px!important;-->         
+                  <td  style="padding-left:450px">
+                    <img id="output" style=" width:70px; height:80px; object-position:0px !important;margin-bottom: 50%;"   src={{ImageFile_Photo_view}} />
+                    <!-- margin-top: -121px!important; -->
+                </td>
+            </tr>  
+        </table>
+        <div style="margin-top: 30px!important;" >
+        <!-- <h1  style="text-align: center;margin-top:-9%;text-decoration: overline">margin-left:-10px;"CERTIFICATE</h1><br><br> -->
+         <p style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">This is to certify that the Evaluation Board of Council for Technology & Science Kerala,</p>   
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;" >on the recommendation of the Faculty and by the Virtue of the Authority vested in them have conferred on </p> 
+         <h3 style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;text-transform:uppercase;font-size: 14px;font-weight: bold;">{{Student_.Student_Name}}</h3>
+         <p style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">having sucessfully Completed the requirements during the period </p>
+         <h3 style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;text-transform:uppercase;font-size: 14px;font-weight: bold;"><a>{{cert_st_year}}</a>&nbsp;<a>{{ Student_Course_.Starting_Year}}</a> &nbsp;<a>TO </a>&nbsp;<a>{{cert_end_year}}</a>&nbsp;<a> {{Student_Course_.Ending_Year }}</a></h3> 
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">The final examination was held in <b style="text-transform:uppercase;  font-weight: bold;">  {{ new_mydate }} </b>  and therefore Awarded</p> 
+         <!--<b>  {{ Examinationheld_Date }} </b> -->
+         <h3 style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;text-transform:uppercase;font-size: 14px;letter-spacing: 1px;font-weight: bold;">{{Student_Course_.Course_Name}}</h3>
+        <!-- <p style="text-align: center">  He/She is place in with</p><h3 style="text-align: center" >A+</h3> -->
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;"> He/She is place in with
+             <a style="text-transform:uppercase;font-size: 14px;">GRADE</a>&nbsp;
+             <b style="font-size:14px;font-weight: bold;text-transform:uppercase;">{{Student_Course_.Certificate_Grade}}</b></p>
+         <!-- <h3>{{Student_Course_.Certificate_Grade}}</h3> -->
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">with all Rights and Privileges there unto appertaining.</p>
+         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;"> This Certificate is Presented on the</p>
+         <h3 style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 14px;letter-spacing: 1px;font-weight: bold;"><a style="text-transform:uppercase;  font-weight: bold;">{{ Student_Course_.Certificate_Date_Search | date :'dd MMMM y ' }}</a></h3>
+        </div>
+        <!-- <div fxLayout="column">
+            <ngx-barcode *ngFor="let bcValue of Registrtion_No_Barcode" [bc-element-type]="elementType" [bc-value]="bcValue" [bc-format]="format" [bc-line-color]="lineColor"{{ Examinationheldon_Date | date :'MMMM y' }} 
+             [bc-width]="width" [bc-height]="height" [bc-display-value]="displayValue" [bc-font-options]="fontOptions" [bc-font]="font"
+             [bc-text-align]="textAlign" [bc-text-position]="textPosition" [bc-text-margin]="textMargin" [bc-font-size]="fontSize" [bc-background]="background"
+             [bc-margin]="margin" [bc-margin-top]="marginTop" [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight"></ngx-barcode>
+        </div> -->   
+    <!-- </div> -->      
+    </body>
+</div>

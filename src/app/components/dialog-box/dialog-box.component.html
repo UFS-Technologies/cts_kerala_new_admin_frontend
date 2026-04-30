@@ -1,0 +1,17 @@
+<html>
+  <body class="mat-dialog-form">
+    <div class="mat-dialog-container">
+      <h1 mat-dialog-title>{{ Heading }}</h1>
+      <div mat-dialog-content>
+        <p>{{ message }}</p>
+      </div>
+      <div mat-dialog-actions>
+        <div [hidden]="!showNo">
+          <button mat-button (click)="onNoClick()">{{ NoButton }}</button>
+        </div>
+        <button mat-button (click)="onYesClick()">{{ YesButton }}</button>
+        <!--<button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>!-->
+      </div>
+    </div>
+  </body>
+</html>

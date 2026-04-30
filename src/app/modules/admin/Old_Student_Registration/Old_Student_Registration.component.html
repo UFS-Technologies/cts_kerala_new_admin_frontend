@@ -1,0 +1,185 @@
+
+
+<div *ngIf="issLoading" class="overlay">
+  <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+  </mat-progress-spinner>
+  </div>
+  <div  id='Topdiv'></div>
+<div class="main-content">
+<div class="container-fluid">
+  <div class="row" *ngIf="Entry_View">
+    <div class="col-md-12 mt-2 pl-0">
+      <div class="dt-card mb-0 pb-3">         
+          <div class="dt-card__body mt-1 mb-0 pb-0">
+              <form class="mb-0">
+                <div class="form-row mb-2" >
+                  <label class="col-xl-1 col-md-2 col-sm-1 col-form-label text-sm-right">Student Name<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                  <div class="col-md-3 col-sm-3 mb-2">
+                    <input type="text" [(ngModel)]="Old_Student_Registration_.Old_Student_Registration_Student_Name" name="Old_Student_Registration_.Old_Student_Registration_Student_Name" class="form-control"/></div>
+                  <div class="col-md-1 col-sm-1"></div>                  
+                    <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Date</label>
+                  <div class="col-md-3 col-sm-3 mb-2">
+                    <mat-form-field class="form-control" style="height: 40px;padding-top: 7px!important;">
+                    <input matInput [matDatepicker]="dp"  [(ngModel)]="Old_Student_Registration_.Old_Student_Registration_Date" name="Old_Student_Registration_.Old_Student_Registration_Date">
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp></mat-datepicker>
+                    </mat-form-field>                        
+                  </div>
+                </div>
+                    <div class="form-row mb-2">
+                      <label class="col-xl-1 col-md-2 col-sm-1 col-form-label text-sm-right">Registration No 
+                      <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span> </label>
+                      <div class="col-md-3 col-sm-3 mb-2">
+                        <input type="text" [(ngModel)]="Old_Student_Registration_.Old_Student_Registration_No" name="Old_Student_Registration_.Old_Student_Registration_No" class="form-control" />
+                      </div>
+                        <div class="col-md-1 col-sm-1"></div>  
+                        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Program</label>
+                        <div class="col-md-3 col-sm-3 mb-2">
+                          <input type="text" class="form-control" [(ngModel)]="Old_Student_Registration_.Program" 
+                          name="Old_Student_Registration_.Program" >
+                        </div>
+                    </div>
+                    <div class="form-row mb-2">
+                      <label class="col-xl-1 col-md-2 col-sm-1 col-form-label text-sm-right">Session</label>
+                      <div class="col-md-3 col-sm-3 mb-2">
+                        <input type="text" class="form-control" [(ngModel)]="Old_Student_Registration_.Section" 
+                        name="Old_Student_Registration_.Section">                                     
+                        </div> 
+                        <div class="col-md-1 col-sm-1"></div> 
+                        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Result</label>
+                        <div class="col-md-3 col-sm-3 mb-2">
+                          <select
+                              class="form-control p-0 pl-1"
+                              [(ngModel)]="Result_"
+                              name="Result_"
+                              id="results"
+                            >
+                            <option
+                            *ngFor="let Results of Result_Data"
+                            [ngValue]="Results"
+                          >
+                            {{ Results.Result_Name }}
+                          </option>
+                            </select>                                  
+                        </div> 
+                    </div>
+                    <!-- <div class="form-row mb-2" >
+                        <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Address4</label>
+                        <div class="col-md-3 col-sm-3 mb-2">
+                        <input type="text" class="form-control" [(ngModel)]="Old_Student_Registration_.Old_Student_Registration_Address4" 
+                          name="Old_Student_Registration_.Old_Student_Registration_Address4">                                     
+                        </div> 
+                        <div class="col-md-1 col-sm-1"></div>   
+                          <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Phone</label>
+                        <div class="col-md-3 col-sm-3 mb-2">
+                          <input type="number"  class="form-control" [(ngModel)]="Old_Student_Registration_.Old_Student_Registration_Phone" name="Old_Student_Registration_.Old_Student_Registration_Phone">
+                        </div>
+                    </div> -->
+                    <!-- <div class="form-row mb-2">
+                      <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Mobile</label>
+                      <div class="col-md-3 col-sm-3 mb-1">
+                        <input Input rows="5" cols="40"  class="form-control "
+                        [(ngModel)]="Old_Student_Registration_.Old_Student_Registration_Mobile" name="Old_Student_Registration_.Old_Student_Registration_Mobile">
+                      </div> 
+                        <div class="col-md-1 col-sm-1"></div> 
+                          <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Email</label>
+                          <div class="col-md-3 col-sm-3 mb-1">
+                            <input Input rows="5" cols="40"  class="form-control "
+                            [(ngModel)]="Old_Student_Registration_.Old_Student_Registration_Email" name="Old_Student_Registration_.Old_Student_Registration_Email">
+                        </div>
+                      </div>   -->
+                      <div class="form-row" style="float: right; margin-top: -3%;" >
+                        <button mat-raised-button type="submit"[hidden]="Old_Student_Registration_Save==false" id="Save_Button" class="save-button-style pull-left mr-1"(click)="Save_Old_Student_Registration()">Save</button>
+                        <button mat-raised-button type="submit" class="close-button-style pull-left mr-1" (click)="Close_Click()">Close</button>
+                        <!-- <button mat-raised-button type="submit"  [hidden]="Old_Student_Registration_Print" class="close-button-style pull-left mr-1"(click)="Print_Click()"><i class="fa fa-print" aria-hidden="true"></i></button> -->
+                      </div>
+  </form>
+  </div>
+  </div>
+  </div>
+ </div>
+ <!-- <div class="row" *ngIf="!Entry_View">
+  <div class="col-md-12 pl-0  mt-2 mb-0">
+    <div class="dt-card mb-0 mt-2 pb-1" style="margin-left: 18px; margin-right: 36px;">         
+        <div class="dt-card__body mt-1 mb-0 pb-0  ">
+            <form class="mb-0"> 
+              <div class="form-row" style="padding-left: 10px;">
+ <button mat-raised-button type="submit" (click)="Create_New()" class="btn pull-right btn-danger button-to-crect-margin "><i class="fa fa-plus" aria-hidden="true"></i></button>
+ <button mat-raised-button type="submit" (click)="Search_Account_Voucher()" class="btn pull-right btn-danger button-to-crect-margin"><i class="fa fa-search" aria-hidden="true"></i></button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div> -->
+
+<div class="row" *ngIf="!Entry_View">
+    <div class="col-md-12 pl-0  mt-2 mb-0">
+      <div class="dt-card mb-0 mt-2 pb-1" style="margin-left: 18px; margin-right: 36px;">         
+          <div class="dt-card__body mt-1 mb-0 pb-0  ">
+              <form class="mb-0"> 
+                <div class="form-row" style="padding-left: 10px;">   
+   
+              <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0 ">Student Name</label>
+              <div class="col-md-2 col-sm-1 mb-2">  
+                <input type="text" class="form-control" [(ngModel)]="Student_Name_Search_" name="Student_Name_Search_" placeholder="">
+            </div>
+            <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Registration No</label>
+            <div class="col-md-2 col-sm-1 mb-2">  
+              <input type="text" class="form-control" [(ngModel)]="Registration_No_Search_" name="Registration_No_Search_" placeholder="">
+          </div>
+          <button  (click)="Search_Old_Student_Registration()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 "style="height: 38px!important;">Search</button>
+
+          <button (click)="Create_New()" mat-raised-button type="submit"  class="save-button-style pull-right mr-1 " style="height: 38px!important;">Create New</button>   
+
+          </div>
+         
+            </form>
+            </div>
+            </div>
+            </div>        
+<!-- <button mat-raised-button type="submit" (click)="Create_New()" class="btn pull-right btn-danger button-to-crect-margin "><i class="fa fa-plus" aria-hidden="true"></i></button>
+<button mat-raised-button type="submit" (click)="Search_Account_Voucher()" class="btn pull-right btn-danger button-to-crect-margin"><i class="fa fa-search" aria-hidden="true"></i></button> -->
+    <div class="col-md-12 pl-3 pr-8 mt-0" style="border: 1" >
+      <div class="dt-card mb-0 pb-1" style="background-color: white;" >  
+      <div class="card-body card-body-for-searchedit-lead-section">
+      <div class="table-responsive" style="overflow: scroll;" [style.height.px]="myInnerHeight" style="overflow-y: scroll;height:5000px;">
+     <table  class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format"  style="width: 100% !important;">
+  <thead class="thead">
+  <th>Sl No</th> 
+  <th>Date</th> 
+  <th>Student Name</th>
+  <th>Registration No</th>
+  <th [hidden]="Old_Student_Registration_Edit==false">View</th>
+
+  </thead>
+  <tbody class="bk_tb_bg" *ngFor="let Old_Student_Registration1 of Old_Student_Registration_Data; let i = index">
+
+  <td>{{i+1}}</td> 
+  <td>{{Old_Student_Registration1["Registration_Date"]}}</td> 
+  <td>{{Old_Student_Registration1["Old_Student_Registration_Student_Name"]}}</td> 
+  <td>{{Old_Student_Registration1["Old_Student_Registration_No"]}}</td> 
+  <td>
+  <button _ngcontent-jry-c5="" _ngcontent-gxp-c5="" [hidden]="Old_Student_Registration_Edit==false" aria-describedby="cdk-describedby-message-0" 
+  cdk-describedby-host="" class="aligyn-crect-deprtnment btn btn-primary btn-link btn-sm btn-just-icon mat-raised-button" mat-raised-button="" 
+  mattooltip="Edit Task" ng-reflect-message="Edit Task" ng-reflect-position="above" type="button"><span class="mat-button-wrapper">
+    <span _ngcontent-jry-c5="" class="mat-button-wrapper"><i _ngcontent-jry-c5="" _ngcontent-gxp-c5="" class="material-icons" 
+      (click)="Edit_Old_Student_Registration(Old_Student_Registration1,i)" >edit</i></span><div _ngcontent-jry-c5="" 
+      class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" 
+      ng-reflect-trigger="[object HTMLButtonElement]"></div><div _ngcontent-jry-c5="" class="mat-button-focus-overlay"></div></span>
+      <div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" 
+      ng-reflect-trigger="[object HTMLButtonElement]"></div><div class="mat-button-focus-overlay" ></div></button>
+  </td>
+ 
+  </tbody>
+  </table>
+  </div>
+  </div>
+  <div class="col-md-4">
+  <label class="entry-num">Entries : {{Total_Entries}}</label>
+  </div>  
+</div>
+</div>
+</div>
+</div>
+</div>

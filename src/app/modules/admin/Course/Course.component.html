@@ -1,0 +1,647 @@
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div id='Topdiv'></div>
+<div id='Bottomdiv'></div>
+<div id="snackbar">Details added..</div>
+<div class="main-content screenfixed">
+    <div class="container-fluid">
+
+        <div class="row" *ngIf="Entry_View" style="overflow-y: scroll;" [style.height.px]="myInnerHeight">
+            <div class="col-md-12 col-sm-12">
+                <span class=" mr-1" *ngIf="Close_Click_Icon_View" (click)="Close_Click()"><mat-icon
+                        style="font-size: 32px;cursor: pointer;float: right; "
+                        class="text-red small">close</mat-icon></span>
+            </div>
+            <div class="col-md-12 mt-1 pl-0" *ngIf="Course_View">
+                <div class="dt-card mb-2 pb-1">
+                    <div class="dt-card__body ml-2 mt-1 mb-0 pb-0">
+                        <form class="mb-0">
+                            <div class="dt-card__heading">
+                                <h3><i class="icon icon-users icon-fw icon-lg"></i><b style="margin-bottom:20px;">Course
+                                        Details</b></h3>
+                                <div class="mb-2"></div>
+                                <hr class="lineheader">
+                            </div>
+                            <div class="form-row mb-2">
+                                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course<span
+                                        style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                <div class="col-md-4 col-sm-4 mb-2">
+                                    <input type="text" class="form-control p-0 pl-1" [(ngModel)]="Course_.Course_Name"
+                                        name="Course_.Course_Name" placeholder="">
+                                </div>
+                                <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course Type<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-2 col-sm-2 mb-2" style =" margin-left: 33px;">
+        <select [(ngModel)]="Course_Type" id="Course_Type" name="Course_Type" required  class="form-control p-0 pl-1">
+        <option *ngFor="let Course_Type_ of Course_Type_Data" [ngValue]="Course_Type_">{{Course_Type_.Course_Type_Name}}</option>
+        </select> 
+        </div>        -->
+
+
+                                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course Mode<span
+                                        style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                <div class="col-lg-2 col-md-4 col-sm-2 mb-2 ">
+                                    <select class=" form-control pl-1 p-0" [(ngModel)]="Course_Mode_"
+                                        name="Course_Mode_">
+                                        <option *ngFor="let Course_Mode of Course_Mode_Data" [ngValue]="Course_Mode">
+                                            {{Course_Mode.Course_Mode_Name}}</option>
+                                    </select>
+                                </div>
+
+
+                                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course Term<span
+                                        style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;;margin-left: 11px;">*</span></label>
+                                <div class="col-lg-2 col-md-3 col-sm-2 mb-2 ">
+                                    <select class=" form-control  pl-1 p-0" [(ngModel)]="Course_Term_"
+                                        name="Course_Term_">
+                                        <option *ngFor="let Course_Term of Course_Term_Data" [ngValue]="Course_Term">
+                                            {{Course_Term.Course_Term_Name}}</option>
+                                    </select>
+                                </div>
+
+
+                                <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course Code<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-2 col-sm-2 mb-2 ml-3">
+          <input type="text" class="form-control"[(ngModel)]="Course_.Course_Code" name="Course_.Course_Code"  >
+          </div>        -->
+                            </div>
+                            <div class="form-row mb-2">
+
+                                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Course Code<span
+                                        style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                <div class="col-lg-2 col-md-2 col-sm-2 mb-2">
+                                    <input type="text" class="form-control" [(ngModel)]="Course_.Course_Code"
+                                        name="Course_.Course_Code">
+                                </div>
+
+
+                                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">University<span
+                                        style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                <div class="col-lg-2 col-md-3 col-sm-2 mb-2">
+                                    <select [(ngModel)]="University_" id="University" name="University" required
+                                        class="form-control p-0 pl-1">
+                                        <option *ngFor="let University_ of University_Data" [ngValue]="University_">
+                                            {{University_.University_Name}}</option>
+                                    </select>
+                                </div>
+
+                                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Duration<span
+                                        style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;margin-left: 11px;">*</span></label>
+                                <div class="col-lg-1 col-md-2 col-sm-2 mb-2 ">
+                                    <input type="number" class="form-control p-0 pl-1" [(ngModel)]="Course_.Duration"
+                                        name="Course_.Duration" placeholder="">
+                                </div>
+                                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Duration Type<span
+                                        style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                <div class="col-lg-2 col-md-3 col-sm-2 mb-2">
+                                    <select [(ngModel)]="Duration_Type_" id="Duration_Type_" name="Duration_Type_"
+                                        required class="form-control p-0 pl-1">
+                                        <option *ngFor="let Duration_Type_ of Duration_Type_Data"
+                                            [ngValue]="Duration_Type_">{{Duration_Type_.Duration_Type_Name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-row" style="padding-left: 10px;">
+         <label class="col-md-0 col-sm-0 col-form-label text-sm-right">University<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-2 col-sm-2 mb-2">
+        <select [(ngModel)]="University_" id="University" name="University" required  class="form-control p-0 pl-1">
+        <option *ngFor="let University_ of University_Data" [ngValue]="University_">{{University_.University_Name}}</option>
+        </select> 
+        </div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">University Amount<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-2 col-sm-2 mb-2"> 
+        <input type="text" class="form-control" [(ngModel)]="Course_.University_Amount" name="Course_.University_Amount"  placeholder="">
+        </div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Total Fees<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+        <div class="col-md-2 col-sm-2 mb-2">
+        <input type="text" class="form-control" [(ngModel)]="Course_.Total_Fees" name="Course_.Total_Fees"  placeholder="">
+        </div>
+        </div> -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-md-12  pl-0" *ngIf="Course_Fees_View">
+
+                        <div class="dt-card mb-2 pb-1">
+                            <div class="dt-card__body ml-2 mt-1 mb-0 pb-0">
+                                <form class="mb-0">
+                                    <div class="dt-card__heading">
+                                        <h3><i class="icon icon-users icon-fw icon-lg"></i><b
+                                                style="margin-bottom:20px;">Fees Details</b></h3>
+                                        <div classs="mb-2"></div>
+                                        <hr class="lineheader">
+                                    </div>
+                                    <div class="form-row mb-2">
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Fees Type <span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2">
+                                            <select [(ngModel)]="Fees_Type" id="Fees_Type" name="Fees_Type" required
+                                                class="form-control p-0 pl-1">
+                                                <option *ngFor="let Fees_Type_ of Fees_Type_Data"
+                                                    [ngValue]="Fees_Type_">{{Fees_Type_.Fees_Type_Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From Year<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 mb-2 ">
+                                            <input type="text" class="form-control p-0 "
+                                                [(ngModel)]="Course_Fees.From_Year" name="Course_Fees.From_Year"
+                                                placeholder="">
+                                        </div>
+
+
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right ">To Year<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 mb-2   ">
+                                            <input type="text" class="form-control p-0 "
+                                                [(ngModel)]="Course_Fees.To_Year" name="Course_Fees.To_Year"
+                                                placeholder="">
+                                        </div>
+
+                                        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right" style="padding-left: 61px;">Amount<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label> -->
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Amount<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-xl-1 col-sm-1 mb-2">
+                                            <input type="number" class="form-control" [(ngModel)]="Course_Fees.Amount"
+                                                name="Course_Fees.Amount" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row mb-2">
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">No Of
+                                            Installment<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2">
+                                            <input type="number" class="form-control"
+                                                [(ngModel)]="Course_Fees.No_Of_Instalment"
+                                                name="Course_Fees.No_Of_Instalment" placeholder="">
+                                        </div>
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Installment
+                                            Period<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2">
+                                            <input type="number" class="form-control"
+                                                [(ngModel)]="Course_Fees.Instalment_Period"
+                                                name="Course_Fees.Instalment_Period" placeholder="">
+                                        </div>
+
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Installement
+                                            Type<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2 ">
+                                            <select [(ngModel)]="Instalment_Type_" id="Instalment_Type_"
+                                                name="Instalment_Type_" required class="form-control p-0 pl-1">
+                                                <option *ngFor="let Instalment_Type_ of Duration_Type_Data"
+                                                    [ngValue]="Instalment_Type_">{{Instalment_Type_.Duration_Type_Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row mb-2">
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Service Fees<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2">
+                                            <input type="number" class="form-control"
+                                                [(ngModel)]="Course_Fees.Service_Fees" name="Course_.Service_Fees">
+                                        </div>
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Coaching Fees<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2">
+                                            <input type="number" class="form-control"
+                                                [(ngModel)]="Course_Fees.Coaching_Fees" name="Course_.Coaching_Fees">
+                                        </div>
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Study Materials
+                                            Fees<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2">
+                                            <input type="number" class="form-control"
+                                                [(ngModel)]="Course_Fees.Studymaterials_Fees"
+                                                name="Course_.Studymaterials_Fees">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right"> SKP Amount<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2">
+                                            <input type="number" class="form-control"
+                                                [(ngModel)]="Course_Fees.Agent_Amount" name="Course_.Agent_Amount">
+                                        </div>
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">University
+                                            Amount<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2">
+                                            <input type="text" class="form-control"
+                                                [(ngModel)]="Course_Fees.University_Amount"
+                                                name="Course_.University_Amount">
+                                        </div>
+                                        <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right" style="padding-left: 62px;">Total Fees<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                 <div class="col-md-2 col-sm-2 mb-2">
+                 <input type="number" class="form-control"  [(ngModel)]="Course_Fees.Total_Fees" name="Course_.Total_Fees" >
+                 </div> -->
+                                    </div>
+                                    <div class="col-md-12" class="addbutton-style">
+                                        <button type="submit" (click)="Plus_Course_Fees($event)"
+                                            class="other-button-style " style="margin-right: 239px;margin-top: 4px;">Add
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="">
+                                <div class="card-body">
+                                    <div class="table-responsive" style="overflow:scroll;">
+                                        <table class="table table-hover table-for-sale-search-section-diary">
+                                            <thead class="thead">
+                                                <th>Fees Type</th>
+                                                <th>Amount</th>
+                                                <th>No Of Installment</th>
+                                                <th>Installment Period</th>
+                                                <th>Agent Amount</th>
+                                                <th>University Amount</th>
+                                                <th>Study Materials Fees</th>
+                                                <th>Coaching Fees</th>
+                                                <th>Service Fees</th>
+                                                <!-- <th>Total Fees</th> -->
+                                                <th [hidden]="Course_Edit==false">Edit</th>
+                                                <th [hidden]="Course_Delete==false">Delete</th>
+                                            </thead>
+                                            <tbody class="bk_tb_bg"
+                                                *ngFor="let Course_Fees_ of Course_Fees_Data; let i = index">
+                                                <td class="td-padding">{{Course_Fees_["Fees_Type_Name"]}}</td>
+                                                <td class="td-padding">{{Course_Fees_["Amount"]}}</td>
+                                                <td class="td-padding">{{Course_Fees_["No_Of_Instalment"]}}</td>
+                                                <td class="td-padding">{{Course_Fees_["Instalment_Period"]}}</td>
+                                                <td class="td-padding">{{Course_Fees_["Agent_Amount"]}}</td>
+                                                <td class="td-padding">{{Course_Fees_["University_Amount"]}}</td>
+                                                <td class="td-padding">{{Course_Fees_["Studymaterials_Fees"]}}</td>
+                                                <td class="td-padding">{{Course_Fees_["Coaching_Fees"]}}</td>
+                                                <td class="td-padding">{{Course_Fees_["Service_Fees"]}}</td>
+                                                <!-- <td class="td-padding">{{Course_Fees_["Total_Fees"]}}</td>   -->
+                                                <!-- <td class="td-padding">
+            <button _ngcontent-jry-c5="" _ngcontent-gxp-c5="" aria-describedby="cdk-describedby-message-0" cdk-describedby-host="" class="aligyn-crect-deprtnment btn btn-primary btn-link btn-sm btn-just-icon mat-raised-button" mat-raised-button="" mattooltip="Edit Task" ng-reflect-message="Edit Task" ng-reflect-position="above" type="button">
+            <span class="mat-button-wrapper"><span _ngcontent-jry-c5="" class="mat-button-wrapper"><i _ngcontent-jry-c5=""  _ngcontent-gxp-c5="" class="material-icons" 
+                (click)="Edit_Course_Fees(Course_Fees_,i)" >edit</i></span><div _ngcontent-jry-c5="" class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false"   ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div><div _ngcontent-jry-c5=""  class="mat-button-focus-overlay"></div></span><div class="mat-button-ripple mat-ripple" matripple=""  ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div>
+                <div class="mat-button-focus-overlay" ></div></button>
+            </td>
+            <td class="td-padding"> 
+            <button _ngcontent-gdi-c11="" class="btn btn-danger btn-link btn-sm btn-just-icon mat-raised-button" mat-raised-button="" mattooltip="Remove" type="button" aria-describedby="cdk-describedby-message-1" cdk-describedby-host="" ng-reflect-position="above" ng-reflect-message="Remove"><span class="mat-button-wrapper">
+                <i _ngcontent-gdi-c11="" class="material-icons"  (click)="Delete_Course_Fees(Course_Fees_,i)" >close</i></span>
+                <div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false"  ng-reflect-trigger="[object HTMLButtonElement]"></div><div class="mat-button-focus-overlay"  ></div></button>
+            </td> -->
+                                                <td class="td-padding">
+                                                    <span class="icon-background2 mr-1"
+                                                        (click)="Edit_Course_Fees(Course_Fees_,i)"> <mat-icon
+                                                            class="text-green small">edit</mat-icon></span>
+                                                </td>
+
+                                                <td class="td-padding">
+                                                    <span class="icon-background3 mr-1"
+                                                        (click)="Delete_Course_Fees(Course_Fees_.Course_Fees_Id,i)">
+                                                        <mat-icon class="text-red small">close</mat-icon></span>
+                                                </td>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            Total Fees:
+                        </div>
+
+                    </div>
+
+
+                    <!-- <div class="col-md-12">     
+        <div class="row col-md-12" style="border: 1px solid #3f6ad8;">  
+            <div class="col-md-12 mve-up-wrd-crct-alghn-sls-mstr-nw-sctn-brcde-rspnsv mb-3"> -->
+                    <div class="col-md-12 mt-2 pl-0" *ngIf="Course_Subject_View">
+                        <div class="dt-card mb-2 pb-1">
+                            <div class="dt-card__body  mt-1 mb-0 pb-0">
+                                <form class="mb-0">
+                                    <!-- <div class="col-md-12">
+                    <h3 style="color:#3f6ad8;"><strong>Course Subject</strong></h3>
+                </div>  -->
+                                    <div class="dt-card__heading">
+                                        <h3><i class="icon icon-users icon-fw icon-lg"></i><b
+                                                style="margin-bottom:20px;">Subjects of&nbsp;{{Course_Name_}}
+                                                &nbsp;&nbsp;&nbsp;Course Code&nbsp;:{{Course_Code_}} </b></h3>
+                                        <div classs="mb-2"></div>
+                                        <hr class="lineheader">
+                                    </div>
+                                    <div class="form-row">
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Year/Semester<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2">
+                                            <select [(ngModel)]="Part" id="Part" name="Part" required
+                                                class="form-control p-0 pl-1">
+                                                <option *ngFor="let Part_ of Part_Data" [ngValue]="Part_">
+                                                    {{Part_.Part_Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right"
+                                            style="padding-left: 45px;">Subject<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2">
+                                            <input type="text" disable [matAutocomplete]="autoSubject"
+                                                [(ngModel)]="Subject" id="Subject" name="Subject"
+                                                (click)="Search_Subject_Typeahead($event)"
+                                                (input)="Search_Subject_Typeahead($event)" class="form-control" />
+                                            <mat-autocomplete #autoSubject="matAutocomplete"
+                                                [displayWith]="display_Subject">
+                                                <mat-option *ngIf="issLoading"><mat-spinner
+                                                        diameter="500"></mat-spinner></mat-option>
+                                                <ng-container *ngIf="!issLoading">
+                                                    <mat-option *ngFor="let Subject of Subject_Data_Filter"
+                                                        [value]="Subject">
+                                                        <span>{{Subject.Subject_Name}}</span>
+                                                    </mat-option>
+                                                </ng-container>
+                                            </mat-autocomplete>
+                                        </div>
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right"
+                                            style="padding-left: 53px;">Subject Code<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2">
+                                            <input type="text" readonly class="form-control"
+                                                [(ngModel)]="Course_Subject.Subject_Code"
+                                                name="Course_Subject.Subject_Code" placeholder="">
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="row col-md-12 mt-1 row-height"> -->
+                                    <div class="form-row" style="padding-left: 18px;">
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Exam Status<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2">
+                                            <select [(ngModel)]="Online_Exam_Status" id="Online_Exam_Status"
+                                                name="Online_Exam_Status" required class="form-control p-0 pl-1"
+                                                (ngModelChange)="Exam_Status_Change()">
+                                                <option *ngFor="let Online_Exam_Status1 of Online_Exam_Status_Data"
+                                                    [ngValue]="Online_Exam_Status1">
+                                                    {{Online_Exam_Status1.Online_Exam_Status_Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right" *ngIf="Exam_">No
+                                            Of Question<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2" *ngIf="Exam_">
+                                            <input type="text" class="form-control"
+                                                [(ngModel)]="Course_Subject.No_of_Question"
+                                                name="Course_Subject.No_of_Question" placeholder="">
+                                        </div>
+
+                                        <label class="col-md-0 col-sm-0 col-form-label text-sm-right" *ngIf="Exam_">Exam
+                                            Duration(In min.)<span
+                                                style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                                        <div class="col-md-2 col-sm-2 mb-2" *ngIf="Exam_">
+                                            <input type="text" class="form-control"
+                                                [(ngModel)]="Course_Subject.Exam_Duration"
+                                                name="Course_Subject.Exam_Duration" placeholder="">
+                                        </div>
+
+                                        <div class="col-md-1" style="float:right;">
+                                            <button type="submit" (click)="Plus_Course_Subject($event)"
+                                                class="other-button-style ">Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <div class="table-responsive" style="overflow:scroll;">
+                                        <table class="table table-hover table-for-sale-search-section-diary">
+                                            <thead class="thead">
+                                                <th>Year/Semester</th>
+                                                <th>Subject</th>
+                                                <th>Subject Code</th>
+                                                <th>Exam Status</th>
+                                                <th [hidden]="Course_Edit==false">Edit</th>
+                                                <th [hidden]="Course_Delete==false">Delete</th>
+                                            </thead>
+                                            <tbody class="bk_tb_bg"
+                                                *ngFor="let Course_Subject_ of Course_Subject_Data; let i = index">
+                                                <td class="td-padding">{{Course_Subject_["Part_Name"]}}</td>
+                                                <td class="td-padding">{{Course_Subject_["Subject_Name"]}}</td>
+                                                <td class="td-padding">{{Course_Subject_["Subject_Code"]}}</td>
+                                                <td class="td-padding">{{Course_Subject_["Online_Exam_Status_Name"]}}
+                                                </td>
+                                                <td class="td-padding">
+                                                    <span class="icon-background2 mr-1"
+                                                        (click)="Edit_Course_Subject(Course_Subject_,i)"> <mat-icon
+                                                            class="text-green small">edit</mat-icon></span>
+                                                </td>
+                                                <td class="td-padding">
+                                                    <span class="icon-background3 mr-1"
+                                                        (click)="Delete_Course_Subject(Course_Subject_.Course_Subject_Id,i)">
+                                                        <mat-icon class="text-red small">close</mat-icon></span>
+                                                </td>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 pl-0 b-0  mb-0 pb-0">
+                                <div class="container-fluidbutton-save mb-2">
+                                    <div class="dt-card b-1 mt-0 mb-0">
+                                        <div class="dt-card__body mt-0 mb-0">
+                                            <div class="form-row mt-0 mb-0">
+                                                <div class="col-md-6 col-sm-6"></div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <button class="close-button-style btnflot mr-0" type="submit"
+                                                        (click)="Close_Click()">Close</button>
+                                                    <!-- <button class="save-button-style btnflot" id="Save_Button" (click)="Save_Course()" type="submit">Save</button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- </div> -->
+
+            <!-- <div class="col-md-12">
+    <button mat-raised-button type="submit" id="Save_Button"class="btn pull-right btn-danger div-rspnsv-pstn-crct-sls-mstr"(click)="Save_Course()">Save</button>
+    <button mat-raised-button type="submit" class="btn pull-right btn-danger div-rspnsv-pstn-crct-sls-mstr" (click)="Close_Click()">Close</button>
+    </div> -->
+            <div class="col-md-12 pl-0 b-0  mb-0 pb-0" *ngIf="Close_Click_View">
+                <div class="container-fluidbutton-save mb-2">
+                    <div class="dt-card b-1 mt-0 mb-0">
+                        <div class="dt-card__body mt-0 mb-0">
+                            <div class="form-row mt-0 mb-0">
+                                <div class="col-md-6 col-sm-6"></div>
+                                <div class="col-md-6 col-sm-6">
+                                    <button class="close-button-style btnflot " type="submit"
+                                        (click)="Close_Click()">Close</button>
+                                    <button class="save-button-style btnflot mr-1" id="Save_Button"
+                                        (click)="Save_Course()" type="submit">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row" *ngIf="!Entry_View">
+
+
+            <div class="col-md-12 pl-0  mt-2 mb-2">
+                <div class="dt-card mb-2 pb-1">
+                    <div class="dt-card__body mt-1 mb-0 pb-0  ">
+                        <form class="mb-0">
+                            <div class="form-row">
+                                <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Search Course</label>
+
+                                <div class="col-md-4 col-sm-4 mb-2">
+                                    <input type="text" class="form-control" [(ngModel)]="Course_Name_Search"
+                                        name="Course_Type_Name_Search" placeholder="">
+                                </div>
+                                <!-- <label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Course Type</label>
+                        <div class="col-md-2 col-sm-2 mb-2">  
+                            <select [(ngModel)]="Course_Type_Search"name="Course_Type_Search" required class="form-control p-0 pl-1">
+                                <option *ngFor="let Course_Type_ of Course_Type_Data" [ngValue]="Course_Type_">{{Course_Type_.Course_Type_Name}}</option>
+                                </select>                      
+                        </div> -->
+                                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">University</label>
+                                <div class="col-md-1 col-sm-2 mb-2">
+                                    <select [(ngModel)]="University_Search" id="University" name="University" required
+                                        class="form-control p-0 pl-0">
+                                        <option *ngFor="let University_ of University_Data" [ngValue]="University_">
+                                            {{University_.University_Name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 col-sm-2 mt-0">
+                                    <button (click)="Search_Course()" mat-raised-button type="submit"
+                                        class="other-button-style pull-left mr-1">Search</button>
+                                    <button (click)="Create_New()" mat-raised-button type="submit"
+                                        class="save-button-style pull-left mr-1 ">Create New</button>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12 pl-0 mt-0">
+                <mat-tab-group (selectedIndexChange)="onTabChange($event)">
+                    <mat-tab label="Accepted Courses">
+                        <div class="dt-module">
+                            <div class="dt-module__container">
+                                <div class="dt-module__content ps-custom-scrollbar">
+                                    <div class="dt-module__content-inner pl-0 pr-0">
+                                        <div class="dt-module__list pl-0 pr-0">
+                                            <div class="card-body" style="overflow: scroll;"
+                                                [style.height.px]="myTotalHeight">
+                                                <div class="dt-module__list-item pb-2 pt-2"
+                                                    *ngFor="let Course_Type1 of Course_Data ; let i = index">
+                                                    <div class="dt-module__list-item-content">
+                                                        <div class="user-detail">
+                                                            <span class="icon-background2 mr-1"
+                                                                [hidden]="Course_Edit==false"
+                                                                (click)="Edit_Course(Course_Type1,i)">
+                                                                <mat-icon class="text-green small">edit</mat-icon>
+                                                            </span>
+                                                            <span class="icon-background3 mr-1"
+                                                                [hidden]="Course_Delete==false"
+                                                                (click)="Delete_Course(Course_Type1.Course_Id,i, 0)">
+                                                                <mat-icon class="text-red small">close</mat-icon>
+                                                            </span>
+                                                            <span class="dt-separator-v">&nbsp;</span>
+                                                            <span
+                                                                class="user-name">{{Course_Type1["Course_Name"]}}</span>
+                                                            <span class="dt-separator-v">&nbsp;</span>
+                                                            <span
+                                                                class="user-name">{{Course_Type1["Course_Code"]}}</span>
+                                                            <span class="dt-separator-v">&nbsp;</span>
+                                                            <span
+                                                                class="user-name">{{Course_Type1["University_Name"]}}</span>
+                                                            <span class="dt-separator-v">&nbsp;</span>
+                                                            <span class="user-name">
+                                                                <button
+                                                                    (click)="Add_Subject(Course_Type1.Course_Id,Course_Type1.Course_Name,Course_Type1.Course_Code,i)"
+                                                                    mat-raised-button type="submit"
+                                                                    class="save-button-style pull-left mr-1"
+                                                                    style="background-color: #0db195;">Subject</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+
+                    <mat-tab label="Pending Courses">
+                        <div class="dt-module">
+                            <div class="dt-module__container">
+                                <div class="dt-module__content ps-custom-scrollbar">
+                                    <div class="dt-module__content-inner pl-0 pr-0">
+                                        <div class="dt-module__list pl-0 pr-0">
+                                            <div class="card-body" style="overflow: scroll;"
+                                                [style.height.px]="myTotalHeight">
+                                                <div class="dt-module__list-item pb-2 pt-2"
+                                                    *ngFor="let Course_Type1 of Course_Data ; let i = index">
+                                                    <div class="dt-module__list-item-content">
+                                                        <div class="user-detail">
+                                                            <span
+                                                                class="user-name">{{Course_Type1["Course_Name"]}}</span>
+                                                            <span class="dt-separator-v">&nbsp;</span>
+                                                            <span
+                                                                class="user-name">{{Course_Type1["Course_Code"]}}</span>
+                                                            <span class="dt-separator-v">&nbsp;</span>
+                                                            <span
+                                                                class="user-name">{{Course_Type1["University_Name"]}}</span>
+                                                            <span class="dt-separator-v">&nbsp;</span>
+                                                            <span class="icon-background2 mr-1"
+                                                            (click)="Accept_Course(Course_Type1.Course_Id,i, 0)">
+                                                                <mat-icon class="text-green small">check</mat-icon>
+                                                            </span>
+                                                            <span class="icon-background3 mr-1"
+                                                                [hidden]="Course_Delete==false"
+                                                                (click)="Delete_Course(Course_Type1.Course_Id,i, 2)">
+                                                                <mat-icon class="text-red small">close</mat-icon>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+                <label class="entry-num">Entries : {{Total_Entries}}</label>
+            </div>
+
+
+        </div>
+    </div>

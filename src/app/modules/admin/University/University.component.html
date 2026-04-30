@@ -1,0 +1,322 @@
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+    </div>
+    <div class="main-content screenfixed">
+    <div class="container-fluid">
+    <div class="row" *ngIf="Entry_View" style="overflow: scroll;"[style.height.px]="myTotalHeight">
+    
+ 
+        <div class="container-fluidprofile">
+            <div class="dt-card mt-2">
+              
+                <div class="dt-card__body mt-3 pl-4"  >
+
+                    <div class="form-row  mb-2  ">
+                    
+                    
+                        <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Univeristy<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+                        <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                            <input type="text" name="University_Name" [(ngModel)]="University_.University_Name" class="form-control" placeholder="">
+                        </div> 
+                        
+                        <div class="col-md-1 col-sm-1"></div> 
+                        <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Mobile<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+                        <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                            <input type="text" name="Mobile" [(ngModel)]="University_.Mobile" class="form-control" placeholder="">
+                        </div> 
+                   
+                    </div>
+
+                    <div class="form-row  mb-2  ">
+                    
+                        <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Address1</label>                          
+                        <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                            <input type="text" name="Address1" [(ngModel)]="University_.Address1" class="form-control" placeholder="">
+                        </div> 
+                        
+                        <div class="col-md-1 col-sm-1"></div>    
+                       
+                            <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Email<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                            <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                                <input type="text"  name="Email" [(ngModel)]="University_.Email" class="form-control" placeholder="">
+                            </div> 
+                    </div>
+
+                    <div class="form-row  mb-2  ">
+                    
+                        <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Address2</label>                          
+                        <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                            <input type="text" name="Address2" [(ngModel)]="University_.Address2" class="form-control" placeholder="">
+                        </div> 
+                        
+                        <div class="col-md-1 col-sm-1"></div>    
+                        <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Description 1</label>                          
+                        <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                            <input type="text"  name="University_.Description1" [(ngModel)]="University_.Description1" class="form-control" placeholder="">
+                        </div> 
+                     
+                    </div>
+
+                    <div class="form-row  mb-2">
+                        <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Address3</label>                          
+                        <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                            <input type="text" name="Address3" [(ngModel)]="University_.Address3" class="form-control" placeholder="">
+                        </div>                
+                        <div class="col-md-1 col-sm-1"></div> 
+                            <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Description 2</label>                          
+                        <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                            <input type="text"  name="University_.Description2" [(ngModel)]="University_.Description2" class="form-control" placeholder="">
+                        </div>    
+                
+                    </div>
+
+
+                    <div class="form-row  mb-2">
+                        <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Address4</label>                          
+                        <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                            <input type="text" name="Address4" [(ngModel)]="University_.Address4" class="form-control" placeholder="">
+                        </div> 
+                        <div class="col-md-1 col-sm-1"></div>    
+                        <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Description 3</label>                          
+                            <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                                <input type="text"  name="University_.Description3" [(ngModel)]="University_.Description3" class="form-control" placeholder="">
+                            </div> 
+                        </div>
+
+                        <div class="form-row  mb-2">
+                            <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Pincode</label>                          
+                            <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                                <input type="text" name="Pincode" [(ngModel)]="University_.Pincode" class="form-control" placeholder="">
+                            </div> 
+                            <div class="col-md-1 col-sm-1"></div>    
+                        <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Website</label>                          
+                            <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                                <input type="text"  name="University_.Website" [(ngModel)]="University_.Website" class="form-control" placeholder="">
+                            </div> 
+                        </div>
+                        <div class="form-row  mb-2">
+                            <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Phone</label>                          
+                            <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                                <input type="text" name="Phone" [(ngModel)]="University_.Phone" class="form-control" placeholder="">
+                            </div> 
+
+                            <div class="col-md-1 col-sm-1"></div>    
+                            <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Starting Year<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                          
+                                <div class="col-lg-4 col-md-3 col-sm-4 mb-1">
+                                    <input type="text"  name="Starting_Year" [(ngModel)]="University_.Starting_Year" class="form-control" placeholder="">
+                                </div> 
+                       </div>
+                       <div class="form-row  mb-4">
+                        <label class="col-lg-1 col-md-2 col-sm-1 col-form-label text-sm-right">Back Status</label>
+                        <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">Yes</label>                           -->
+                        <div class="col-md-1 col-sm-1 mb-1">
+                            <div _ngcontent-xmy-c9="" class="form-check mar-crect-for-check-bx-depart"><label _ngcontent-xmy-c9="" class="form-check-label">
+                                <input type="checkbox" name="University_.Back_Status" class="form-check-input"  [(ngModel)]="University_.Back_Status" [checked]="University_.Back_Status"> 
+                                <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-left: 2px; margin-top: 13px;">
+                                    <span _ngcontent-xmy-c9="" class="check"></span></span></label></div>
+                            <!-- <label _ngcontent-xmy-c9="" class="form-check-label">
+                                <input type="checkbox" name="Back_Status" class="form-check-input checkstatus"  [(ngModel)]="University_.Back_Status" [checked]="University_.Back_Status">
+                                 <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-left: 24px; margin-top: 13px;">
+                                  <span _ngcontent-xmy-c9="" class="check"></span></span></label> -->
+                            <!-- <input type="checkbox" name="Back_Status" [(ngModel)]="University_.Back_Status" class="form-control" placeholder=""> -->
+                        </div> 
+                        <!-- <label class="col-md-1 col-sm-1 col-form-label text-sm-right">No</label>                          
+                        <div class="col-md-1 col-sm-1 mb-1">
+                            <input type="checkbox" name="Back_Status" [(ngModel)]="University_.Back_Status_no" class="form-control" placeholder="">
+                        </div> -->
+                   </div>
+                       <div class="row  mb-2">
+              
+                    <div class="col-4 ">  
+                        <div>
+                            <label >Activity<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                            <div  style="border: 1">
+                            <div class="dt-card mb-0 pb-1 " style="background-color: #ffff; width: 100%!important;">    
+                            <div class="card-body card-body-for-searchedit-lead-section ">
+                            <div class="table">
+                            <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format " >
+                            <thead>
+                                <tr _ngcontent-xmy-c9="" class="th-botm-bordr">
+                              <th class="col-md-1">Sl.No</th>
+                              <th  class="col-md-1">Select</th> 
+                              <th  class="col-md-1">Activity</th> 
+                              <th class="">Amount</th> 
+                            </tr>
+                            </thead>
+                            <tbody _ngcontent-xmy-c9="" *ngFor="let Activities of Activity_Data; let i = index">
+                            <tr _ngcontent-xmy-c9="">
+                              <td class="crect-align-tblelst-srlno-branch">{{ i+1 }}</td>
+                              <td _ngcontent-xmy-c9="" class="crect-align-tblelst-status-branch"><div _ngcontent-xmy-c9="" class="form-check mar-crect-for-check-bx-depart">
+                                  <label _ngcontent-xmy-c9="" class="form-check-label">
+                              <input type="checkbox" name={{Activities.Activity_Id}} class="form-check-input"  [(ngModel)]="Activities.Check_Box" [checked]="Activities.Check_Box">
+                               <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-left: 24px; margin-top: 13px;">
+                                <span _ngcontent-xmy-c9="" class="check"></span></span></label></div>
+                              </td>
+                              <td class="crect-align-tblelst-select-branch">{{Activities["Activity_Name"]}}</td>
+                              <td class="col-md-1" >
+                                <input matInput type="number" name={{Activities.Activity_Id}}b{{Activities.Activity_Id}} [(ngModel)]="Activities.Amount" class="form-control">
+                              </td>
+                            </tr>
+                            </tbody>
+                            </table>
+                          </div>                                
+                            </div>
+                            </div>
+                            </div>
+                            
+                            
+                    </div>
+                   </div>
+                    <div class="col-4 ">  
+                        <div>
+                            <label >Admission Month<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                            <div  style="border: 1">
+                            <div class="dt-card mb-0 pb-1 " style="background-color: #ffff; width: 100%!important;">    
+                            <div class="card-body card-body-for-searchedit-lead-section ">
+                            <div class="table">
+                            <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format " >
+                            <thead>
+                                <tr _ngcontent-xmy-c9="" class="th-botm-bordr">
+                              <th class="col-md-1">Sl.No</th>
+                              <th  class="col-md-1">Select</th> 
+                              <th  class="col-md-1">Month</th> 
+                            </tr>
+                            </thead>
+                            <tbody _ngcontent-xmy-c9="" *ngFor="let University_Admission_Month_ of University_Admission_Month_Data; let i = index">
+                            <tr _ngcontent-xmy-c9="">
+                              <td class="crect-align-tblelst-srlno-branch">{{ i+1 }}</td>
+                              <td _ngcontent-xmy-c9="" class="crect-align-tblelst-status-branch"><div _ngcontent-xmy-c9="" class="form-check mar-crect-for-check-bx-depart"><label _ngcontent-xmy-c9="" class="form-check-label">
+                              <input type="checkbox" name={{University_Admission_Month_.University_Admission_Month_Id}} class="form-check-input"  [(ngModel)]="University_Admission_Month_.Check_Box1" [checked]="University_Admission_Month_.Check_Box1"> <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-left: 24px; margin-top: 13px;"><span _ngcontent-xmy-c9="" class="check"></span></span></label></div>
+                              </td>
+                              <td class="crect-align-tblelst-select-branch">{{University_Admission_Month_["Month_Status_Name"]}}</td>
+                            </tr>
+                            </tbody>
+                            </table>
+                          </div>                                
+                            </div>
+                            </div>
+                            </div>
+                            
+                            </div>   
+                    </div>
+                    <div class="col-4  ">  
+                        <div>
+                            <label>Exam Month<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>
+                            <div  style="border: 1">
+                            <div class="dt-card mb-0 pb-1 " style="background-color: #ffff; width: 100%!important;">    
+                            <div class="card-body card-body-for-searchedit-lead-section ">
+                            <div class="table">
+                            <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format " >
+                            <thead>
+                                <tr _ngcontent-xmy-c9="" class="th-botm-bordr">
+                              <th class="col-md-1">Sl.No</th>
+                              <th  class="col-md-1">Select</th> 
+                              <th  class="col-md-1">Month</th> 
+                            </tr>
+                            <tbody _ngcontent-xmy-c9="" *ngFor="let University_Exam_Month_ of University_Exam_Month_Data; let i = index">
+                            <tr _ngcontent-xmy-c9="">
+                              <td class="crect-align-tblelst-srlno-branch">{{ i+1 }}</td>
+                              <td _ngcontent-xmy-c9="" class="crect-align-tblelst-status-branch"><div _ngcontent-xmy-c9="" class="form-check mar-crect-for-check-bx-depart"><label _ngcontent-xmy-c9="" class="form-check-label">
+                              <input type="checkbox" name={{University_Exam_Month_.University_Exam_Month_Id}} class="form-check-input"  [(ngModel)]="University_Exam_Month_.Check_Box" [checked]="University_Exam_Month_.Check_Box"> <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-left: 24px; margin-top: 13px;"><span _ngcontent-xmy-c9="" class="check"></span></span></label></div>
+                              </td>
+                              <td class="crect-align-tblelst-select-branch">{{University_Exam_Month_["Month_Status_Name"]}}</td>
+                            </tr>
+                            </tbody>
+                            </table>
+                          </div>                                
+                            </div>
+                            </div>
+                            </div>
+                            
+                            </div>   
+                    </div>
+
+
+                            <div class="col-md-12 mt-2"> 
+                                <button (click)="Close_Click()" mat-raised-button type="submit" class="close-button-style pull-right  ml-4 ">Close</button>                   
+                                <button (click)="Save_University()" [hidden]="University_Save==false"id="Save_Button" mat-raised-button type="submit" class="save-button-style pull-right mr-1 ml-5" style="margin-right: -19px !important;">Save</button>                      
+                            </div>  
+                   </div>
+                   
+                </div>
+            </div>
+        </div>
+    
+    </div>
+<div class="row" *ngIf="!Entry_View">
+<div class="col-md-12 pl-0  mt-2 mb-2">
+<div class="dt-card mb-2 pb-1">         
+<div class="dt-card__body mt-1 mb-0 pb-0">
+<form class="mb-0">     
+
+<div class="form-row  mb-2">
+<label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Univeristy</label>                          
+<div class="col-md-4 col-sm-4 mb-1">
+<input type="text" name="University_Name_Search" [(ngModel)]="University_Name_Search" class="form-control" placeholder="">
+</div>                
+<!-- <div class="col-md-1 col-sm-1"></div>      
+<label class="col-md-0 col-sm-0 col-form-label text-sm-right mr-0">Search Mobile</label>
+<div class="col-md-2 col-sm-2 mb-1">
+<input type="text"  name="University_.Mobile" [(ngModel)]="University_.Mobile" class="form-control" placeholder="">
+</div>  -->
+<div class="col-md-4 col-sm-2 mt-0" >                    
+<button (click)="Search_University()"  mat-raised-button type="submit" class="other-button-style pull-left mr-1">Search</button>
+<button (click)="Create_New()"   mat-raised-button type="submit"  class="save-button-style pull-left mr-1 ">Create New</button>
+</div>
+</div>
+</form>
+</div>
+</div>        
+</div> 
+
+
+
+<div class="col-md-12  mt-2" style="border: 1;margin-left: -10px !important;">
+<div class="dt-card mb-0 pb-1" style="background-color: white;" >  
+<div class="card-body card-body-for-searchedit-lead-section">
+<!-- <div class="table-responsive">
+    <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format"  style="width: 130% !important;"> 
+    <thead> -->
+    <div class="table-responsive" >
+        <table class="table table-hover table-for-sale-search-section-diary">
+        <thead class="thead">
+        <th [hidden]="University_Edit==false" >Edit</th>
+        <th [hidden]="University_Delete==false" >Delete</th>
+        <th >Univeristy</th>        
+        <th >Mobile</th>
+        <th >Email</th>
+        <!-- <th style="width: 120px !important;" >Address1</th>
+        <th style="width: 120px !important;">Address2</th>
+        <th style="width: 120px !important;">Address3</th>
+        <th style="width: 120px !important;">Address4</th> -->
+    </thead>
+    <tbody  *ngFor="let University_Data_d of University_Data; let i = index" >
+    <tr>
+        <td  class="" > <span class="icon-background2 mr-1" [hidden]="University_Edit==false"   (click)="Edit_University(University_Data_d,i)" > <mat-icon class="text-green small" >edit</mat-icon></span></td>
+         <td class=""> <span class="icon-background3 mr-1" [hidden]="University_Delete==false"  (click)="Delete_University(University_Data_d.University_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span> </td>     
+        <td class="" >{{University_Data_d["University_Name"]}}</td>
+        <!-- style="color: #357bfd; font-weight: 800;" -->
+        <td  class="">{{University_Data_d["Mobile"]}}</td>
+       <td  class="">{{University_Data_d["Email"]}}</td>          
+         <!-- <td class="col-md-2">{{University_Data_d["Address1"]}}</td>
+        <td  class="col-md-1">{{University_Data_d["Address2"]}}</td>
+        <td  class="col-md-1">{{University_Data_d["Address3"]}}</td>
+        <td  class="col-md-1">{{University_Data_d["Address4"]}}</td> -->
+    </tr>
+    </tbody>
+    </table>
+</div>
+<!-- </div> -->
+<div class="row"  style="text-align: center;">
+    <div class="col-md-12 buttons-next-previous">
+    <button mat-raised-button type="submit" (click)="previous_Click()"  class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-2" style="background: none;"><i class="fa fa-chevron-left" aria-hidden="true" style="color:#5f6368;"></i></button>
+    <button mat-raised-button type="submit"  (click)="Next_Click()" class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-2" style="background: none;"><i class="fa fa-chevron-right" aria-hidden="true" style="color: #5f6368;"></i></button>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<label class="entry-num">Entries : {{Total_Entries}}</label>   
+ </div>
+</div>

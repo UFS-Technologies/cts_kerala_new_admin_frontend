@@ -1,0 +1,104 @@
+
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+</div>
+<div  id='Topdiv'></div>
+<div  id='Bottomdiv'></div>
+<div class="main-content"  >
+
+    <div class="container-fluid">
+        <div class="row" *ngIf="Entry_View">
+        
+        </div>
+        </div>
+
+<div class="row" *ngIf="!Entry_View">
+
+    <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-1 " >        
+    <div class="dt-card__body">
+    <div class="mb-0">          
+    <div class="form-row">
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">Date</label>  
+        <div class="col-md-0 col-sm-0 mb-1">
+        <div _ngcontent-xmy-c9="" class="checkbox-to-crect-sales-search-section">
+        <div _ngcontent-xmy-c9="" class="form-check uper-dte-lbel-sales-sctn-new pl-0" >
+        <label _ngcontent-xmy-c9="" class="form-check-label">
+        <input type='checkbox' class="form-check-input" name="Date_checks" [(ngModel)]="Look_In_Date"   />
+        <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-top: 3px;"><span _ngcontent-xmy-c9="" class="check">
+        </span>
+        </span>
+        </label>
+        </div>
+        </div>  
+        </div>     
+    
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">From</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <input type="date" class="form-control p-0 pl-1" placeholder="From"[(ngModel)]="Search_FromDate" name="FromDate_" >
+        </div>  
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">To</label>
+        <div class="col-md-2 col-sm-3 mb-1">
+        <input type="date" class="form-control p-0 pl-1" placeholder="To"  [(ngModel)]="Search_ToDate" name="ToDate_">
+        </div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right pt-1">Student</label>
+        <div class="col-md-2 col-sm-3 mb-1 ml-0">
+        <input type="text" [(ngModel)]="Search_Name" name="Search_Name" class="form-control" placeholder=" ">
+        </div>
+        <label class="col-md-0 col-sm-0 col-form-label text-sm-right">SKP</label>
+        <div class="col-md-2 col-sm-2 mb-1">
+        <input type="text"  class="form-control"  id="Agent_" name="Agent_"  [matAutocomplete]="auto_Agent"
+        [(ngModel)]="Agent_" (click)="Search_Agent_Typeahead($event)" /></div>  
+        <mat-autocomplete #auto_Agent="matAutocomplete" [displayWith]="display_Agent">
+            <mat-option *ngIf="issLoading"><mat-spinner diameter="500"></mat-spinner></mat-option>
+            <ng-container *ngIf="!issLoading">
+            <mat-option *ngFor="let Agent_ of Agent_Data" [value]="Agent_">
+            <span>{{Agent_.Agent_Name}}</span>
+            </mat-option>
+            </ng-container>
+        </mat-autocomplete>  
+        <div class="col-md-0 col-sm-0">  
+        <button (click)="Search_Activity_Report()" mat-raised-button type="submit"  class="other-button-style btnflot pull-left mr-1 ">Search</button>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>        
+    </div>
+
+    <div class="col-md-12 pl-3 pr-8 mt-2" style="border: 1" *ngIf="isDesktopMenu()">
+    <div class="dt-card mb-0 pb-2" style="background-color: white;" >  
+
+    <div class="card-body card-body-for-searchedit-lead-section">
+    <div class="table-responsive">
+    <!-- <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format" style="width: 130% !important;"> -->
+    <table class="table table-hover table-for-sale-search-section-diary">
+    <thead>  
+        <th >Date</th>  
+    <th >Student</th>  
+    <th >SKP</th>    
+    <th >Status</th>    
+    <th >Payment Status</th>    
+    </thead>
+    <tbody  *ngFor="let Activity_Details of Activity_Details_Data; let i = index" >
+    <tr>
+        <td  class="td-padding">{{Activity_Details["Entry_Date"]}}</td>
+    <td  class="td-padding">{{Activity_Details["Student_Name"]}}</td>
+    <td  class="td-padding">{{Activity_Details["Agent_Name"]}}</td>
+    <td  class="td-padding">{{Activity_Details["Activity_Status_Name"]}}</td>
+    <td  class="td-padding">{{Activity_Details["Payment_Status_Name"]}}</td>
+    </tr>
+    </tbody>
+    </table>
+
+    </div>
+        <label class="entry-num">Entries : {{Total_Entries}}</label> 
+    </div>
+    </div>
+    </div>
+   
+</div>
+
+</div>
+

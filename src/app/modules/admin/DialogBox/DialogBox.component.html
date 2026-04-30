@@ -1,0 +1,20 @@
+<html>
+  <body class="mat-dialog-form">
+    <div class="mat-dialog-container" style="Height:60%;">
+      <h3 class="main-title-contents" style="margin: 0% 0% 3% 0%; border-bottom: 0ch; color: #1151b1; font-weight: 600;" mat-dialog-title>{{ Heading }}</h3>
+      <div mat-dialog-content>
+          <img class="image-conform-box img-cntnts-sme-lne-pop-up" style="width: 60px; Height:60px;" src='{{Image_Url}}'>
+        <p class="main-text-contents cntnts-sme-lne-pop-up" style="font-weight:bold;">{{ message }}</p>
+      </div>
+      <div mat-dialog-actions>
+        <div [hidden]="!show">
+          <button mat-raised-button class="other-button-style btnflot pull-right "  (click)="onNoClick()">{{ NoButton }}</button>
+          <!-- <button mat-button (click)="onNoClick()">{{ NoButton }}</button> -->
+        </div>
+        <button mat-raised-button class="other-button-style btnflot pull-right "  (click)="onYesClick()">{{ YesButton }}</button>
+        <!---<button mat-button (click)="onYesClick()">{{ YesButton }}</button>--->
+        <!---<button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>--->
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,750 @@
+<div *ngIf="issLoading" class="overlay">
+    <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+    </div>
+    <div class="main-content screenfixed">
+<div class="container-fluid">
+<div class="row" *ngIf="Entry_View" style="overflow: scroll;"[style.height.px]="myTotalHeight">
+ <!-- <div class="col-md-12">
+<div class="card">
+
+<div class="card-body">
+<div class="row">
+<div class="col-md-6 section-user-block-ne other-department-user-block">
+        <div class="row col-md-12">
+            <label for="normal-input-4" class="col-md-2 col-sm-3 col-form-label text-sm-right">User Name<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span> </label>
+            <mat-form-field class="col-md-9  margin-lh-rh-to-crect-textbox">
+            <input matInput type="text"   maxlength="50" [(ngModel)]="Users_.Users_Name" name="Users_.Users_Name" class="for-input-selct-tblelst input-allighn-to-crect-wole-paddings">
+            </mat-form-field>  
+        </div>
+        <div class="row col-md-12">
+            <label class="col-md-3 name-label-margin-down-employer-details-undemp">Password <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span> </label>
+            <mat-form-field class="col-md-9 margin-lh-rh-to-crect-textbox">
+            <input matInput type="password" maxlength="50" [(ngModel)]="Users_.Password" name="Users_.Password" class="for-input-selct-tblelst input-allighn-to-crect-wole-paddings">
+            </mat-form-field>        
+        </div>
+
+        <div class="row col-md-12">
+            <label>
+            <button mat-raised-button type="submit" 
+            id="view"class="btn btn-danger pull-right" name="view" 
+            (click)="Password_View_Click()">View Password</button></label>
+            <mat-form-field class="col-md-9 margin-lh-rh-to-crect-textbox">
+            <input matInput type="text" maxlength="50" [(ngModel)]="View_Password" name="ViewPassword" class="for-input-selct-tblelst input-allighn-to-crect-wole-paddings">
+            </mat-form-field>        
+        </div>
+        <div class="row col-md-12">
+            <label class="col-md-3 name-label-margin-down-employer-details-undemp">User Type <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span> </label>
+            <select [(ngModel)]="User_Type_" name="User_Type_" required class="col-md-9 margin-lh-rh-to-crect-textbox select-user-block input-allighn-to-crect-wole-paddings">
+            <option *ngFor="let User_Type_T of User_Type_Data" [ngValue]="User_Type_T">{{User_Type_T.User_Type_Name}}</option>
+            </select>
+        </div>
+        <div class="row col-md-12">
+            <label class="col-md-3 name-label-margin-down-employer-details-undemp">Status<span  style="color:#ef071e; font-size:24px; vertical-align: middle; margin-left:8px;">*</span></label>
+            <select [(ngModel)]="User_Status_" name="User_Status_" required class="col-md-9 for-input-selct-tblelst input-allighn-to-crect-wole-paddings">
+            <option *ngFor="let User_Status_T of User_Status_Data" [ngValue]="User_Status_T">{{User_Status_T.User_Status_Name}}</option>
+            </select>
+        </div>
+        <div class="row col-md-12">
+            <label class="col-md-3 name-label-margin-down-employer-details-undemp">Agent<span  style="color:#ef071e; font-size:24px; vertical-align: middle; margin-left:8px;">*</span></label>
+            <select [(ngModel)]="Agent_" name="Agent_" required class="col-md-9 for-input-selct-tblelst input-allighn-to-crect-wole-paddings">
+            <option *ngFor="let Agent_T of Agent_Data" [ngValue]="Agent_T">{{Agent_T.Agent_Name}}</option>
+            </select>
+        </div>
+        <div class="row col-md-12">
+            <label class="col-md-3 name-label-margin-down-employer-details-undemp">User Role<span  style="color:#ef071e; font-size:24px; vertical-align: middle; margin-left:8px;">*</span></label>
+            <select [(ngModel)]="User_Role_" name="User_Role_" required class="col-md-9 for-input-selct-tblelst input-allighn-to-crect-wole-paddings">
+            <option *ngFor="let User_Role_T of User_Role_Data" [ngValue]="User_Role_T">{{User_Role_T.User_Role_Name}}</option>
+            </select>
+        </div>
+        <div class="row col-md-12">
+            <label class="col-md-3 name-label-margin-down-employer-details-undemp">Registration Target</label>
+            <input matInput type="text"  [(ngModel)]="Users_.Registration_Target" name="Users_.Registration_Target" maxlength="25" class="col-md-8 input-allighn-to-crect-wole-paddings" name="Registration_Target">
+            
+        </div>
+        <div class="row col-md-12">
+            <label class="col-md-3 name-label-margin-down-employer-details-undemp">FollowUp Target</label>
+            <input matInput type="text"  [(ngModel)]="Users_.FollowUp_Target" name="Users_.FollowUp_Target" maxlength="25" class="col-md-8 input-allighn-to-crect-wole-paddings" name="FollowUp_Target">
+           
+        </div>
+        <div class="col-md-12" style="top: 10px;">
+            <div class="col-md-12">
+                <button mat-raised-button type="submit" [hidden]="Users_Save==false" id="Save_Button" class="btn btn-danger pull-right " (click)="Save_Users()">Save</button>
+                <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="Close_Click()">Close</button>
+            </div>
+        </div>
+
+</div>
+<div class="col-md-6 section-user-block-ne">
+    <div class="col-md-12">
+    <table _ngcontent-xmy-c9="" class="table">
+        <tbody _ngcontent-xmy-c9="">
+        <tr _ngcontent-xmy-c9="">
+                    <th class="crect-margin-width-table-header-title"></th>
+                    <th> <label class="slct-chck-al-bx-usr-nw-sctn">Select Menus</label> </th>
+                    <th> <label class="slct-chck-al-bx-usr-nw-sctn">Select All</label> </th>
+                   
+                    <th class="crect-margin-width-table-header-title">
+                        <div _ngcontent-xmy-c9="" class="form-check">
+                            <label _ngcontent-xmy-c9="" class="form-check-label">
+                            <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+                            [(ngModel)]="Select_View" (click)="View_Click()" type="checkbox" name="Select_View"
+                            [checked]="Select_View_Check" value="">
+                            <span _ngcontent-xmy-c9="" class="form-check-sign">
+                            <span _ngcontent-xmy-c9="" class="check"></span>
+                            </span>
+                            </label>
+                            </div>   
+                    </th>
+                    <th class="crect-margin-width-table-header-title">
+                        <div _ngcontent-xmy-c9="" class="form-check">
+                            <label _ngcontent-xmy-c9="" class="form-check-label">
+                            <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+                            [(ngModel)]="Select_Save" (click)="Save_Click()"  type="checkbox" name="Select_Save"
+                            [checked]="Select_Save_Check" value="">
+                            <span _ngcontent-xmy-c9="" class="form-check-sign">
+                            <span _ngcontent-xmy-c9="" class="check"></span>
+                            </span>
+                            </label>
+                            </div>
+                    </th>
+                    <th class="crect-margin-width-table-header-title">
+                        <div _ngcontent-xmy-c9="" class="form-check">
+                            <label _ngcontent-xmy-c9="" class="form-check-label">
+                            <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+                            [(ngModel)]="Select_Edit" (click)="Edit_Click()"  type="checkbox" name= "Select_Edit"
+                            [checked]="Select_Edit_Check" value="">
+                            <span _ngcontent-xmy-c9="" class="form-check-sign">
+                            <span _ngcontent-xmy-c9="" class="check"></span>
+                            </span>
+                            </label>
+                            </div>  
+                    </th>
+                    <th class="crect-margin-width-table-header-title">
+                        <div _ngcontent-xmy-c9="" class="form-check">
+                            <label _ngcontent-xmy-c9="" class="form-check-label">
+                            <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+                            [(ngModel)]="Select_Delete" (click)="Delete_Click()"  type="checkbox" name= "Select_Delete"
+                            [checked]="Select_Delete_Check" value="">
+                            <span _ngcontent-xmy-c9="" class="form-check-sign">
+                            <span _ngcontent-xmy-c9="" class="check"></span>
+                            </span>
+                            </label>
+                            </div>    
+                    </th>
+        </tr>
+        </tbody>
+</table>
+</div>
+
+<div _ngcontent-xmy-c9="" class="card margin-corect-card margin-corect-card-fr-menu-sctn">
+
+<div _ngcontent-xmy-c9="" class="nav-tabs-navigation">
+<table _ngcontent-xmy-c9="" class="table">
+<tbody _ngcontent-xmy-c9="">
+<tr _ngcontent-xmy-c9="">
+            <th class="crect-margin-width-table-header-title">Sl.No</th>
+            <th>Menu</th>
+            <th class="crect-margin-width-table-header-title">View</th>
+            <th class="crect-margin-width-table-header-title">Save</th>
+            <th class="crect-margin-width-table-header-title">Edit</th>
+            <th class="crect-margin-width-table-header-title">Delete</th>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div _ngcontent-xmy-c9="" class="card-body sml-bx-sctn-usr">
+<div _ngcontent-xmy-c9="" class="tab-content">
+<div _ngcontent-xmy-c9="" class="tab-pane active" id="profile">
+<table _ngcontent-xmy-c9="" class="table">
+<tbody _ngcontent-xmy-c9="" *ngFor="let User_Menu_Selection1 of User_Menu_Selection_Data; let i = index">
+<tr _ngcontent-xmy-c9="">
+<td class="crect-margin-width-table-header-title">{{ i+1 }}</td>
+<td>{{User_Menu_Selection1["Menu_Name"]}}</td>
+<td _ngcontent-xmy-c9="" class="crect-margin-width-table-header-title">
+<div _ngcontent-xmy-c9="" class="form-check">
+<label _ngcontent-xmy-c9="" class="form-check-label">
+<input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+[(ngModel)]="User_Menu_Selection1.IsView" type="checkbox" name={{User_Menu_Selection1.Menu_Id}}{{User_Menu_Selection1.IsView}} 
+[checked]="User_Menu_Selection1.IsView" value="">
+<span _ngcontent-xmy-c9="" class="form-check-sign">
+<span _ngcontent-xmy-c9="" class="check"></span>
+</span>
+</label>
+</div>
+</td>
+<td _ngcontent-xmy-c9="" class="crect-margin-width-table-header-title">
+<div _ngcontent-xmy-c9="" class="form-check" [hidden]="User_Menu_Selection1.Save_Check==false">
+<label _ngcontent-xmy-c9="" class="form-check-label">
+<input type="checkbox"  name={{User_Menu_Selection1.Menu_Id}}{{User_Menu_Selection1.IsSave}} 
+class="form-check-input"  [(ngModel)]="User_Menu_Selection1.IsSave" 
+[checked]="User_Menu_Selection1.IsSave" >
+<span _ngcontent-xmy-c9="" class="form-check-sign">
+<span _ngcontent-xmy-c9="" class="check"></span>
+</span>
+</label>
+</div>
+</td>
+<td _ngcontent-xmy-c9="" class="crect-margin-width-table-header-title">
+<div _ngcontent-xmy-c9="" class="form-check"[hidden]="User_Menu_Selection1.Edit_Check==false" >
+<label _ngcontent-xmy-c9="" class="form-check-label">
+
+<input type="checkbox" name={{User_Menu_Selection1.Menu_Id}}{{User_Menu_Selection1.IsEdit}} 
+class="form-check-input"  [(ngModel)]="User_Menu_Selection1.IsEdit" 
+[checked]="User_Menu_Selection1.IsEdit">
+<span _ngcontent-xmy-c9="" class="form-check-sign">
+<span _ngcontent-xmy-c9="" class="check"></span>
+</span>
+</label>
+</div>
+</td>
+<td _ngcontent-xmy-c9="" class="crect-margin-width-table-header-title">
+<div _ngcontent-xmy-c9="" class="form-check" [hidden]="User_Menu_Selection1.Delete_Check==false" >
+<label _ngcontent-xmy-c9="" class="form-check-label">
+<input type="checkbox" name={{User_Menu_Selection1.Menu_Id}}{{User_Menu_Selection1.IsDelete}} 
+class="form-check-input"  [(ngModel)]="User_Menu_Selection1.IsDelete" 
+[checked]="User_Menu_Selection1.IsDelete">
+<span _ngcontent-xmy-c9="" class="form-check-sign">
+<span _ngcontent-xmy-c9="" class="check"></span>
+</span>
+</label>
+</div>
+</td>
+</tr>
+</tbody>
+</table> 
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+</div> -->
+
+
+
+<div class="col-md-12 mt-2">
+    <div class="dt-card" style="background-color:#ffff;">
+    <div class="card-body">
+    <div class="row">
+     <div class="col-lg-6 section-user-block-ne other-department-user-block">
+            <div class="form-group form-row">
+                <label for="normal-input-4" class="col-md-2 col-sm-3 col-form-label text-sm-right">User Name</label>
+               <!-- <label class="col-md-1 label-down-alighn-supler-prhse-mstr-down">User Name</label>  -->
+                <div class="col-md-10 col-sm-9">
+                    <input type="text" class="form-control"  maxlength="50" [(ngModel)]="Users_.Users_Name" name="Users_.Users_Name" id="normal-input-4" placeholder="User Name">
+                </div>
+            </div>
+            <div class="form-group form-row">
+                <label for="normal-input-4" class="col-md-2 col-sm-3 col-form-label text-sm-right">Password</label>
+                <div class="col-md-10 col-sm-9">
+                    <input type="password" class="form-control" maxlength="50" [(ngModel)]="Users_.Password" name="Users_.Password" id="normal-input-4" placeholder="Password">
+                </div>
+            </div>
+   
+            <div class="form-group form-row">
+             
+                <button  class="btn btn-danger view_button_style col-md-2 mb-1" type="button" (click)="Password_View_Click()">View password</button>
+      
+                <div class="col-md-10 col-sm-9">
+                    <input  type="text" [(ngModel)]="View_Password" name="ViewPassword" required class="form-control">
+                </div>
+            </div>
+    
+           
+            <div class="form-group form-row">
+              
+                <label class="col-md-2 col-sm-2 col-form-label text-sm-right">User Type <span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                           
+                            <div class="col-md-10 col-sm-9 mb-1">
+                                <select [(ngModel)]="User_Type_" name="User_Type_" required class="form-control p-0 pl-1">
+                                    <option *ngFor="let User_Type_T of User_Type_Data" [ngValue]="User_Type_T">{{User_Type_T.User_Type_Name}}</option>
+                                    </select>
+                            </div>  
+                         
+            </div>
+    
+    
+            <div class="form-group form-row">
+             
+                <label class="col-md-2 col-sm-2 col-form-label text-sm-right">Status<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                           
+                            <div class="col-md-10 col-sm-9 mb-1">
+                                <select [(ngModel)]="User_Status_" name="User_Status_" required class="form-control p-0 pl-1">
+                                    <option *ngFor="let User_Status_T of User_Status_Data" [ngValue]="User_Status_T">{{User_Status_T.User_Status_Name}}</option>
+                                </select>
+                            </div> 
+            </div>
+           
+    
+            <div class="form-group form-row">
+            
+               <label class="col-md-2 col-sm-2 col-form-label text-sm-right">SKP<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                           
+               <div class="col-md-10 col-sm-9 mb-1">
+                <select [(ngModel)]="Agent_" name="Agent_" required class="form-control p-0 pl-1">
+                    <option *ngFor="let Agent_T of Agent_Data" [ngValue]="Agent_T">{{Agent_T.Agent_Name}}</option>
+                    </select>
+               </div> 
+            </div>
+    
+    
+            <div class="form-group form-row">
+              
+               <label class="col-md-2 col-sm-2 col-form-label text-sm-right">User Role<span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label>                           
+               <div class="col-md-10 col-sm-9 mb-1">
+                <select [(ngModel)]="User_Role_" name="User_Role_" required class="form-control p-0 pl-1">
+                    <option *ngFor="let User_Role_T of User_Role_Data" [ngValue]="User_Role_T">{{User_Role_T.User_Role_Name}}</option>
+                    </select>
+               </div> 
+            </div>
+    
+            <div class="form-group form-row">
+                <label for="normal-input-4" class="col-md-2 col-sm-3 col-form-label text-sm-right">Registration Target</label>
+                <div class="col-md-10 col-sm-9">
+                    <input type="number" class="form-control"  [(ngModel)]="Users_.Registration_Target" name="Users_.Registration_Target" id="normal-input-4" placeholder="Registration Target">
+                </div>
+            </div>
+    
+    
+            <div class="form-group form-row">
+                <label for="normal-input-4" class="col-md-2 col-sm-3 col-form-label text-sm-right">FollowUp Target</label>
+                <div class="col-md-10 col-sm-9">
+                    <input type="number" class="form-control" [(ngModel)]="Users_.FollowUp_Target"  name="FollowUp_Target" id="normal-input-4" placeholder="FollowUp Target">
+                </div>
+            </div>
+    
+          
+            <div class="col-md-12" style="top: 10px;">
+                <div class=" ml-5">
+      
+                    <button mat-raised-button type="submit" [hidden]="Users_Save==false" id="Save_Button" class="save-button-style pull-right mr-1" (click)="Save_Users()">Save</button>
+                    <button mat-raised-button type="submit"class="close-button-style pull-right mr-1 mb-2 " (click)="Close_Click()">Close</button>
+                    <button mat-raised-button type="submit" *ngIf="User_Id>0" id="Duplicate" class="save-button-style pull-right mr-1" (click)="Save_Duplicate_User_Details()">Duplicate</button>
+
+                </div>
+            </div>
+    
+    </div> 
+    
+    
+    <div class="col-lg-6 section-user-block-ne">
+     
+          <div class="col-md-12">
+        <table _ngcontent-xmy-c9="" class="table">
+            <tbody _ngcontent-xmy-c9="">
+     <tr _ngcontent-xmy-c9="">
+                        <th class="crect-margin-width-table-header-title"></th>
+                        <th> <label class="slct-chck-al-bx-usr-nw-sctn"></label> </th>
+                       
+                        <th> <label class="slct-chck-al-bx-usr-nw-sctn" style="margin-left: 52%;"></label> </th>
+                       
+                        <th class="crect-margin-width-table-header-title">
+                           
+                        </th>
+                        <th class="crect-margin-width-table-header-title">
+                           
+                        </th>
+                        <th class="crect-margin-width-table-header-title">
+                         
+                        </th>
+                        <th class="crect-margin-width-table-header-title">
+                          
+                        </th>
+            </tr>
+           
+        </tbody>
+    </table>
+    
+    </div>
+    
+    
+    
+    
+    
+    <div class="row">
+        <div class="col-md-12 " style="border: 1">
+            <div class="dt-card mb-0 pb-1 " style="background-color: #ffff;">    
+              <div class="card-body card-body-for-searchedit-lead-section ">
+                        <div class="table-responsive" [style.height.px]="myInnerHeight" style="overflow-y: scroll;" id="profile">
+                          
+                          <table class="table table-hover colour-change-title-searchsection-table heading-styles-as-gmail-format " >
+                            <thead>
+                               
+                                <tr>
+                                   
+                                    <th> <label class="text-dark" style="    margin-left: 1px;
+                                        margin-top: 26px;"><b>Select Menus</b><span style="color:#ef071e; font-size: 22px; vertical-align: -webkit-baseline-middle;">*</span></label> </th>
+                                   
+                                    <th> <label class="text-dark" style="margin-left: 28%;
+                                        margin-top: 28px;"><b>Select All</b></label> </th>
+                                   
+                                    <th class="crect-margin-width-table-header-title">
+                                        <div _ngcontent-xmy-c9="" class="form-check">
+                                            <label _ngcontent-xmy-c9="" class="form-check-label">
+                                            <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+                                            [(ngModel)]="Select_View" (click)="View_Click()" type="checkbox" name="Select_View"
+                                            [checked]="Select_View_Check" value="">
+                                            <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-top: 35px;margin-left: 10px;" >
+                                            <span _ngcontent-xmy-c9="" class="check"></span>
+                                            </span>
+                                            </label>
+                                            </div>   
+                                    </th>
+                                    <th class="crect-margin-width-table-header-title">
+                                        <div _ngcontent-xmy-c9="" class="form-check">
+                                            <label _ngcontent-xmy-c9="" class="form-check-label">
+                                            <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+                                            [(ngModel)]="Select_Save" (click)="Save_Click()"  type="checkbox" name="Select_Save"
+                                            [checked]="Select_Save_Check" value="">
+                                            <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-top: 35px;margin-left: 11px;">
+                                            <span _ngcontent-xmy-c9="" class="check"></span>
+                                            </span>
+                                            </label>
+                                            </div>
+                                    </th>
+                                    <th class="crect-margin-width-table-header-title">
+                                        <div _ngcontent-xmy-c9="" class="form-check">
+                                            <label _ngcontent-xmy-c9="" class="form-check-label">
+                                            <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+                                            [(ngModel)]="Select_Edit" (click)="Edit_Click()"  type="checkbox" name= "Select_Edit"
+                                            [checked]="Select_Edit_Check" value="">
+                                            <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-top:35px;margin-left:11px;">
+                                            <span _ngcontent-xmy-c9="" class="check"></span>
+                                            </span>
+                                            </label>
+                                            </div>  
+                                    </th>
+                                    <th class="crect-margin-width-table-header-title">
+                                        <div _ngcontent-xmy-c9="" class="form-check">
+                                            <label _ngcontent-xmy-c9="" class="form-check-label">
+                                            <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+                                            [(ngModel)]="Select_Delete" (click)="Delete_Click()"  type="checkbox" name= "Select_Delete"
+                                            [checked]="Select_Delete_Check" value="">
+                                            <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-top:35px;margin-left:7px;">
+                                            <span _ngcontent-xmy-c9="" class="check"></span>
+                                            </span>
+                                            </label>
+                                            </div>    
+                                    </th>
+                        </tr>
+                 
+                              <th>
+                                Sl.No
+                              </th>
+                              <th>
+                            Menu
+                              </th>
+                              <th>
+                              View
+                              </th>
+                              <th>
+                            Save
+                              </th>
+                              <th >
+                            Edit
+                              </th>
+                              <th >
+                             Delete
+                              </th>
+                         
+                            </thead>
+                            <tbody   *ngFor="let User_Menu_Selection1 of User_Menu_Selection_Data; let i = index">
+                              <tr>
+                        
+                                <td>
+                                {{i+1}}
+                                </td>
+                                <td>
+                                    {{User_Menu_Selection1["Menu_Name"]}}
+                                </td>
+                               
+                                <td _ngcontent-xmy-c9="" class="crect-margin-width-table-header-title"><!--class="crect-margin-width-table-header-title"-->
+                                    <div _ngcontent-xmy-c9="" class="form-check">
+                                    <label _ngcontent-xmy-c9="" class="form-check-label">
+                                    <input _ngcontent-xmy-c9="" checked="" class="form-check-input"
+                                    [(ngModel)]="User_Menu_Selection1.IsView" type="checkbox" name={{User_Menu_Selection1.Menu_Id}}{{User_Menu_Selection1.IsView}} 
+                                    [checked]="User_Menu_Selection1.IsView" value="">
+                                    <span _ngcontent-xmy-c9="" class="form-check-sign" style="margin-top: 15px;margin-left: 11px;">
+                                    <span _ngcontent-xmy-c9="" class="check"></span>
+                                    </span>
+                                    </label>
+                                    </div>
+                                    </td>
+                                    <td _ngcontent-xmy-c9="" class="crect-margin-width-table-header-title">
+                                    <div _ngcontent-xmy-c9="" class="form-check" [hidden]="User_Menu_Selection1.Save_Check==false">
+                                    <label _ngcontent-xmy-c9="" class="form-check-label">
+                                    <input type="checkbox"  name={{User_Menu_Selection1.Menu_Id}}{{User_Menu_Selection1.IsSave}} 
+                                    class="form-check-input"  [(ngModel)]="User_Menu_Selection1.IsSave" 
+                                    [checked]="User_Menu_Selection1.IsSave" >
+                                    <span _ngcontent-xmy-c9="" class="form-check-sign"  style="    margin-top: 15px;margin-left: 11px;">
+                                    <span _ngcontent-xmy-c9="" class="check"></span>
+                                    </span>
+                                    </label>
+                                    </div>
+                                    </td>
+                                    <td _ngcontent-xmy-c9="" class="crect-margin-width-table-header-title">
+                                    <div _ngcontent-xmy-c9="" class="form-check"[hidden]="User_Menu_Selection1.Edit_Check==false" >
+                                    <label _ngcontent-xmy-c9="" class="form-check-label">
+                                    
+                                    <input type="checkbox" name={{User_Menu_Selection1.Menu_Id}}{{User_Menu_Selection1.IsEdit}} 
+                                    class="form-check-input"  [(ngModel)]="User_Menu_Selection1.IsEdit" 
+                                    [checked]="User_Menu_Selection1.IsEdit">
+                                    <span _ngcontent-xmy-c9="" class="form-check-sign"  style="    margin-top: 15px;margin-left: 11px;">
+                                    <span _ngcontent-xmy-c9="" class="check"></span>
+                                    </span>
+                                    </label>
+                                    </div>
+                                    </td>
+                                    <td _ngcontent-xmy-c9="" class="crect-margin-width-table-header-title">
+                                    <div _ngcontent-xmy-c9="" class="form-check" [hidden]="User_Menu_Selection1.Delete_Check==false" >
+                                    <label _ngcontent-xmy-c9="" class="form-check-label">
+                                    <input type="checkbox" name={{User_Menu_Selection1.Menu_Id}}{{User_Menu_Selection1.IsDelete}} 
+                                    class="form-check-input"  [(ngModel)]="User_Menu_Selection1.IsDelete" 
+                                    [checked]="User_Menu_Selection1.IsDelete">
+                                    <span _ngcontent-xmy-c9="" class="form-check-sign"  style="    margin-top: 15px;margin-left: 11px;">
+                                    <span _ngcontent-xmy-c9="" class="check"></span>
+                                    </span>
+                                    </label>
+                                    </div>
+                                    </td>
+                               
+                              </tr>
+                              </tbody>
+                            </table>
+                          
+        
+                          </div>
+        
+                </div>
+               
+               
+                </div>
+        
+              </div>
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    </div>
+    </div>
+    <div class="clearfix"></div>
+    </div>
+    </div>
+
+
+
+
+
+</div>
+</div>
+
+
+<div class="row" *ngIf="!Entry_View" >
+    <!-- <div class="col-md-12">
+        <div class="card">
+            <form>
+      <div class="row">
+        <div class="col-md-6 alighyn-div-margin-search-item-group mt-3">
+            <div class="row col-md-12 crect-allighyn-tdiv-one-by-one-div">
+                <label class="col-md-2 label-down-alighn-nvce-nmbr-prhse-mstr-br-cde">User Name</label>
+                <mat-form-field class="col-md-10 margin-lh-rh-to-crect-textbox">
+                    <input matInput type="text" [(ngModel)]="Search_User_Name_" name="Search_User_Name_" 
+                    class="margin-lh-rh-to-crect-textbox input-text-item-group-diary input-allighn-to-crect-wole-paddings">
+                </mat-form-field>
+            </div>
+          
+
+            <div class="row col-md-12 crect-allighyn-tdiv-one-by-one-div">
+                <label class="col-md-2 name-label-margin-down-employer-details-undemp">Agent<span  style="color:#ef071e; font-size:24px; vertical-align: middle; margin-left:8px;">*</span></label>
+                <select [(ngModel)]="Search_Agent_" name="Agent_" required class="col-md-10 for-input-selct-tblelst input-allighn-to-crect-wole-paddings">
+                <option *ngFor="let Agent_T of Agent_Data" [ngValue]="Agent_T">{{Agent_T.Agent_Name}}</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="col-md-3 name-label-margin-down-employer-details-undemp">
+            <div class="row col-md-12 input-allighn-prchse-mstr-nw-sctn-br-cde">
+                <button mat-raised-button type="submit" (click)="Search_Users()" class="btn btn-danger">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button> 
+                <button mat-raised-button type="submit" (click)="Create_New()" class="btn btn-danger">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                </button> 
+            </div>
+        </div>        
+    </div>
+    <div class="clearfix"></div>
+</form>
+</div>
+</div> -->
+
+     
+
+<div class="col-md-12 pl-0 mt-2">
+    <div class="container-fluid2">
+    <div class="dt-card mb-0 pb-1">         
+        <div class="dt-card__body mt-1 mb-0 pb-0">
+            <form class="mb-0"> 
+
+            <div class="form-row" >
+                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">User Name</label>
+                <div class="col-md-3 col-sm-3 mb-2">
+                    <input type="text" class="form-control" [(ngModel)]="Search_User_Name_" name="Search_User_Name_"   placeholder="">        
+                </div>
+                <!-- <div class="col-md-1 col-sm-1"></div>  -->
+                <label class="col-md-0 col-sm-0 col-form-label text-sm-right">SKP</label>                           
+                <div class="col-md-3 col-sm-3 mb-2">
+                      <!-- <select [(ngModel)]="Search_Agent_" name="Agent_" required class="form-control">
+                        <option *ngFor="let Agent_T of Agent_Data" [ngValue]="Agent_T">{{Agent_T.Agent_Name}}</option>
+                        </select>         -->
+
+                        <select [(ngModel)]="Search_Agent_" name="Search_Agent_" required class="form-control p-0 pl-1">
+                            <option *ngFor="let Agent_T of Agent_Data" [ngValue]="Agent_T">{{Agent_T.Agent_Name}}</option>
+                            </select>
+              </div> 
+             
+
+                <div class="col-md-0 col-sm-0 mt-0 ml-1">                           
+                        <button (click)="Search_Users()" mat-raised-button type="submit" class="other-button-style pull-left mr-1">Search</button>
+                        <button (click)="Create_New()"  mat-raised-button type="submit"  class="save-button-style pull-left mr-1 ">Create New</button>
+
+                    </div>
+            </div>
+        </form>
+        </div>
+    </div> 
+    </div>       
+  </div> 
+
+<!-- </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="col-md-12 card-body">
+        <div class="card-plain set-height-scroll-bar-wole-block">
+            <div class="table-responsive">
+               
+                <div class="row grid_header"  style="background-color: #ffffff;color: #0db195;" >
+                    <div class="col-md-2">Sl No</div>
+                    <div class="col-md-2">User Name</div>
+                    <div class="col-md-2">Status</div>
+                    <div class="col-md-2">User Type</div>
+                    <div class="col-md-2">Agent</div>
+                    <div class="col-md-1">Edit</div>
+                    <div class="col-md-1">Delete</div>
+                </div>
+
+
+
+ <div [style.height.px]="myInnerHeight" itemSize="90" >
+    <div *ngFor="let User_Menu1 of Users_Data; let i = index">
+        <div class="row grid_data">
+               <div class="col-md-2">{{ i+1 }}</div>
+               <div class="col-md-2">{{User_Menu1["Users_Name"]}}</div>
+               <div class="col-md-2">{{User_Menu1["User_Status_Name"]}}</div>
+               <div class="col-md-2">{{User_Menu1["User_Type_Name"]}}</div>
+               <div class="col-md-2">{{User_Menu1["Agent_Name"]}}</div>
+               <div class="col-md-1"  (click)="Edit_Users(User_Menu1,i)">
+                    <button _ngcontent-gdi-c11=""  [hidden]="Users_Edit==false"class="btn btn-danger2" mattooltip="Edit Task" type="button" aria-describedby="cdk-describedby-message-1"
+                         cdk-describedby-host=""ng-reflect-position="above" ng-reflect-message="Edit Task"><span class="material-icons-two-tone"><i _ngcontent-gdi-c11="" style = "font-weight: 900;font-size: 30px;" class="material-icons" 
+                         >create</i></span><div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </button>   
+
+                </div>
+
+                <div class="col-md-1"  (click)="Delete_Users(User_Menu1.Users_Id,i)">   
+                     <button style="border-width: 0ch;" _ngcontent-gdi-c11="" [hidden]="Users_Delete==false" class="btn btn-danger1" mattooltip="Remove" type="button" aria-describedby="cdk-describedby-message-1"
+                      cdk-describedby-host=""ng-reflect-position="above" ng-reflect-message="Remove"><span class="material-icons-two-tone"><i _ngcontent-gdi-c11="" style = "font-weight: 900;font-size: 30px;" class="material-icons" 
+                       >delete_outline</i></span><div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div>
+                       <div class="mat-button-focus-overlay"  ></div>
+                    </button>          
+                </div>
+        </div>
+    </div> 
+</div>
+</div>
+</div>
+
+</div> -->
+
+
+
+<div class="col-md-12 mt-0 pl-2 pr-5 mt-5" >
+    <div class="dt-module " >            
+        <div class="dt-module__container">
+            <div class="dt-module__content ps-custom-scrollbar">
+                <div class="dt-module__content-inner  pl-0 pr-0">   
+                    <div class="dt-module__list  pl-0 pr-0">
+                       <div class="card-body" style="overflow-y: scroll;" [style.height.px]="myTotalHeight_O">
+                        <div class="dt-module__list-item pb-2 pt-2" *ngFor="let User_Menu1 of Users_Data; let i = index"> 
+                            <div class="dt-module__list-item-content">
+                                <div class="user-detail">
+                                   <span class="icon-background2 mr-1"  [hidden]="Users_Edit==false"  (click)="Edit_Users(User_Menu1,i)" > <mat-icon class="text-green small" >edit</mat-icon></span>
+                                   <span class="icon-background3 mr-1" [hidden]="Users_Delete==false" (click)="Delete_Users(User_Menu1.Users_Id,i)" > <mat-icon class="text-red small" >close</mat-icon></span>
+
+
+                           
+                                    <span class="d-inline-block">{{User_Menu1["Users_Name"]}}</span>
+                                   <span class="dt-separator-v">&nbsp;</span> 
+                               
+                                   <span class="d-inline-block">{{User_Menu1["User_Status_Name"]}}</span>
+                                   <span class="dt-separator-v">&nbsp;</span>
+                                   <span class="d-inline-block">{{User_Menu1["User_Type_Name"]}}</span>
+                                   <span class="dt-separator-v">&nbsp;</span>
+                                     <span class="d-inline-block">{{User_Menu1["Agent_Name"]}}</span> 
+
+                                    
+                                </div>
+                              
+                            </div>                                
+                        </div>
+                       
+                </div>
+                  
+                     
+                    </div>
+                </div>
+              
+            </div>
+              <div class="form-group">  
+               <div class="col-md-12" style="text-align: center;">                     
+           <!-- <button mat-raised-button type="submit" (click)="previous_Click()"  class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-2" style="background: none;"><i class="fa fa-chevron-left" aria-hidden="true" style="color:#5f6368;"></i></button>
+           <button mat-raised-button type="submit"  (click)="Next_Click()" class="btn btn-danger change-colour-button buttons-next-previous-edit-portion p-2" style="background: none;"><i class="fa fa-chevron-right" aria-hidden="true" style="color: #5f6368;"></i></button> -->
+           </div>
+       </div>
+        </div>
+       
+      </div>
+  </div>  
+
+
+<label class="entry-num">Entries: {{Total_Entries}}</label>
+</div>
+
+</div>

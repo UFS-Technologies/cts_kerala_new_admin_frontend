@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-12">
+  <img
+    src="tvm_admin_assets/img/login page-Logo.jpg"
+    class="img-fluid login-logo-to-corect"
+    alt="Responsive image"/>
+    <!-- <h3 class="login-title">TRACK BOX</h3> -->
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <label class="name-login-version">Version 5</label>
+    </div>
+  </div>
+  <form [formGroup]="loginForm" (submit)="login()">
+    <div class="row">
+      <div class="col-md-12 mb-2">      
+          <input formControlName="userName" class="form-control" matInput placeholder="Login Name" type="text"/>  
+      </div>
+      <div class="col-md-12">      
+          <input  formControlName="password" class="form-control" matInput  placeholder="Password"  type="password" />      
+      </div>
+      <div _ngcontent-xmy-c9="" class="col-md-12 for-leads-chckbx login-remember-chckbox">
+        <div _ngcontent-xmy-c9="" class="form-check for-chck-bx-crcktng-login form-check for-chck-bx-crcktng-led-titl-bx">     
+          <label _ngcontent-xmy-c9="" class="form-check-label">
+            <input _ngcontent-xmy-c9="" checked="" class="form-check-input" type="checkbox" value=""/>
+            <span _ngcontent-xmy-c9="" class="form-check-sign lead-title-box-check" style="margin-top: -15%; margin-left: 7%;"><span _ngcontent-xmy-c9="" class="check"></span> </span></label>
+        </div>
+        <label class="name-login-remember pt-2" style="">Remember Me</label>
+      </div>
+      <div class="col-md-12">
+        <button  [disabled]='loginForm.invalid'  type="submit" class="other-button-style  pull-right">
+          Login
+        </button>
+      </div>
+    </div>
+  </form>
+  
