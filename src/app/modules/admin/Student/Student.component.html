@@ -1681,9 +1681,9 @@
                     <td style="width:60% !important;">                   
                     <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">
                         &nbsp; : &nbsp;{{Student_.Student_Name}} </a></td>
-                  <!--  <td style="font-family: 'Libre Barcode 39', cursive;font-size: 40px;">
-                         <label style="font-family: 'Libre Barcode 39', cursive;font-size: 40px;">* {{Student_.Registration_No}}*</label> 
-                    </td>	-->
+                    <td style="font-family: 'Arial Narrow', Arial, sans-serif;font-size: 40px;">
+                         <ngx-barcode6 [bc-value]="Student_.Registration_No" [bc-display-value]="false" [bc-height]="30" [bc-width]="1.5"></ngx-barcode6>
+                    </td>
                     <td style="width:20% !important; border:0!important;position: fixed; margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
                         <a style="margin-left: 0px!important;">Registration No  &nbsp; : &nbsp;</a></td>
                     <td style="width:19% !important; border:0!important; margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
@@ -1866,8 +1866,10 @@
             <tr>
                 <!-- <td>23456</td> -->
                 <td style="padding-left:10px">  
-                <label style="font-family: 'Libre Barcode 39', cursive;font-size: 40px; margin-top: 310px; padding-left: 40px;">* {{Student_.Registration_No}}*</label>                    
-                  </td>
+                    <div style="margin-top: 310px; padding-left: 40px;">
+                        <ngx-barcode6 [bc-value]="Student_.Registration_No" [bc-display-value]="false" [bc-height]="30" [bc-width]="1.5"></ngx-barcode6>
+                    </div>
+                </td>
                   <!-- style="text-align: left;padding-left:-10px;" margin-left: 387%;margin-top: -90px!important;-->         
                   <td  style="padding-left:450px">
                     <img id="output" style=" width:70px; height:80px; object-position:0px !important;margin-bottom: 50%;"   src={{ImageFile_Photo_view}} />
@@ -1895,10 +1897,10 @@
          <h3 style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 14px;letter-spacing: 1px;font-weight: bold;"><a style="text-transform:uppercase;  font-weight: bold;">{{ Student_Course_.Certificate_Date_Search | date :'dd MMMM y ' }}</a></h3>
         </div>
         <!-- <div fxLayout="column">
-            <ngx-barcode *ngFor="let bcValue of Registrtion_No_Barcode" [bc-element-type]="elementType" [bc-value]="bcValue" [bc-format]="format" [bc-line-color]="lineColor"
+            <ngx-barcode6 *ngFor="let bcValue of Registrtion_No_Barcode" [bc-element-type]="elementType" [bc-value]="bcValue" [bc-format]="format" [bc-line-color]="lineColor"
              [bc-width]="width" [bc-height]="height" [bc-display-value]="displayValue" [bc-font-options]="fontOptions" [bc-font]="font"
              [bc-text-align]="textAlign" [bc-text-position]="textPosition" [bc-text-margin]="textMargin" [bc-font-size]="fontSize" [bc-background]="background"
-             [bc-margin]="margin" [bc-margin-top]="marginTop" [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight"></ngx-barcode>
+             [bc-margin]="margin" [bc-margin-top]="marginTop" [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight"></ngx-barcode6>
         </div> -->   
     <!-- </div> -->      
     </body>
@@ -1986,9 +1988,9 @@
                     <td style="width:60% !important;">                   
                     <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">
                         &nbsp; : &nbsp;{{Student_.Student_Name}} </a></td>
-                  <!--  <td style="font-family: 'Libre Barcode 39', cursive;font-size: 40px;">
-                         <label style="font-family: 'Libre Barcode 39', cursive;font-size: 40px;">* {{Student_.Registration_No}}*</label> 
-                    </td>   -->
+                  <td style="font-family: 'Arial Narrow', Arial, sans-serif;font-size: 40px;">
+                         <ngx-barcode6 [bc-value]="Student_.Registration_No" [bc-display-value]="false" [bc-height]="30" [bc-width]="1.5"></ngx-barcode6>
+                    </td>
                     <td style="width:20% !important; border:0!important;position: fixed; margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
                         <a style="margin-left: 0px!important;">Registration No  &nbsp; : &nbsp;</a></td>
                     <td style="width:19% !important; border:0!important; margin:0px;text-align:left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">
@@ -2007,9 +2009,9 @@
                 <tr style="border:0!important">
                     <td style="width:121px;border:0!important;margin:0px;text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;">
                         <a >Training Centre</a></td>
-                        <td>                        
+                        <td colspan="3">                        
                         <a style="text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">
-                            &nbsp; : &nbsp;{{CenterName}}&nbsp;&nbsp; {{DistrictName}}({{CenterCode}})</a></td>
+                            &nbsp; : &nbsp;{{CenterName}}&nbsp;({{CenterCode}})</a></td>
                 </tr>   
                     <tr style="border:0!important">
                     <td style="width:121px;border:0!important;margin:0px;text-align: left; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;">
@@ -2048,23 +2050,25 @@
                                      transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 34px!important;font-size:12px;">
                                      <a style="margin-top: -33px!important;">Marks for Pass</a> <br>
                                      <a style="margin-top: -35px!important;"> Minimum % of</a></SPAN></th>                                      
-                <th  style="border:1px solid black;
+              
+                                     <th  style="border:1px solid black; border-collapse: collapse;">
+                                        <SPAN STYLE="writing-mode: vertical-lr;
+                                                         -ms-writing-mode: tb-rl;
+                                                         transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 33px!important;font-size:12px;">
+                                                         <a style="margin-top: -59px!important;">(Total 50)</a><br>
+                                                        <a style="margin-top: -7px!important;">External Assessment</a></SPAN></th>   
+              <th  style="border:1px solid black;
                 border-collapse: collapse;"><SPAN STYLE="writing-mode: vertical-lr;
                                      -ms-writing-mode: tb-rl;
                                      transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 33px!important;font-size:12px;">
-                                     <a style="margin-top: -59px!important;">(Total 20)</a><br>
-                                    <a style="margin-top: -7px!important;">Internal Assessment</a></SPAN></th>
-                <th  style="border:1px solid black; border-collapse: collapse;">
-                    <SPAN STYLE="writing-mode: vertical-lr;
-                                     -ms-writing-mode: tb-rl;
-                                     transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 33px!important;font-size:12px;">
-                                     <a style="margin-top: -59px!important;">(Total 40)</a><br>
-                                    <a style="margin-top: -7px!important;">External Assessment</a></SPAN></th>                 
+                                     <a style="margin-top: -59px!important;">(Total 30)</a><br>
+                                    <a style="margin-top: -7px!important;">Internal Assessment</a></SPAN></th>          
+
                  <th  style="border:1px solid black; border-collapse: collapse;">
                 <SPAN STYLE="writing-mode: vertical-lr;
                                      -ms-writing-mode: tb-rl;
                                      transform: rotate(180deg);font-family: 'Arial Narrow', Arial, sans-serif;font-weight: lighter!important;width: 32px!important;font-size:12px;">
-                                     <a style="margin-top: -59px!important;">(Total 40)</a><br>
+                                     <a style="margin-top: -59px!important;">(Total 20)</a><br>
                                     <a style="margin-top: -26px!important;">Skill Assessment</a></SPAN></th>
                  <th  style="border:1px solid black;border-collapse: collapse;"><SPAN STYLE="writing-mode: vertical-lr;
                                      -ms-writing-mode: tb-rl;width:25px;margin-right: 0px;
@@ -2080,8 +2084,8 @@
                        <td style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: left;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" >{{Mark_List_.Subject_Name}}</td>
                        <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">{{Mark_List_.Maximum_Mark}}</td>
                        <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">{{Mark_List_.Minimum_Mark}}</td>
-                       <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">{{Mark_List_.Internal_Mark}}</td>
                        <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" >{{Mark_List_.External_Mark}}</td>
+                       <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;">{{Mark_List_.Internal_Mark}}</td>
                        <td  style="border-right:1px solid black;padding: 2px 5px 2px 5px;  text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" >{{Mark_List_.Technical_Skill}}</td>
                        <td style="border-right:1px solid black;padding: 2px 5px 2px 5px; text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size:12px;" >{{Mark_List_.Mark_Obtained}}</td> 
                        <!-- {{Mark_List_.Exam_Status_Name}} -->
@@ -2106,11 +2110,12 @@
                        border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Maximummarks_Print}}</td> 
                      <td  style="border:1px solid black;
                        border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Minimummarksforpass_print}}</td> 
-                          <td  style="border:1px solid black;
+                        <td  style="border:1px solid black;
+                        border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Externalassessment_Total_Print}}</td> 
+                     
+                        <td  style="border:1px solid black;
                        border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Internalassessment_Total_Print}}</td> 
-                     <td  style="border:1px solid black;
-                       border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Externalassessment_Total_Print}}</td> 
-                          <td  style="border:1px solid black;
+                           <td  style="border:1px solid black;
                        border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Skillassessment_Total_Print}}</td> 
                      <td  style="border:1px solid black;
                        border-collapse: collapse;font-weight:bold;padding:4px 0px 0px 5px;font-size:12px;">{{Totalmarks_Total_Print}}</td> 
@@ -2158,52 +2163,57 @@
 
 <div id="Certificate_Div" style="display:none;">
     <div>
-
     </div>
-    <div style="margin-top: 90px!important;">
-    <h4 style="margin:0px;text-align:left;margin-top:-5px;font-family: 'Arial Narrow', Arial, sans-serif;font-size:14px;font-weight: bold;">
-        <a style="margin-left: 125px;letter-spacing: 1px;">{{Student_.Registration_No}}</a></h4>
-</div>
+    <div style="margin-top: 55px!important;">
+    <h4 style="margin:0px;text-align:left;margin-top:0px;font-family: 'Times New Roman', Times New Roman, sans-serif;font-size:15px;font-weight: bold;">
+        <a style="margin-right: 30px;letter-spacing: 0.50px;float: right;text-align: right;"><strong>{{Student_.Registration_No}}</strong></a></h4>
+
+        <h4 style="text-align:right;float:right;">
+         <ngx-barcode6 [bc-value]="Student_.Registration_No" [bc-display-value]="false" [bc-height]="30" [bc-width]="1.5" style="margin-top:5px; padding-right: 0px;margin-right: -77px;float: right;"></ngx-barcode6>
+        </h4>
+    </div>
     <body>
         <div class="col-md-12" style="height: 10%;">   
     </div>
-        <table style="margin-top:147px!important;">
+        <table style="margin-top:185px!important;">
             <tr>
                 <!-- <td>23456</td> -->
                 <td style="padding-left:10px">  
-                <label style="font-family: 'Libre Barcode 39', cursive;font-size: 40px; margin-top: 310px; padding-left: 40px;">* {{Student_.Registration_No}}*</label>                    
+                <label style="font-family: 'Libre Barcode 39', cursive;font-size: 30px; margin-top: 330px; padding-left: 50px;"></label>                    
                   </td>
                   <!-- style="text-align: left;padding-left:-10px;" margin-left: 387%;margin-top: -90px!important;-->         
-                  <td  style="padding-left:450px">
+                  <td  style="padding-left:555px">
                     <img id="output" style=" width:70px; height:80px; object-position:0px !important;margin-bottom: 50%;"   src={{ImageFile_Photo_view}} />
                     <!-- margin-top: -121px!important; -->
                 </td>
             </tr>  
         </table>
-        <div style="margin-top: 30px!important;" >
+        <div style="margin-top: 18px!important;" >
         <!-- <h1  style="text-align: center;margin-top:-9%;text-decoration: overline">margin-left:-10px;"CERTIFICATE</h1><br><br> -->
-         <p style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">This is to certify that the Evaluation Board of Council for Technology & Science Kerala,</p>   
-         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;" >on the recommendation of the Faculty and by the Virtue of the Authority vested in them have conferred on </p> 
-         <h3 style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;text-transform:uppercase;font-size: 14px;font-weight: bold;">{{Student_.Student_Name}}</h3>
-         <p style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">having sucessfully Completed the requirements during the period </p>
-         <h3 style="text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;text-transform:uppercase;font-size: 14px;font-weight: bold;"><a>{{cert_st_year}}</a>&nbsp;<a>{{ Student_Course_.Starting_Year}}</a> &nbsp;<a>TO </a>&nbsp;<a>{{cert_end_year}}</a>&nbsp;<a> {{Student_Course_.Ending_Year }}</a></h3> 
-         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">The final examination was held in <b style="text-transform:uppercase;  font-weight: bold;">  {{ new_mydate }} </b>  and therefore Awarded</p> 
+         <p style="text-align: center; font-family: 'Times New Roman', Times New Roman, sans-serif;font-size: 15px;letter-spacing: 0.5px;font-weight: bold;padding-bottom:6px;">This is to certify that the Evaluation Board of Council for Technology & Science Kerala,</p>   
+         <p style="text-align: center;font-family: 'Times New Roman', Times New Roman, sans-serif;font-size: 15px;letter-spacing: 0.5px;font-weight: bold;padding: bottom 6px;" >on the recommendation of the Faculty and by the Virtue of the Authority</p>
+         <p style="text-align: center;font-family: 'Times New Roman', Times New Roman, sans-serif;font-size: 15px;letter-spacing: 0.5px;font-weight: bold;padding-bottom:6px;">vested in them , has conferred upon </p> 
+         <h3 style="text-align: center; font-family: 'Times New Roman', Times New Roman, sans-serif;font-size: 15px;letter-spacing: 0.5px;font-weight: bold;padding-bottom:6px;"><strong>{{Student_.Student_Name}}</strong></h3>
+         <p style="text-align: center; font-family: 'Times New Roman', Times New Roman, sans-serif;font-size: 15px;letter-spacing: 0.5px;font-weight: bold;padding-bottom:6px;">having successfully completed the requirements during the period </p>
+         <h3 style="text-align: center; font-family: 'Times New Roman', Times New Roman, sans-serif;text-transform:uppercase;font-size: 15px;letter-spacing: 0.5px;font-weight: bold;padding-bottom:6px;"><a><strong>{{cert_st_year}}</strong></a>&nbsp;<a><strong>{{ Student_Course_.Starting_Year}}</strong></a> 
+            &nbsp;<a>TO </a>&nbsp;<a><strong>{{cert_end_year}}</strong></a>&nbsp;<a><strong> {{Student_Course_.Ending_Year }}</strong></a></h3> 
+         <p style="text-align: center;font-family: 'Times New Roman', Times New Roman, sans-serif;font-size: 15px;letter-spacing: 0.5px;font-weight: bold;padding-bottom:6px;">The final examination was held in <b style="text-transform:uppercase;  font-weight: bold;">  <strong>{{ new_mydate }}</strong> </b>  and therefore , he/she has been Awarded the</p> 
          <!--<b>  {{ Examinationheld_Date }} </b> -->
-         <h3 style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;text-transform:uppercase;font-size: 14px;letter-spacing: 1px;font-weight: bold;">{{Student_Course_.Course_Name}}</h3>
+         <h3 style="text-align: center;font-family: 'Times New Roman', Times New Roman, sans-serif;text-transform:uppercase;font-size: 15px;letter-spacing: 0.5px;font-weight: bold;padding-bottom:6px;"><strong>{{Student_Course_.Course_Name}}.</strong></h3>
         <!-- <p style="text-align: center">  He/She is place in with</p><h3 style="text-align: center" >A+</h3> -->
-         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;"> He/She is place in with
-             <a style="text-transform:uppercase;font-size: 14px;">GRADE</a>&nbsp;
-             <b style="font-size:14px;font-weight: bold;text-transform:uppercase;">{{Student_Course_.Certificate_Grade}}</b></p>
+         <p style="text-align: center;font-family: 'Times New Roman', Times New Roman, sans-serif;font-size: 15px;letter-spacing: 0.5px;font-weight: bold;padding-bottom:6px;"> He/She is place in 
+             <a style="text-transform:uppercase;font-size: 15px;letter-spacing: 0.5px;padding-bottom:10px;">GRADE</a>&nbsp;
+             <b style="font-size:15px;letter-spacing: 0.5px;font-weight: bold;text-transform:uppercase;padding-bottom:10px;"><strong>{{Student_Course_.Certificate_Grade}}</strong></b></p>
          <!-- <h3>{{Student_Course_.Certificate_Grade}}</h3> -->
-         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;">with all Rights and Privileges there unto appertaining.</p>
-         <p style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 12px;letter-spacing: 1px;font-weight: bold;"> This Certificate is Presented on the</p>
-         <h3 style="text-align: center;font-family: 'Arial Narrow', Arial, sans-serif;font-size: 14px;letter-spacing: 1px;font-weight: bold;"><a style="text-transform:uppercase;  font-weight: bold;">{{ Student_Course_.Certificate_Date_Search | date :'dd MMMM y ' }}</a></h3>
+         <p style="text-align: center;font-family: 'Times New Roman', Times New Roman, sans-serif;font-size: 15px;letter-spacing: 0.5px;font-weight: bold;padding-bottom:6px;">with all rights and privileges thereto appertaining.</p>
+         <p style="text-align: center;font-family: 'Times New Roman', Times New Roman, sans-serif;font-size: 15px;letter-spacing: 0.5px;font-weight: bold;padding-bottom:6px;"> This certificate is presented on the</p>
+         <h3 style="text-align: center;font-family: 'Times New Roman', Times New Roman, sans-serif;font-size: 15px;letter-spacing: 0.5px;font-weight: bold;padding-bottom:6px;"><a style="text-transform:uppercase;  font-weight: bold;"><strong>{{ Student_Course_.Certificate_Date_Search | date :'dd MMMM y ' }}</strong></a></h3>
         </div>
         <!-- <div fxLayout="column">
-            <ngx-barcode *ngFor="let bcValue of Registrtion_No_Barcode" [bc-element-type]="elementType" [bc-value]="bcValue" [bc-format]="format" [bc-line-color]="lineColor"{{ Examinationheldon_Date | date :'MMMM y' }} 
+            <ngx-barcode6 *ngFor="let bcValue of Registrtion_No_Barcode" [bc-element-type]="elementType" [bc-value]="bcValue" [bc-format]="format" [bc-line-color]="lineColor"{{ Examinationheldon_Date | date :'MMMM y' }} 
              [bc-width]="width" [bc-height]="height" [bc-display-value]="displayValue" [bc-font-options]="fontOptions" [bc-font]="font"
              [bc-text-align]="textAlign" [bc-text-position]="textPosition" [bc-text-margin]="textMargin" [bc-font-size]="fontSize" [bc-background]="background"
-             [bc-margin]="margin" [bc-margin-top]="marginTop" [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight"></ngx-barcode>
+             [bc-margin]="margin" [bc-margin-top]="marginTop" [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight"></ngx-barcode6>
         </div> -->   
     <!-- </div> -->      
     </body>
